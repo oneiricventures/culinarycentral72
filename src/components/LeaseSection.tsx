@@ -19,21 +19,21 @@ const LeaseSection = () => {
   const stats = [
     {
       icon: Users,
-      value: "1000+",
+      value: "500+",
       label: "Daily Footfall",
       description: "High-traffic location with consistent customer flow"
     },
     {
       icon: MapPin,
-      value: "5km",
+      value: "13km",
       label: "Highway Visibility",
       description: "Visible from kilometers away on busy highway"
     },
     {
       icon: Clock,
-      value: "24/7",
+      value: "9am-12am",
       label: "Operating Hours",
-      description: "Round-the-clock business opportunities"
+      description: "15-hour business opportunities daily"
     },
     {
       icon: TrendingUp,
@@ -45,9 +45,9 @@ const LeaseSection = () => {
 
   const advantages = [
     "Prime highway location with maximum visibility",
-    "Established customer base of 1000+ daily visitors",
+    "Established customer base of 500+ daily visitors",
     "Shared utilities and maintenance costs",
-    "24/7 security and operational support",
+    "Security and operational support during business hours",
     "Proven business model and foot traffic",
     "Flexible lease terms and space configurations",
     "Marketing support and brand collaboration",
@@ -118,22 +118,22 @@ const LeaseSection = () => {
               </div>
             </div>
 
-            {/* Success Stories */}
+            {/* Business Info */}
             <Card className="bg-gradient-to-br from-purple-600 to-purple-700 text-white">
               <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-4">Current Success Stories</h3>
+                <h3 className="text-xl font-bold mb-4">Prime Location Benefits</h3>
                 <div className="space-y-3">
                   <div>
-                    <div className="font-medium">Burger Singh</div>
-                    <div className="text-sm opacity-90">₹15L+ monthly revenue</div>
+                    <div className="font-medium">Strategic Highway Position</div>
+                    <div className="text-sm opacity-90">NH 72 Dehradun-Haridwar Highway</div>
                   </div>
                   <div>
-                    <div className="font-medium">Chicago Pizza</div>
-                    <div className="text-sm opacity-90">₹12L+ monthly revenue</div>
+                    <div className="font-medium">High Visibility</div>
+                    <div className="text-sm opacity-90">Visible from 13km distance</div>
                   </div>
                   <div>
-                    <div className="font-medium">The Nukkad Tapri</div>
-                    <div className="text-sm opacity-90">₹8L+ monthly revenue</div>
+                    <div className="font-medium">Proven Footfall</div>
+                    <div className="text-sm opacity-90">500+ daily visitors</div>
                   </div>
                 </div>
               </CardContent>
@@ -182,7 +182,7 @@ const LeaseSection = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      placeholder="+91 98765 43210"
+                      placeholder="+91 9997731372"
                       required
                     />
                   </div>
@@ -233,8 +233,8 @@ const LeaseSection = () => {
               <div className="mt-6 pt-6 border-t border-gray-200">
                 <div className="text-sm text-gray-600 text-center">
                   <p className="mb-2">Or reach out directly:</p>
-                  <p className="font-medium text-gray-900">📞 +91 98765 43210</p>
-                  <p className="font-medium text-gray-900">📧 leasing@culinarycentral72.com</p>
+                  <p className="font-medium text-gray-900">📞 +91 9997731372</p>
+                  <p className="font-medium text-gray-900">📧 culinarycentral72@gmail.com</p>
                 </div>
               </div>
             </CardContent>

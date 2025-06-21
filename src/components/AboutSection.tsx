@@ -8,7 +8,7 @@ const AboutSection = () => {
     {
       icon: MapPin,
       title: "Strategic Highway Location",
-      description: "KM 72 on the busy Dehradun-Rishikesh route, serving thousands of travelers daily"
+      description: "NH 72 on the busy Dehradun-Haridwar route, serving hundreds of travelers daily"
     },
     {
       icon: Shield,
@@ -18,12 +18,12 @@ const AboutSection = () => {
     {
       icon: Users,
       title: "Community Hub",
-      description: "Serving highway travelers, local families, students, and factory workers"
+      description: "Serving highway travelers, local families, students, and institutions"
     },
     {
       icon: Clock,
-      title: "Always Open",
-      description: "24/7 operations ensuring you never go hungry, any time of day or night"
+      title: "Open 9am to 12am",
+      description: "15-hour operations ensuring you never go hungry during our operating hours"
     }
   ];
 
@@ -54,7 +54,7 @@ const AboutSection = () => {
                 <h3 className="text-lg font-bold text-gray-900 mb-2">Our Story</h3>
                 <p className="text-gray-600">
                   What started as a dream to create India's first premium highway food plaza has evolved 
-                  into a destination that serves over 1,000 travelers daily. We've carefully curated 
+                  into a destination that serves over 500 travelers daily. We've carefully curated 
                   five distinct food brands under one roof, each maintaining its unique identity while 
                   contributing to a unified experience.
                 </p>
@@ -73,11 +73,11 @@ const AboutSection = () => {
             {/* Stats */}
             <div className="grid grid-cols-2 gap-6">
               <div className="text-center p-4 bg-orange-50 rounded-lg">
-                <div className="text-3xl font-bold text-orange-600">1000+</div>
+                <div className="text-3xl font-bold text-orange-600">500+</div>
                 <div className="text-sm text-gray-600">Daily Visitors</div>
               </div>
               <div className="text-center p-4 bg-green-50 rounded-lg">
-                <div className="text-3xl font-bold text-green-600">5km</div>
+                <div className="text-3xl font-bold text-green-600">13km</div>
                 <div className="text-sm text-gray-600">Visibility Range</div>
               </div>
             </div>
@@ -92,8 +92,8 @@ const AboutSection = () => {
                     <MapPin className="w-16 h-16 text-orange-500 mx-auto" />
                     <div>
                       <h3 className="text-xl font-bold text-gray-900">Prime Highway Location</h3>
-                      <p className="text-gray-600">KM 72, Dehradun-Rishikesh Highway</p>
-                      <p className="text-sm text-gray-500 mt-2">Visible from 5km away • Easy highway access</p>
+                      <p className="text-gray-600">NH 72, Dehradun-Haridwar Highway</p>
+                      <p className="text-sm text-gray-500 mt-2">Visible from 13km away • Easy highway access</p>
                     </div>
                   </div>
                 </div>
@@ -101,7 +101,7 @@ const AboutSection = () => {
               <CardContent className="p-6">
                 <h3 className="font-bold text-gray-900 mb-2">Strategic Advantage</h3>
                 <p className="text-gray-600 text-sm">
-                  Located at the midpoint between Dehradun and Rishikesh, making us the natural 
+                  Located at the midpoint between Dehradun and Haridwar, making us the natural 
                   choice for travelers, pilgrims, and adventure seekers.
                 </p>
               </CardContent>
@@ -135,16 +135,16 @@ const AboutSection = () => {
           <h3 className="text-2xl font-bold mb-4">Visit Us Today</h3>
           <p className="mb-6 opacity-90 max-w-2xl mx-auto">
             Experience the perfect blend of authentic Indian hospitality and modern convenience. 
-            We're open 24/7 to serve you better.
+            We're open from 9am to 12am to serve you better.
           </p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-sm">
             <div className="flex items-center gap-2">
               <MapPin className="w-4 h-4" />
-              <span>KM 72, Dehradun-Rishikesh Highway</span>
+              <span>NH 72, Dehradun-Haridwar Highway</span>
             </div>
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" />
-              <span>Open 24/7</span>
+              <span>Open 9am to 12am</span>
             </div>
           </div>
         </div>

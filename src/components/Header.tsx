@@ -14,15 +14,15 @@ const Header = () => {
           <div className="flex items-center gap-4 text-gray-600">
             <div className="flex items-center gap-1">
               <MapPin className="w-4 h-4 text-orange-500" />
-              <span>Dehradun-Rishikesh Highway, KM 72</span>
+              <span>Dehradun Haridwar Highway</span>
             </div>
             <div className="flex items-center gap-1">
               <Phone className="w-4 h-4 text-orange-500" />
-              <span>+91 98765 43210</span>
+              <span>+91 9997731372</span>
             </div>
           </div>
           <div className="text-orange-600 font-medium">
-            Open 24/7 • Premium Food Plaza & Stay
+            Open 9am to 12am • Premium Food Plaza & Stay
           </div>
         </div>
 
@@ -33,8 +33,8 @@ const Header = () => {
               <span className="text-white font-bold text-xl">CC</span>
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-800">Culinary Central</h1>
-              <p className="text-sm text-orange-600 font-medium">Highway 72</p>
+              <h1 className="text-2xl font-bold text-gray-800">Culinary Central 72</h1>
+              <p className="text-sm text-orange-600 font-medium">Highway NH 72</p>
             </div>
           </div>
 

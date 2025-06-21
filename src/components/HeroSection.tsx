@@ -18,7 +18,7 @@ const HeroSection = () => {
             <div className="space-y-4">
               <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-medium">
                 <MapPin className="w-4 h-4" />
-                KM 72, Dehradun-Rishikesh Highway
+                NH 72, Dehradun-Haridwar Highway
               </div>
               
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
@@ -45,8 +45,8 @@ const HeroSection = () => {
                 <div className="flex items-center justify-center w-12 h-12 bg-orange-100 rounded-lg mb-2 mx-auto">
                   <Clock className="w-6 h-6 text-orange-600" />
                 </div>
-                <div className="text-2xl font-bold text-gray-900">24/7</div>
-                <div className="text-sm text-gray-600">Always Open</div>
+                <div className="text-2xl font-bold text-gray-900">15Hr</div>
+                <div className="text-sm text-gray-600">9am to 12am</div>
               </div>
               <div className="text-center">
                 <div className="flex items-center justify-center w-12 h-12 bg-orange-100 rounded-lg mb-2 mx-auto">

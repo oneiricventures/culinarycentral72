@@ -14,8 +14,8 @@ const Footer = () => {
                 <span className="text-white font-bold text-lg">CC</span>
               </div>
               <div>
-                <h3 className="text-xl font-bold">Culinary Central</h3>
-                <p className="text-orange-400 text-sm">Highway 72</p>
+                <h3 className="text-xl font-bold">Culinary Central 72</h3>
+                <p className="text-orange-400 text-sm">Highway NH 72</p>
               </div>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
@@ -55,19 +55,19 @@ const Footer = () => {
             <div className="space-y-3 text-sm">
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-orange-400 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-300">KM 72, Dehradun-Rishikesh Highway, Uttarakhand</span>
+                <span className="text-gray-300">NH 72, Dehradun-Haridwar Highway, Uttarakhand</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-orange-400" />
-                <span className="text-gray-300">+91 98765 43210</span>
+                <span className="text-gray-300">+91 9997731372</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-orange-400" />
-                <span className="text-gray-300">hello@culinarycentral72.com</span>
+                <span className="text-gray-300">culinarycentral72@gmail.com</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-orange-400" />
-                <span className="text-gray-300">Open 24/7</span>
+                <span className="text-gray-300">Open 9am to 12am</span>
               </div>
             </div>
           </div>
