@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -18,7 +17,7 @@ const BrandsSection = () => {
       name: "Chicago Pizza",
       tagline: "Customizable Slices",
       description: "Fresh, made-to-order pizzas with premium toppings",
-      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?auto=format&fit=crop&w=400&q=80",
+      image: "/lovable-uploads/cc1a7d21-d1a5-409c-bf3b-28844aefe7cf.png",
       color: "from-yellow-500 via-red-500 to-pink-500",
       hoverColor: "from-yellow-600 via-red-600 to-pink-600",
       specialty: "Butter Chicken Pizza"
