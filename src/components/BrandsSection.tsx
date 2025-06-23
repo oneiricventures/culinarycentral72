@@ -8,7 +8,7 @@ const BrandsSection = () => {
       name: "Burger Singh",
       tagline: "Indian Fusion Burgers",
       description: "Gourmet burgers with authentic Indian spices and flavors",
-      image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=400&q=80",
+      image: "/lovable-uploads/86473656-30e8-43f9-8348-d8bdd305fddb.png",
       color: "from-red-500 via-orange-500 to-yellow-500",
       hoverColor: "from-red-600 via-orange-600 to-yellow-600",
       specialty: "Paneer Tikka Burger"
