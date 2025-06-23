@@ -78,8 +78,8 @@ const HeroSection = () => {
           <div className="relative">
             <div className="aspect-[4/3] bg-gradient-to-br from-orange-200 via-yellow-200 to-pink-200 rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500">
               <img 
-                src="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=800&q=80"
-                alt="Culinary Central 72 Food Plaza"
+                src="/lovable-uploads/768d3c0d-bd22-43fb-8132-9dfe8fec87d5.png"
+                alt="Culinary Central 72 Food Plaza Building"
                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
               />
               {/* Enhanced Floating Cards */}
