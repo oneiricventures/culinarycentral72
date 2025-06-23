@@ -26,7 +26,7 @@ const BrandsSection = () => {
       name: "Baskin Robbins",
       tagline: "Premium Ice Cream",
       description: "31 flavors of happiness, perfect for highway treats",
-      image: "https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?auto=format&fit=crop&w=400&q=80",
+      image: "/lovable-uploads/79937188-a345-4e6f-a91d-2947b1668a0a.png",
       color: "from-pink-500 via-purple-500 to-blue-500",
       hoverColor: "from-pink-600 via-purple-600 to-blue-600",
       specialty: "Kulfi Fusion"
