@@ -35,7 +35,7 @@ const BrandsSection = () => {
       name: "Waggle Station",
       tagline: "Waffles & Beverages",
       description: "Crispy waffles, fresh juices, and artisan coffee",
-      image: "https://images.unsplash.com/photo-1562376552-0d160147709b?auto=format&fit=crop&w=400&q=80",
+      image: "/lovable-uploads/2e37bec9-6bb5-477f-8b33-8828d5fd6be7.png",
       color: "from-amber-500 via-orange-500 to-red-500",
       hoverColor: "from-amber-600 via-orange-600 to-red-600",
       specialty: "Belgian Waffles"
