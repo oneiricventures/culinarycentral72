@@ -32,7 +32,7 @@ const BrandsSection = () => {
       specialty: "Kulfi Fusion"
     },
     {
-      name: "Waggle Station",
+      name: "Waffle Station",
       tagline: "Waffles & Beverages",
       description: "Crispy waffles, fresh juices, and artisan coffee",
       image: "/lovable-uploads/2e37bec9-6bb5-477f-8b33-8828d5fd6be7.png",
