@@ -6,6 +6,10 @@ import { Button } from '@/components/ui/button';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleCall = () => {
+    window.location.href = 'tel:+919997731372';
+  };
+
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4">
@@ -49,10 +53,17 @@ const Header = () => {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <Button variant="outline" className="border-orange-500 text-orange-600 hover:bg-orange-50">
+            <Button 
+              variant="outline" 
+              className="border-orange-500 text-orange-600 hover:bg-orange-50"
+              onClick={handleCall}
+            >
               Reserve Table
             </Button>
-            <Button className="bg-orange-600 hover:bg-orange-700 text-white">
+            <Button 
+              className="bg-orange-600 hover:bg-orange-700 text-white"
+              onClick={handleCall}
+            >
               Order Now
             </Button>
           </div>
@@ -76,10 +87,17 @@ const Header = () => {
               <a href="#about" className="text-gray-700 font-medium py-2">About</a>
               <a href="#lease" className="text-gray-700 font-medium py-2">Lease Space</a>
               <div className="flex flex-col gap-2 pt-4">
-                <Button variant="outline" className="w-full border-orange-500 text-orange-600">
+                <Button 
+                  variant="outline" 
+                  className="w-full border-orange-500 text-orange-600"
+                  onClick={handleCall}
+                >
                   Reserve Table
                 </Button>
-                <Button className="w-full bg-orange-600 hover:bg-orange-700 text-white">
+                <Button 
+                  className="w-full bg-orange-600 hover:bg-orange-700 text-white"
+                  onClick={handleCall}
+                >
                   Order Now
                 </Button>
               </div>

@@ -1,9 +1,12 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 const BrandsSection = () => {
+  const handleCall = () => {
+    window.location.href = 'tel:+919997731372';
+  };
+
   const brands = [
     {
       name: "Burger Singh",
@@ -146,7 +149,11 @@ const BrandsSection = () => {
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
             <h3 className="text-2xl font-bold mb-4 relative">Multi-Brand Ordering</h3>
             <p className="mb-6 opacity-90 relative">Order from multiple brands in a single cart. Mix and match your favorites!</p>
-            <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 relative">
+            <Button 
+              size="lg" 
+              className="bg-white text-orange-600 hover:bg-gray-100 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 relative"
+              onClick={handleCall}
+            >
               Start Ordering
             </Button>
           </div>
@@ -155,7 +162,11 @@ const BrandsSection = () => {
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
             <h3 className="text-2xl font-bold mb-4 relative">Reserve Your Table</h3>
             <p className="mb-6 opacity-90 relative">Guarantee your spot during peak hours. Choose your preferred brand area.</p>
-            <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 relative">
+            <Button 
+              size="lg" 
+              className="bg-white text-green-600 hover:bg-gray-100 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 relative"
+              onClick={handleCall}
+            >
               Book Table
             </Button>
           </div>

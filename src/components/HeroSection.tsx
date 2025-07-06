@@ -4,6 +4,10 @@ import { Button } from '@/components/ui/button';
 import { MapPin, Clock, Users, Star, Zap } from 'lucide-react';
 
 const HeroSection = () => {
+  const handleCall = () => {
+    window.location.href = 'tel:+919997731372';
+  };
+
   return (
     <section id="home" className="relative bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-50 overflow-hidden">
       {/* Enhanced Background Pattern */}
@@ -65,10 +69,19 @@ const HeroSection = () => {
 
             {/* Enhanced CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-8 py-4 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-8 py-4 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+                onClick={handleCall}
+              >
                 Order Online Now
               </Button>
-              <Button size="lg" variant="outline" className="border-2 border-orange-500 text-orange-600 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 px-8 py-4 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-2 border-orange-500 text-orange-600 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 px-8 py-4 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                onClick={() => document.getElementById('brands')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 Explore Our Brands
               </Button>
             </div>
