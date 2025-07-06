@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -11,7 +12,8 @@ const BrandsSection = () => {
       image: "/lovable-uploads/86473656-30e8-43f9-8348-d8bdd305fddb.png",
       color: "from-red-500 via-orange-500 to-yellow-500",
       hoverColor: "from-red-600 via-orange-600 to-yellow-600",
-      specialty: "Paneer Tikka Burger"
+      specialty: "Paneer Tikka Burger",
+      menuLink: "https://burgersingh.dotpe.in/store/192/delivery"
     },
     {
       name: "Chicago Pizza",
@@ -20,7 +22,8 @@ const BrandsSection = () => {
       image: "/lovable-uploads/cc1a7d21-d1a5-409c-bf3b-28844aefe7cf.png",
       color: "from-yellow-500 via-red-500 to-pink-500",
       hoverColor: "from-yellow-600 via-red-600 to-pink-600",
-      specialty: "Butter Chicken Pizza"
+      specialty: "Butter Chicken Pizza",
+      menuLink: "https://drive.google.com/file/d/12xfkM7fFLsSmLaOTZqWODOkVxlOtbl6d/view?usp=sharing"
     },
     {
       name: "Baskin Robbins",
@@ -29,7 +32,8 @@ const BrandsSection = () => {
       image: "/lovable-uploads/79937188-a345-4e6f-a91d-2947b1668a0a.png",
       color: "from-pink-500 via-purple-500 to-blue-500",
       hoverColor: "from-pink-600 via-purple-600 to-blue-600",
-      specialty: "Kulfi Fusion"
+      specialty: "Kulfi Fusion",
+      menuLink: "https://www.google.com/maps/place/Baskin+Robbins/@30.1413388,78.1533874,3a,75y,90t/data=!3m8!1e2!3m6!1sAF1QipPwx739ftq16rR-D5Cpo7yw3fpb72VU5QBZqUe2!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fp%2FAF1QipPwx739ftq16rR-D5Cpo7yw3fpb72VU5QBZqUe2%3Dw195-h195-k-no!7i5400!8i5400!4m7!3m6!1s0x39093b120597d40f:0x1c05ada47338954e!8m2!3d30.1414354!4d78.1536677!10e9!16s%2Fg%2F11mcrs00ry?entry=ttu&g_ep=EgoyMDI1MDYzMC4wIKXMDSoASAFQAw%3D%3D"
     },
     {
       name: "Waffle Station",
@@ -38,7 +42,8 @@ const BrandsSection = () => {
       image: "/lovable-uploads/2e37bec9-6bb5-477f-8b33-8828d5fd6be7.png",
       color: "from-amber-500 via-orange-500 to-red-500",
       hoverColor: "from-amber-600 via-orange-600 to-red-600",
-      specialty: "Belgian Waffles"
+      specialty: "Belgian Waffles",
+      menuLink: "https://www.google.com/maps/place/%23Waffle+Station/@30.141414,78.1533527,3a,90.3y,90t/data=!3m8!1e2!3m6!1sAF1QipPc1TfU1osWM5Siw6zJUC1CFqAZ96HehciCoVU!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fp%2FAF1QipPc1TfU1osWM5Siw6zJUC1CFqAZ96HehciCoVU%3Dw195-h133-k-no!7i916!8i626!4m16!1m8!3m7!1s0x39093b120597d40f:0x1c05ada47338954e!2sBaskin+Robbins!8m2!3d30.1414354!4d78.1536677!10e9!16s%2Fg%2F11mcrs00ry!3m6!1s0x39093b467f20c1e7:0x7b4891f91e39b07c!8m2!3d30.1414895!4d78.1535717!10e9!16s%2Fg%2F11x6fk264m?entry=ttu&g_ep=EgoyMDI1MDYzMC4wIKXMDSoASAFQAw%3D%3D"
     },
     {
       name: "The Nukkad Tapri",
@@ -48,6 +53,7 @@ const BrandsSection = () => {
       color: "from-green-500 via-teal-500 to-blue-500",
       hoverColor: "from-green-600 via-teal-600 to-blue-600",
       specialty: "Masala Chai & Pakoras"
+      // No menuLink for this brand
     }
   ];
 
@@ -104,9 +110,15 @@ const BrandsSection = () => {
                     <div className="text-xs text-gray-500">Specialty</div>
                     <div className="text-sm font-medium text-gray-900">{brand.specialty}</div>
                   </div>
-                  <Button size="sm" className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-                    View Menu
-                  </Button>
+                  {brand.menuLink && (
+                    <Button 
+                      size="sm" 
+                      className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                      onClick={() => window.open(brand.menuLink, '_blank')}
+                    >
+                      View Menu
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>
