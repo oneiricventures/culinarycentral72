@@ -17,6 +17,10 @@ const SkylightSection = () => {
     "Mountain View Balcony"
   ];
 
+  const handleAirbnbClick = () => {
+    window.open('https://www.airbnb.co.in/rooms/1389016749522622097?check_in=2025-07-06&check_out=2025-07-11&guests=2&adults=2&s=67&unique_share_id=e04d94fb-8265-41e0-8f8d-ff3ad222d76b', '_blank');
+  };
+
   return (
     <section id="skylight" className="py-16 md:py-24 bg-gradient-to-br from-blue-50 to-indigo-50">
       <div className="container mx-auto px-4">
@@ -92,7 +96,7 @@ const SkylightSection = () => {
           <div className="space-y-6">
             <Card className="overflow-hidden shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1721322800607-8c38375eef04?auto=format&fit=crop&w=600&q=80"
+                src="/lovable-uploads/2e37bec9-6bb5-477f-8b33-8828d5fd6be7.png"
                 alt="Skylight Suite Living Room"
                 className="w-full h-64 object-cover"
               />
@@ -105,7 +109,7 @@ const SkylightSection = () => {
             <div className="grid grid-cols-2 gap-4">
               <Card className="overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=300&q=80"
+                  src="/lovable-uploads/cc1a7d21-d1a5-409c-bf3b-28844aefe7cf.png"
                   alt="Skylight Suite Bedroom"
                   className="w-full h-32 object-cover"
                 />
@@ -116,12 +120,12 @@ const SkylightSection = () => {
               
               <Card className="overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=300&q=80"
-                  alt="Skylight Suite Workspace"
+                  src="/lovable-uploads/79937188-a345-4e6f-a91d-2947b1668a0a.png"
+                  alt="Skylight Suite Kitchen"
                   className="w-full h-32 object-cover"
                 />
                 <CardContent className="p-3">
-                  <h4 className="font-medium text-gray-900 text-sm">Work Space</h4>
+                  <h4 className="font-medium text-gray-900 text-sm">Working Kitchen</h4>
                 </CardContent>
               </Card>
             </div>
@@ -135,7 +139,10 @@ const SkylightSection = () => {
                   <div className="text-2xl font-bold">₹2,499</div>
                   <div className="text-sm opacity-75">per night</div>
                 </div>
-                <Button className="bg-white text-blue-600 hover:bg-gray-100">
+                <Button 
+                  className="bg-white text-blue-600 hover:bg-gray-100"
+                  onClick={handleAirbnbClick}
+                >
                   Check Availability
                 </Button>
               </div>
