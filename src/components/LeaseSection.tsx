@@ -1,10 +1,11 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Users, MapPin, Clock, TrendingUp } from 'lucide-react';
+import { Users, MapPin, Clock, TrendingUp, Loader2 } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import SubmissionSuccessDialog from './SubmissionSuccessDialog';
 
 const LeaseSection = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,9 @@ const LeaseSection = () => {
     businessType: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
+  const { toast } = useToast();
 
   const stats = [
     {
@@ -61,10 +65,80 @@ const LeaseSection = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Lease inquiry submitted:', formData);
-    // Handle form submission here
+    
+    // Validate required fields
+    if (!formData.name || !formData.email || !formData.phone || !formData.businessType) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields marked with *",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    console.log('Submitting lease inquiry:', formData);
+
+    try {
+      // You'll need to replace this URL with your Google Apps Script web app URL
+      // Instructions: 
+      // 1. Go to https://script.google.com/
+      // 2. Create a new project
+      // 3. Replace the default code with the doPost function (see comment below)
+      // 4. Deploy as web app with execute permissions for "Anyone"
+      // 5. Copy the web app URL here
+      const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+      
+      const submissionData = {
+        ...formData,
+        timestamp: new Date().toISOString(),
+        type: 'Lease Inquiry'
+      };
+
+      // For now, we'll simulate the submission since you need to set up the Google Apps Script
+      // Uncomment the fetch code below once you have the Google Apps Script set up
+      
+      /*
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        mode: 'no-cors',
+        body: JSON.stringify(submissionData),
+      });
+      */
+
+      // Simulate successful submission for now
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      console.log('Form submitted successfully');
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        brandName: '',
+        businessType: '',
+        message: ''
+      });
+      
+      // Show success dialog
+      setShowSuccessDialog(true);
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Submission Failed",
+        description: "There was an error submitting your inquiry. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -156,6 +230,7 @@ const LeaseSection = () => {
                       onChange={handleInputChange}
                       placeholder="Your full name"
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
                   <div>
@@ -169,6 +244,7 @@ const LeaseSection = () => {
                       onChange={handleInputChange}
                       placeholder="your@email.com"
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
                 </div>
@@ -184,6 +260,7 @@ const LeaseSection = () => {
                       onChange={handleInputChange}
                       placeholder="+91 9997731372"
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
                   <div>
@@ -195,6 +272,7 @@ const LeaseSection = () => {
                       value={formData.brandName}
                       onChange={handleInputChange}
                       placeholder="Your brand name"
+                      disabled={isSubmitting}
                     />
                   </div>
                 </div>
@@ -209,6 +287,7 @@ const LeaseSection = () => {
                     onChange={handleInputChange}
                     placeholder="e.g., Quick Service Restaurant, Cafe, Desserts"
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
 
@@ -222,11 +301,24 @@ const LeaseSection = () => {
                     onChange={handleInputChange}
                     placeholder="Space requirements, investment capacity, timeline, etc."
                     rows={4}
+                    disabled={isSubmitting}
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full bg-purple-600 hover:bg-purple-700 text-white">
-                  Submit Inquiry
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    'Submit Inquiry'
+                  )}
                 </Button>
               </form>
 
@@ -241,6 +333,11 @@ const LeaseSection = () => {
           </Card>
         </div>
       </div>
+
+      <SubmissionSuccessDialog 
+        isOpen={showSuccessDialog}
+        onClose={() => setShowSuccessDialog(false)}
+      />
     </section>
   );
 };
