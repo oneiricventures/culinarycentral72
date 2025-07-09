@@ -1,11 +1,15 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { MapPin, User, Clock } from 'lucide-react';
+import { MapPin, User, Clock, Expand } from 'lucide-react';
+import ImageModal from './ImageModal';
 
 const SkylightSection = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
   const amenities = [
     "Fully Furnished 1BHK Suite",
     "Premium Bedding & Linens",
@@ -18,23 +22,41 @@ const SkylightSection = () => {
     "Mountain View Terrace"
   ];
 
+  const galleryImages = [
+    { src: "/lovable-uploads/46ef2d41-016f-4d30-9310-dd90e54f1048.png", alt: "Living Room with Elegant Furnishing" },
+    { src: "/lovable-uploads/1e01c1b7-d31f-4eee-82bb-fe5bb8353705.png", alt: "Spacious Living Area with Kitchen View" },
+    { src: "/lovable-uploads/0235182c-5032-4e24-a894-aa5a0feb3247.png", alt: "Master Bedroom with Modern Amenities" },
+    { src: "/lovable-uploads/09df96a5-9b71-4181-9b40-543cdbde181e.png", alt: "Premium Bedroom with Wooden Finishes" },
+    { src: "/lovable-uploads/a3a7906d-a429-4239-9f6d-82741c364afe.png", alt: "Modern Kitchen with Full Appliances" },
+    { src: "/lovable-uploads/5250ea72-8e53-4304-a9bc-de5a3931166e.png", alt: "Kitchen Counter and Storage" },
+    { src: "/lovable-uploads/b30aa02b-bc6a-4c6f-bede-b06ea3826228.png", alt: "Utility Area with Washing Machine" },
+    { src: "/lovable-uploads/f74d4562-a23c-47e3-abb8-0a9beb09d160.png", alt: "Modern Bathroom with Shower" },
+    { src: "/lovable-uploads/2cdc1956-d129-4b72-acac-52b323ffdd82.png", alt: "Bathroom with Premium Fixtures" },
+    { src: "/lovable-uploads/225f9cc7-87ab-4ab7-861d-c31696443978.png", alt: "Rooftop Terrace with City View" }
+  ];
+
   const handleAirbnbClick = () => {
     window.open('https://www.airbnb.co.in/rooms/1389016749522622097?check_in=2025-07-15&check_out=2025-07-17&guests=2&adults=2&s=67&unique_share_id=340567d8-4842-46ce-8670-bab1be651367', '_blank');
   };
 
+  const handleImageClick = (index: number) => {
+    setSelectedImageIndex(index);
+    setIsModalOpen(true);
+  };
+
   return (
-    <section id="skylight" className="py-16 md:py-24 bg-gradient-to-br from-blue-50 to-indigo-50">
+    <section id="skylight" className="py-16 md:py-24 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">
+              <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-medium">
                 🏨 Premium Accommodation
               </div>
               
               <h2 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight">
-                <span className="text-blue-600">Skylight</span>
+                <span className="text-amber-600">Skylight</span>
                 <span className="block">Premium Suite</span>
               </h2>
               
@@ -47,22 +69,22 @@ const SkylightSection = () => {
             {/* Key Features */}
             <div className="grid grid-cols-3 gap-6">
               <div className="text-center">
-                <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mb-2 mx-auto">
-                  <User className="w-6 h-6 text-blue-600" />
+                <div className="flex items-center justify-center w-12 h-12 bg-amber-100 rounded-lg mb-2 mx-auto">
+                  <User className="w-6 h-6 text-amber-600" />
                 </div>
                 <div className="text-lg font-bold text-gray-900">1BHK</div>
                 <div className="text-sm text-gray-600">Family Suite</div>
               </div>
               <div className="text-center">
-                <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mb-2 mx-auto">
-                  <Clock className="w-6 h-6 text-blue-600" />
+                <div className="flex items-center justify-center w-12 h-12 bg-amber-100 rounded-lg mb-2 mx-auto">
+                  <Clock className="w-6 h-6 text-amber-600" />
                 </div>
                 <div className="text-lg font-bold text-gray-900">15hrs</div>
                 <div className="text-sm text-gray-600">Food Access</div>
               </div>
               <div className="text-center">
-                <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mb-2 mx-auto">
-                  <MapPin className="w-6 h-6 text-blue-600" />
+                <div className="flex items-center justify-center w-12 h-12 bg-amber-100 rounded-lg mb-2 mx-auto">
+                  <MapPin className="w-6 h-6 text-amber-600" />
                 </div>
                 <div className="text-lg font-bold text-gray-900">Prime</div>
                 <div className="text-sm text-gray-600">Location</div>
@@ -75,7 +97,7 @@ const SkylightSection = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {amenities.map((amenity, index) => (
                   <div key={index} className="flex items-center gap-2 text-gray-600">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                     <span className="text-sm">{amenity}</span>
                   </div>
                 ))}
@@ -86,7 +108,7 @@ const SkylightSection = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg" 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4"
+                className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4"
                 onClick={handleAirbnbClick}
               >
                 Book on Airbnb
@@ -132,17 +154,26 @@ const SkylightSection = () => {
               </Card>
             </div>
 
-            {/* Carousel Placeholder - will be populated when you share the images */}
+            {/* Gallery Carousel */}
             <div className="relative">
               <Carousel className="w-full">
                 <CarouselContent>
-                  <CarouselItem>
-                    <Card className="overflow-hidden">
-                      <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
-                        <p className="text-gray-500">Gallery images coming soon...</p>
-                      </div>
-                    </Card>
-                  </CarouselItem>
+                  {galleryImages.map((image, index) => (
+                    <CarouselItem key={index} className="md:basis-1/2">
+                      <Card className="overflow-hidden group cursor-pointer" onClick={() => handleImageClick(index)}>
+                        <div className="relative">
+                          <img
+                            src={image.src}
+                            alt={image.alt}
+                            className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                            <Expand className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          </div>
+                        </div>
+                      </Card>
+                    </CarouselItem>
+                  ))}
                 </CarouselContent>
                 <CarouselPrevious />
                 <CarouselNext />
@@ -150,7 +181,7 @@ const SkylightSection = () => {
             </div>
 
             {/* Booking Info */}
-            <div className="bg-blue-600 text-white rounded-xl p-6">
+            <div className="bg-amber-600 text-white rounded-xl p-6">
               <h3 className="text-xl font-bold mb-2">Perfect for Highway Travelers</h3>
               <p className="mb-4 opacity-90">Safe, comfortable, and convenient. Book directly through our Airbnb listing.</p>
               <div className="flex items-center justify-between">
@@ -159,7 +190,7 @@ const SkylightSection = () => {
                   <div className="text-sm opacity-75">per night</div>
                 </div>
                 <Button 
-                  className="bg-white text-blue-600 hover:bg-gray-100"
+                  className="bg-white text-amber-600 hover:bg-gray-100"
                   onClick={handleAirbnbClick}
                 >
                   Check Availability
@@ -169,6 +200,13 @@ const SkylightSection = () => {
           </div>
         </div>
       </div>
+
+      <ImageModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        images={galleryImages}
+        initialIndex={selectedImageIndex}
+      />
     </section>
   );
 };
