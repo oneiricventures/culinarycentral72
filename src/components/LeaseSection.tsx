@@ -82,14 +82,7 @@ const LeaseSection = () => {
     console.log('Submitting lease inquiry:', formData);
 
     try {
-      // You'll need to replace this URL with your Google Apps Script web app URL
-      // Instructions: 
-      // 1. Go to https://script.google.com/
-      // 2. Create a new project
-      // 3. Replace the default code with the doPost function (see comment below)
-      // 4. Deploy as web app with execute permissions for "Anyone"
-      // 5. Copy the web app URL here
-      const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxO0cGSo46_rNibfXTll_3nQ8Gv9JAAGY8wI_qkDx8isGhZLMBIMIfXQq23slgX9cF9/exec';
       
       const submissionData = {
         ...formData,
@@ -97,10 +90,6 @@ const LeaseSection = () => {
         type: 'Lease Inquiry'
       };
 
-      // For now, we'll simulate the submission since you need to set up the Google Apps Script
-      // Uncomment the fetch code below once you have the Google Apps Script set up
-      
-      /*
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         headers: {
@@ -109,10 +98,6 @@ const LeaseSection = () => {
         mode: 'no-cors',
         body: JSON.stringify(submissionData),
       });
-      */
-
-      // Simulate successful submission for now
-      await new Promise(resolve => setTimeout(resolve, 1000));
       
       console.log('Form submitted successfully');
       
