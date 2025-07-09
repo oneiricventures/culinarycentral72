@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { MapPin, User, Clock } from 'lucide-react';
 
 const SkylightSection = () => {
@@ -10,15 +11,15 @@ const SkylightSection = () => {
     "Premium Bedding & Linens",
     "Kitchenette with Basic Appliances",
     "High-Speed WiFi",
-    "AC & Room Heater",
+    "Heavy Duty ACs",
     "Attached Bathroom",
-    "24/7 Food Plaza Access",
+    "15/7 Food Plaza Access",
     "Secure Parking",
-    "Mountain View Balcony"
+    "Mountain View Terrace"
   ];
 
   const handleAirbnbClick = () => {
-    window.open('https://www.airbnb.co.in/rooms/1389016749522622097?check_in=2025-07-06&check_out=2025-07-11&guests=2&adults=2&s=67&unique_share_id=e04d94fb-8265-41e0-8f8d-ff3ad222d76b', '_blank');
+    window.open('https://www.airbnb.co.in/rooms/1389016749522622097?check_in=2025-07-15&check_out=2025-07-17&guests=2&adults=2&s=67&unique_share_id=340567d8-4842-46ce-8670-bab1be651367', '_blank');
   };
 
   return (
@@ -39,7 +40,7 @@ const SkylightSection = () => {
               
               <p className="text-xl text-gray-600 leading-relaxed">
                 Your home away from home. A beautifully furnished 1BHK suite right above 
-                our food plaza - perfect for travelers seeking comfort, privacy, and 24/7 access to great food.
+                our food plaza - perfect for travelers seeking comfort, privacy, and 15hrs access to great food.
               </p>
             </div>
 
@@ -56,7 +57,7 @@ const SkylightSection = () => {
                 <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mb-2 mx-auto">
                   <Clock className="w-6 h-6 text-blue-600" />
                 </div>
-                <div className="text-lg font-bold text-gray-900">24/7</div>
+                <div className="text-lg font-bold text-gray-900">15hrs</div>
                 <div className="text-sm text-gray-600">Food Access</div>
               </div>
               <div className="text-center">
@@ -83,11 +84,12 @@ const SkylightSection = () => {
 
             {/* CTA */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4">
+              <Button 
+                size="lg" 
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4"
+                onClick={handleAirbnbClick}
+              >
                 Book on Airbnb
-              </Button>
-              <Button size="lg" variant="outline" className="border-blue-500 text-blue-600 hover:bg-blue-50 px-8 py-4">
-                View Gallery
               </Button>
             </div>
           </div>
@@ -96,7 +98,7 @@ const SkylightSection = () => {
           <div className="space-y-6">
             <Card className="overflow-hidden shadow-2xl">
               <img 
-                src="/lovable-uploads/2e37bec9-6bb5-477f-8b33-8828d5fd6be7.png"
+                src="/lovable-uploads/87a8e661-e5dd-4095-a7ef-100c715b8e04.png"
                 alt="Skylight Suite Living Room"
                 className="w-full h-64 object-cover"
               />
@@ -109,7 +111,7 @@ const SkylightSection = () => {
             <div className="grid grid-cols-2 gap-4">
               <Card className="overflow-hidden">
                 <img 
-                  src="/lovable-uploads/cc1a7d21-d1a5-409c-bf3b-28844aefe7cf.png"
+                  src="/lovable-uploads/3611bea2-215b-4b8c-aa04-d0e84291b5de.png"
                   alt="Skylight Suite Bedroom"
                   className="w-full h-32 object-cover"
                 />
@@ -120,7 +122,7 @@ const SkylightSection = () => {
               
               <Card className="overflow-hidden">
                 <img 
-                  src="/lovable-uploads/79937188-a345-4e6f-a91d-2947b1668a0a.png"
+                  src="/lovable-uploads/e0b5fc35-2499-4cd1-bfa1-34220b54622d.png"
                   alt="Skylight Suite Kitchen"
                   className="w-full h-32 object-cover"
                 />
@@ -128,6 +130,23 @@ const SkylightSection = () => {
                   <h4 className="font-medium text-gray-900 text-sm">Working Kitchen</h4>
                 </CardContent>
               </Card>
+            </div>
+
+            {/* Carousel Placeholder - will be populated when you share the images */}
+            <div className="relative">
+              <Carousel className="w-full">
+                <CarouselContent>
+                  <CarouselItem>
+                    <Card className="overflow-hidden">
+                      <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
+                        <p className="text-gray-500">Gallery images coming soon...</p>
+                      </div>
+                    </Card>
+                  </CarouselItem>
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
             </div>
 
             {/* Booking Info */}
