@@ -87,13 +87,15 @@ const AboutSection = () => {
           <div className="relative">
             <Card className="overflow-hidden shadow-2xl">
               <div className="bg-gradient-to-br from-green-100 to-blue-100 p-8">
-                <div className="aspect-video bg-white rounded-lg shadow-inner flex items-center justify-center">
+                <div className="aspect-video bg-white rounded-lg shadow-inner flex items-center justify-center cursor-pointer hover:shadow-lg transition-shadow duration-300"
+                     onClick={() => window.open('https://maps.app.goo.gl/rTw9h2WEYNhr7G2e7', '_blank')}>
                   <div className="text-center space-y-4">
                     <MapPin className="w-16 h-16 text-orange-500 mx-auto" />
                     <div>
                       <h3 className="text-xl font-bold text-gray-900">Prime Highway Location</h3>
                       <p className="text-gray-600">NH 72, Dehradun-Haridwar Highway</p>
                       <p className="text-sm text-gray-500 mt-2">Visible from 13km away • Easy highway access</p>
+                      <p className="text-sm text-blue-600 font-medium mt-2">📍 Click to view on map</p>
                     </div>
                   </div>
                 </div>
@@ -138,9 +140,10 @@ const AboutSection = () => {
             We're open from 9am to 12am to serve you better.
           </p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-sm">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity duration-300"
+                 onClick={() => window.open('https://maps.app.goo.gl/rTw9h2WEYNhr7G2e7', '_blank')}>
               <MapPin className="w-4 h-4" />
-              <span>NH 72, Dehradun-Haridwar Highway</span>
+              <span>Culinary Central 72, Dehradun - Haridwar Highway, Majri Grant, Doiwala, Dehradun, Uttarakhand</span>
             </div>
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" />

@@ -57,7 +57,7 @@ const BrandsSection = () => {
       name: "The Nukkad Tapri",
       tagline: "Chai & Desi Snacks",
       description: "Authentic chai, maggi, and street-style snacks",
-      image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=400&q=80",
+      image: "/lovable-uploads/02b367e1-12f4-47ff-a41a-133b8584798b.png",
       color: "from-green-500 via-teal-500 to-blue-500",
       hoverColor: "from-green-600 via-teal-600 to-blue-600",
       specialty: "Masala Chai & Pakoras"
@@ -169,14 +169,14 @@ const BrandsSection = () => {
           
           <div className="bg-gradient-to-r from-green-600 via-teal-600 to-blue-600 rounded-2xl p-8 text-white shadow-2xl hover:shadow-3xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
-            <h3 className="text-2xl font-bold mb-4 relative">Reserve Your Table</h3>
-            <p className="mb-6 opacity-90 relative">Guarantee your spot during peak hours. Choose your preferred brand area.</p>
+            <h3 className="text-2xl font-bold mb-4 relative">Outdoor Catering</h3>
+            <p className="mb-6 opacity-90 relative">Planning a party? Let us handle the food, while you enjoy the celebration.</p>
             <Button 
               size="lg" 
               className="bg-white text-green-600 hover:bg-gray-100 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 relative"
               onClick={handleCall}
             >
-              Book Table
+              Enquire Now
             </Button>
           </div>
         </div>
