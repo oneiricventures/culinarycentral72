@@ -1,8 +1,9 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { MapPin, User, Clock, Expand } from 'lucide-react';
+import { MapPin, User, Clock, Expand, Shield, Car, Utensils } from 'lucide-react';
 import ImageModal from './ImageModal';
 
 const SkylightSection = () => {
@@ -46,7 +47,7 @@ const SkylightSection = () => {
   return (
     <section id="skylight" className="py-16 md:py-24 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Content */}
           <div className="space-y-8">
             
@@ -104,15 +105,42 @@ const SkylightSection = () => {
               </div>
             </div>
 
-            {/* CTA */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                size="lg" 
-                className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4"
-                onClick={handleAirbnbClick}
-              >
-                Book on Airbnb
-              </Button>
+            {/* Perfect for Highway Travellers Module */}
+            <div className="bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-xl p-6">
+              <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                <Car className="w-6 h-6" />
+                Perfect for Highway Travellers
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div className="flex items-center gap-2">
+                  <Shield className="w-5 h-5 opacity-80" />
+                  <span className="text-sm">Safe & Secure</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Utensils className="w-5 h-5 opacity-80" />
+                  <span className="text-sm">Food Access</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-5 h-5 opacity-80" />
+                  <span className="text-sm">Highway Location</span>
+                </div>
+              </div>
+              <p className="mb-4 opacity-90 text-sm leading-relaxed">
+                Strategically located on NH 72 for easy access. Clean, comfortable accommodation 
+                with direct access to premium food options. Perfect for overnight stays during long journeys.
+              </p>
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-2xl font-bold">₹2,499</div>
+                  <div className="text-sm opacity-75">per night</div>
+                </div>
+                <Button 
+                  className="bg-white text-amber-600 hover:bg-gray-100"
+                  onClick={handleAirbnbClick}
+                >
+                  Book Now
+                </Button>
+              </div>
             </div>
           </div>
 
@@ -178,24 +206,6 @@ const SkylightSection = () => {
                 <CarouselPrevious className="bg-white/90 hover:bg-white border-amber-200 text-amber-600 hover:text-amber-700 shadow-lg" />
                 <CarouselNext className="bg-white/90 hover:bg-white border-amber-200 text-amber-600 hover:text-amber-700 shadow-lg" />
               </Carousel>
-            </div>
-
-            {/* Booking Info */}
-            <div className="bg-amber-600 text-white rounded-xl p-6">
-              <h3 className="text-xl font-bold mb-2">Perfect for Highway Travelers</h3>
-              <p className="mb-4 opacity-90">Safe, comfortable, and convenient. Book directly through our Airbnb listing.</p>
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="text-2xl font-bold">₹2,499</div>
-                  <div className="text-sm opacity-75">per night</div>
-                </div>
-                <Button 
-                  className="bg-white text-amber-600 hover:bg-gray-100"
-                  onClick={handleAirbnbClick}
-                >
-                  Check Availability
-                </Button>
-              </div>
             </div>
           </div>
         </div>

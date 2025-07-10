@@ -36,7 +36,7 @@ const HeroSection = () => {
                 </span>
               </h1>
               
-              <p className="text-xl text-gray-700 leading-relaxed">
+              <p className="text-xl text-gray-700 leading-relaxed pb-2">
                 Where authentic Indian flavors meet global cuisine. Five premium brands, 
                 one unforgettable stopover experience. Plus luxury accommodation at Skylight Suite.
               </p>

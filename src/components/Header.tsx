@@ -38,7 +38,7 @@ const Header = () => {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-gray-800">Culinary Central 72</h1>
-              <p className="text-sm text-orange-600 font-medium">Highway NH 72</p>
+              <p className="text-sm text-orange-600 font-medium">Highway Food Plaza</p>
             </div>
           </div>
 
@@ -58,7 +58,7 @@ const Header = () => {
               className="border-orange-500 text-orange-600 hover:bg-orange-50"
               onClick={handleCall}
             >
-              Reserve Table
+              Party Orders
             </Button>
             <Button 
               className="bg-orange-600 hover:bg-orange-700 text-white"
@@ -92,7 +92,7 @@ const Header = () => {
                   className="w-full border-orange-500 text-orange-600"
                   onClick={handleCall}
                 >
-                  Reserve Table
+                  Party Orders
                 </Button>
                 <Button 
                   className="w-full bg-orange-600 hover:bg-orange-700 text-white"
