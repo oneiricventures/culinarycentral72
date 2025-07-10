@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -246,7 +245,7 @@ const LeaseSection = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      placeholder="+91 9997731372"
+                      placeholder="+91 88026 89684"
                       required
                       disabled={isSubmitting}
                       className="text-sm md:text-base"
@@ -317,7 +316,7 @@ const LeaseSection = () => {
               <div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-gray-200">
                 <div className="text-sm text-gray-600 text-center">
                   <p className="mb-2">Or reach out directly:</p>
-                  <p className="font-medium text-gray-900 text-xs md:text-sm">📞 +91 9997731372</p>
+                  <p className="font-medium text-gray-900 text-xs md:text-sm">📞 +91 88026 89684</p>
                   <p className="font-medium text-gray-900 text-xs md:text-sm">📧 culinarycentral72@gmail.com</p>
                 </div>
               </div>

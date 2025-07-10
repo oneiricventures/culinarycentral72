@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -50,6 +49,7 @@ const SkylightSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="space-y-8">
+            
             <div className="space-y-4">
               <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-medium">
                 🏨 Premium Accommodation
@@ -154,8 +154,8 @@ const SkylightSection = () => {
               </Card>
             </div>
 
-            {/* Gallery Carousel */}
-            <div className="relative">
+            {/* Gallery Carousel with enhanced navigation */}
+            <div className="relative px-12">
               <Carousel className="w-full">
                 <CarouselContent>
                   {galleryImages.map((image, index) => (
@@ -175,8 +175,8 @@ const SkylightSection = () => {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+                <CarouselPrevious className="bg-white/90 hover:bg-white border-amber-200 text-amber-600 hover:text-amber-700 shadow-lg" />
+                <CarouselNext className="bg-white/90 hover:bg-white border-amber-200 text-amber-600 hover:text-amber-700 shadow-lg" />
               </Carousel>
             </div>
 

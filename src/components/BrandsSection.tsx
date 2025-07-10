@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -5,6 +6,10 @@ import { Card, CardContent } from '@/components/ui/card';
 const BrandsSection = () => {
   const handleCall = () => {
     window.location.href = 'tel:+919997731372';
+  };
+
+  const handleLeaseSpaceClick = () => {
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLScq95yA_rpaVKRt4ADZGKKgrX3F2P-WtlY2dA4CBLIPWx8dKQ/viewform?usp=header', '_blank');
   };
 
   const brands = [
@@ -26,7 +31,7 @@ const BrandsSection = () => {
       color: "from-yellow-500 via-red-500 to-pink-500",
       hoverColor: "from-yellow-600 via-red-600 to-pink-600",
       specialty: "Butter Chicken Pizza",
-      menuLink: "https://drive.google.com/file/d/12xfkM7fFLsSmLaOTZqWODOkVxlOtbl6d/view?usp=sharing"
+      menuLink: "https://maps.app.goo.gl/GBgfpwBLgxKzw3EZ7"
     },
     {
       name: "Baskin Robbins",
@@ -136,7 +141,11 @@ const BrandsSection = () => {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Your Brand Here</h3>
               <p className="text-gray-600 mb-6">Prime highway location with high footfall. Perfect for food brands looking to expand.</p>
-              <Button variant="outline" className="border-2 border-orange-500 text-orange-600 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+              <Button 
+                variant="outline" 
+                className="border-2 border-orange-500 text-orange-600 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                onClick={handleLeaseSpaceClick}
+              >
                 Lease Space
               </Button>
             </CardContent>
