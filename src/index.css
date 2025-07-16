@@ -96,40 +96,90 @@
     @apply bg-background text-foreground;
   }
 
-  /* Ensure all text elements properly inherit dark mode colors */
-  .dark h1,
-  .dark h2,
-  .dark h3,
-  .dark h4,
-  .dark h5,
-  .dark h6 {
-    color: hsl(var(--foreground));
-  }
+  /* Comprehensive dark mode text color fixes */
+  .dark {
+    /* All heading elements */
+    h1, h2, h3, h4, h5, h6 {
+      color: hsl(var(--foreground)) !important;
+    }
 
-  .dark p,
-  .dark span,
-  .dark div {
-    color: hsl(var(--foreground));
-  }
+    /* All text elements */
+    p, span, div, label, li, td, th, blockquote, figcaption {
+      color: hsl(var(--foreground)) !important;
+    }
 
-  .dark .text-gray-600 {
-    color: hsl(var(--muted-foreground));
-  }
+    /* Input and form elements */
+    input, textarea, select {
+      color: hsl(var(--foreground)) !important;
+      background-color: hsl(var(--input)) !important;
+    }
 
-  .dark .text-gray-700 {
-    color: hsl(var(--foreground));
-  }
+    /* Placeholder text */
+    input::placeholder, textarea::placeholder {
+      color: hsl(var(--muted-foreground)) !important;
+    }
 
-  .dark .text-gray-800 {
-    color: hsl(var(--foreground));
-  }
+    /* Button text */
+    button {
+      color: inherit;
+    }
 
-  .dark .text-gray-900 {
-    color: hsl(var(--foreground));
-  }
+    /* Override specific gray text classes */
+    .text-gray-50 { color: hsl(var(--foreground)) !important; }
+    .text-gray-100 { color: hsl(var(--foreground)) !important; }
+    .text-gray-200 { color: hsl(var(--foreground)) !important; }
+    .text-gray-300 { color: hsl(var(--muted-foreground)) !important; }
+    .text-gray-400 { color: hsl(var(--muted-foreground)) !important; }
+    .text-gray-500 { color: hsl(var(--muted-foreground)) !important; }
+    .text-gray-600 { color: hsl(var(--muted-foreground)) !important; }
+    .text-gray-700 { color: hsl(var(--foreground)) !important; }
+    .text-gray-800 { color: hsl(var(--foreground)) !important; }
+    .text-gray-900 { color: hsl(var(--foreground)) !important; }
+    .text-black { color: hsl(var(--foreground)) !important; }
+    .text-white { color: hsl(var(--foreground)) !important; }
 
-  .dark .text-black {
-    color: hsl(var(--foreground));
+    /* Override slate text classes */
+    .text-slate-600 { color: hsl(var(--muted-foreground)) !important; }
+    .text-slate-700 { color: hsl(var(--foreground)) !important; }
+    .text-slate-800 { color: hsl(var(--foreground)) !important; }
+    .text-slate-900 { color: hsl(var(--foreground)) !important; }
+
+    /* Override zinc text classes */
+    .text-zinc-600 { color: hsl(var(--muted-foreground)) !important; }
+    .text-zinc-700 { color: hsl(var(--foreground)) !important; }
+    .text-zinc-800 { color: hsl(var(--foreground)) !important; }
+    .text-zinc-900 { color: hsl(var(--foreground)) !important; }
+
+    /* Override neutral text classes */
+    .text-neutral-600 { color: hsl(var(--muted-foreground)) !important; }
+    .text-neutral-700 { color: hsl(var(--foreground)) !important; }
+    .text-neutral-800 { color: hsl(var(--foreground)) !important; }
+    .text-neutral-900 { color: hsl(var(--foreground)) !important; }
+
+    /* Card and container text */
+    .card-title, .card-description, .card-content {
+      color: hsl(var(--foreground)) !important;
+    }
+
+    /* Navigation text */
+    nav a, .nav-link {
+      color: hsl(var(--foreground)) !important;
+    }
+
+    /* Footer text */
+    footer, footer p, footer span, footer a {
+      color: hsl(var(--muted-foreground)) !important;
+    }
+
+    /* Ensure links maintain visibility */
+    a:not(.button):not(.btn) {
+      color: hsl(var(--primary)) !important;
+    }
+
+    /* Override any remaining text color utilities that might conflict */
+    [class*="text-"] {
+      color: inherit;
+    }
   }
 }
 
