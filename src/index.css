@@ -95,6 +95,42 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Ensure all text elements properly inherit dark mode colors */
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark h5,
+  .dark h6 {
+    color: hsl(var(--foreground));
+  }
+
+  .dark p,
+  .dark span,
+  .dark div {
+    color: hsl(var(--foreground));
+  }
+
+  .dark .text-gray-600 {
+    color: hsl(var(--muted-foreground));
+  }
+
+  .dark .text-gray-700 {
+    color: hsl(var(--foreground));
+  }
+
+  .dark .text-gray-800 {
+    color: hsl(var(--foreground));
+  }
+
+  .dark .text-gray-900 {
+    color: hsl(var(--foreground));
+  }
+
+  .dark .text-black {
+    color: hsl(var(--foreground));
+  }
 }
 
 /* Premium dark theme specific styles */
