@@ -2,6 +2,7 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { MapPin, Shield, Users, Clock } from 'lucide-react';
+import SecureExternalLink from './SecureExternalLink';
 
 const AboutSection = () => {
   const highlights = [
@@ -26,6 +27,10 @@ const AboutSection = () => {
       description: "15-hour operations ensuring you never go hungry during our operating hours"
     }
   ];
+
+  const handleLocationClick = () => {
+    window.open('https://maps.app.goo.gl/rTw9h2WEYNhr7G2e7', '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <section id="about" className="py-16 md:py-24 bg-white">
@@ -70,7 +75,6 @@ const AboutSection = () => {
               </div>
             </div>
 
-            {/* Stats */}
             <div className="grid grid-cols-2 gap-6">
               <div className="text-center p-4 bg-orange-50 rounded-lg">
                 <div className="text-3xl font-bold text-orange-600">500+</div>
@@ -88,7 +92,7 @@ const AboutSection = () => {
             <Card className="overflow-hidden shadow-2xl">
               <div className="bg-gradient-to-br from-green-100 to-blue-100 p-8">
                 <div className="aspect-video bg-white rounded-lg shadow-inner flex items-center justify-center cursor-pointer hover:shadow-lg transition-shadow duration-300"
-                     onClick={() => window.open('https://maps.app.goo.gl/rTw9h2WEYNhr7G2e7', '_blank')}>
+                     onClick={handleLocationClick}>
                   <div className="text-center space-y-4">
                     <MapPin className="w-16 h-16 text-orange-500 mx-auto" />
                     <div>
@@ -141,7 +145,7 @@ const AboutSection = () => {
           </p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-sm">
             <div className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity duration-300"
-                 onClick={() => window.open('https://maps.app.goo.gl/rTw9h2WEYNhr7G2e7', '_blank')}>
+                 onClick={handleLocationClick}>
               <MapPin className="w-4 h-4" />
               <span>Culinary Central 72, Dehradun - Haridwar Highway, Majri Grant, Doiwala, Dehradun, Uttarakhand</span>
             </div>

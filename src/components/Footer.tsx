@@ -1,10 +1,15 @@
 
 import React from 'react';
 import { MapPin, Phone, Clock, Mail } from 'lucide-react';
+import SecureExternalLink from './SecureExternalLink';
 
 const Footer = () => {
   const handleCall = () => {
     window.location.href = 'tel:+919997731372';
+  };
+
+  const handleLocationClick = () => {
+    window.open('https://maps.app.goo.gl/HHqRcraoMTSwyqMN6', '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -32,12 +37,54 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-4">Our Brands</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="https://www.burgersinghonline.com/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-orange-400 transition-colors">Burger Singh</a></li>
-              <li><a href="https://chicagopizza.in/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-orange-400 transition-colors">Chicago Pizza</a></li>
-              <li><a href="https://baskinrobbinsindia.com/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-orange-400 transition-colors">Baskin Robbins</a></li>
-              <li><a href="https://maps.app.goo.gl/HHqRcraoMTSwyqMN6" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-orange-400 transition-colors">Waffle Station</a></li>
-              <li><a href="https://maps.app.goo.gl/2gc1zXXMy571UoQq5" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-orange-400 transition-colors">The Nukkad Tapri</a></li>
-              <li><a href="https://www.airbnb.co.in/rooms/1389016749522622097?check_in=2025-07-15&check_out=2025-07-17&guests=2&adults=2&s=67&unique_share_id=5c10203a-0100-4651-8f20-492a894db481" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">Skylight Suite</a></li>
+              <li>
+                <SecureExternalLink 
+                  href="https://www.burgersinghonline.com/" 
+                  className="text-gray-300 hover:text-orange-400 transition-colors"
+                >
+                  Burger Singh
+                </SecureExternalLink>
+              </li>
+              <li>
+                <SecureExternalLink 
+                  href="https://chicagopizza.in/" 
+                  className="text-gray-300 hover:text-orange-400 transition-colors"
+                >
+                  Chicago Pizza
+                </SecureExternalLink>
+              </li>
+              <li>
+                <SecureExternalLink 
+                  href="https://baskinrobbinsindia.com/" 
+                  className="text-gray-300 hover:text-orange-400 transition-colors"
+                >
+                  Baskin Robbins
+                </SecureExternalLink>
+              </li>
+              <li>
+                <SecureExternalLink 
+                  href="https://maps.app.goo.gl/HHqRcraoMTSwyqMN6" 
+                  className="text-gray-300 hover:text-orange-400 transition-colors"
+                >
+                  Waffle Station
+                </SecureExternalLink>
+              </li>
+              <li>
+                <SecureExternalLink 
+                  href="https://maps.app.goo.gl/2gc1zXXMy571UoQq5" 
+                  className="text-gray-300 hover:text-orange-400 transition-colors"
+                >
+                  The Nukkad Tapri
+                </SecureExternalLink>
+              </li>
+              <li>
+                <SecureExternalLink 
+                  href="https://www.airbnb.co.in/rooms/1389016749522622097?check_in=2025-07-15&check_out=2025-07-17&guests=2&adults=2&s=67&unique_share_id=5c10203a-0100-4651-8f20-492a894db481" 
+                  className="text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  Skylight Suite
+                </SecureExternalLink>
+              </li>
             </ul>
           </div>
 
@@ -59,7 +106,12 @@ const Footer = () => {
             <div className="space-y-3 text-sm">
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-orange-400 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-300">Culinary Central 72, Dehradun - Haridwar Highway, Majri Grant, Doiwala, Dehradun, Uttarakhand</span>
+                <button 
+                  onClick={handleLocationClick}
+                  className="text-gray-300 hover:text-orange-400 transition-colors text-left"
+                >
+                  Culinary Central 72, Dehradun - Haridwar Highway, Majri Grant, Doiwala, Dehradun, Uttarakhand
+                </button>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-orange-400" />

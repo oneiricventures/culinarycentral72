@@ -6,6 +6,15 @@ import { Textarea } from '@/components/ui/textarea';
 import { Users, MapPin, Clock, TrendingUp, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import SubmissionSuccessDialog from './SubmissionSuccessDialog';
+import { 
+  leaseInquirySchema, 
+  sanitizeFormData, 
+  createRateLimiter, 
+  type LeaseInquiryFormData 
+} from '@/utils/validation';
+
+// Create rate limiter: max 3 submissions per 5 minutes
+const rateLimiter = createRateLimiter(3, 5 * 60 * 1000);
 
 const LeaseSection = () => {
   const [formData, setFormData] = useState({
@@ -18,6 +27,7 @@ const LeaseSection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
   const { toast } = useToast();
 
   const stats = [
@@ -59,20 +69,64 @@ const LeaseSection = () => {
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+
+    // Clear validation error when user starts typing
+    if (validationErrors[name]) {
+      setValidationErrors({
+        ...validationErrors,
+        [name]: ''
+      });
+    }
+  };
+
+  const validateForm = (): boolean => {
+    try {
+      // Sanitize form data before validation
+      const sanitizedData = sanitizeFormData(formData);
+      leaseInquirySchema.parse(sanitizedData);
+      setValidationErrors({});
+      return true;
+    } catch (error: any) {
+      const errors: Record<string, string> = {};
+      
+      if (error.errors) {
+        error.errors.forEach((err: any) => {
+          if (err.path && err.path.length > 0) {
+            errors[err.path[0]] = err.message;
+          }
+        });
+      }
+      
+      setValidationErrors(errors);
+      return false;
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate required fields
-    if (!formData.name || !formData.email || !formData.phone || !formData.businessType) {
+    // Client-side rate limiting
+    const userIdentifier = `${formData.email}-${Date.now()}`;
+    if (!rateLimiter(userIdentifier)) {
       toast({
-        title: "Missing Information",
-        description: "Please fill in all required fields marked with *",
+        title: "Too Many Attempts",
+        description: "Please wait a few minutes before submitting another inquiry.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validate form
+    if (!validateForm()) {
+      toast({
+        title: "Validation Error",
+        description: "Please correct the errors in the form and try again.",
         variant: "destructive",
       });
       return;
@@ -84,8 +138,11 @@ const LeaseSection = () => {
     try {
       const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxfiGMGyqJIam0llwa8CYlFHJBXXwm8joPJrTAVBywwA5Y4YAuj7kFEBH9n-DGQTYny/exec';
       
+      // Sanitize data before submission
+      const sanitizedData = sanitizeFormData(formData);
+      
       const submissionData = {
-        ...formData,
+        ...sanitizedData,
         timestamp: new Date().toISOString(),
         type: 'Lease Inquiry'
       };
@@ -129,7 +186,6 @@ const LeaseSection = () => {
   return (
     <section id="lease" className="py-8 md:py-16 lg:py-24 bg-gradient-to-br from-purple-50 to-pink-50">
       <div className="container mx-auto px-4 max-w-7xl">
-        {/* Header */}
         <div className="text-center mb-8 md:mb-16">
           <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium mb-4">
             🏪 Business Opportunity
@@ -144,7 +200,6 @@ const LeaseSection = () => {
           </p>
         </div>
 
-        {/* Stats Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-8 md:mb-16">
           {stats.map((stat, index) => (
             <Card key={index} className="text-center hover:shadow-lg transition-shadow duration-300 border-0 bg-white/80 backdrop-blur-sm">
@@ -161,7 +216,6 @@ const LeaseSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
-          {/* Advantages */}
           <div className="space-y-6 md:space-y-8">
             <div>
               <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6">Why Partner with CC72?</h3>
@@ -177,7 +231,6 @@ const LeaseSection = () => {
               </div>
             </div>
 
-            {/* Business Info */}
             <Card className="bg-gradient-to-br from-purple-600 to-purple-700 text-white">
               <CardContent className="p-4 md:p-6">
                 <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">Prime Location Benefits</h3>
@@ -199,7 +252,7 @@ const LeaseSection = () => {
             </Card>
           </div>
 
-          {/* Inquiry Form */}
+          {/* Enhanced Inquiry Form with Validation */}
           <Card className="bg-white shadow-2xl">
             <CardContent className="p-4 md:p-8">
               <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6">Get in Touch</h3>
@@ -216,8 +269,11 @@ const LeaseSection = () => {
                       placeholder="Your full name"
                       required
                       disabled={isSubmitting}
-                      className="text-sm md:text-base"
+                      className={`text-sm md:text-base ${validationErrors.name ? 'border-red-500' : ''}`}
                     />
+                    {validationErrors.name && (
+                      <p className="text-red-500 text-xs mt-1">{validationErrors.name}</p>
+                    )}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -231,8 +287,11 @@ const LeaseSection = () => {
                       placeholder="your@email.com"
                       required
                       disabled={isSubmitting}
-                      className="text-sm md:text-base"
+                      className={`text-sm md:text-base ${validationErrors.email ? 'border-red-500' : ''}`}
                     />
+                    {validationErrors.email && (
+                      <p className="text-red-500 text-xs mt-1">{validationErrors.email}</p>
+                    )}
                   </div>
                 </div>
 
@@ -248,8 +307,11 @@ const LeaseSection = () => {
                       placeholder="+91 88026 89684"
                       required
                       disabled={isSubmitting}
-                      className="text-sm md:text-base"
+                      className={`text-sm md:text-base ${validationErrors.phone ? 'border-red-500' : ''}`}
                     />
+                    {validationErrors.phone && (
+                      <p className="text-red-500 text-xs mt-1">{validationErrors.phone}</p>
+                    )}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -261,8 +323,11 @@ const LeaseSection = () => {
                       onChange={handleInputChange}
                       placeholder="Your brand name"
                       disabled={isSubmitting}
-                      className="text-sm md:text-base"
+                      className={`text-sm md:text-base ${validationErrors.brandName ? 'border-red-500' : ''}`}
                     />
+                    {validationErrors.brandName && (
+                      <p className="text-red-500 text-xs mt-1">{validationErrors.brandName}</p>
+                    )}
                   </div>
                 </div>
 
@@ -277,8 +342,11 @@ const LeaseSection = () => {
                     placeholder="e.g., Quick Service Restaurant, Cafe, Desserts"
                     required
                     disabled={isSubmitting}
-                    className="text-sm md:text-base"
+                    className={`text-sm md:text-base ${validationErrors.businessType ? 'border-red-500' : ''}`}
                   />
+                  {validationErrors.businessType && (
+                    <p className="text-red-500 text-xs mt-1">{validationErrors.businessType}</p>
+                  )}
                 </div>
 
                 <div>
@@ -292,8 +360,11 @@ const LeaseSection = () => {
                     placeholder="Space requirements, investment capacity, timeline, etc."
                     rows={4}
                     disabled={isSubmitting}
-                    className="text-sm md:text-base resize-none"
+                    className={`text-sm md:text-base resize-none ${validationErrors.message ? 'border-red-500' : ''}`}
                   />
+                  {validationErrors.message && (
+                    <p className="text-red-500 text-xs mt-1">{validationErrors.message}</p>
+                  )}
                 </div>
 
                 <Button 
