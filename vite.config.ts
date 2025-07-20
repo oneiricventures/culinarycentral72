@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/culinarycentral72/", // 👈 This tells Vite you're deploying from domain root
+  base: "/", // 👈 This tells Vite you're deploying from domain root
   server: {
     host: "::",
     port: 8080,
