@@ -6,13 +6,18 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { MapPin, User, Clock, Expand, Shield, Car, Utensils, ArrowLeft, Phone, Mail, Calendar, Users, Loader2 } from 'lucide-react';
+import { 
+  MapPin, User, Clock, Expand, Shield, Car, Utensils, ArrowLeft, Phone, Mail, Calendar, 
+  Users, Loader2, Wifi, Wind, Tv, Coffee, Bath, Mountain, Star, Plane, Navigation,
+  CheckCircle2, Building2
+} from 'lucide-react';
 import ImageModal from '@/components/ImageModal';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SubmissionSuccessDialog from '@/components/SubmissionSuccessDialog';
 import { useToast } from '@/hooks/use-toast';
 import { skylightBookingSchema, SkylightBookingFormData, sanitizeFormData, createRateLimiter } from '@/utils/validation';
+import SecureExternalLink from '@/components/SecureExternalLink';
 
 const bookingRateLimiter = createRateLimiter(3, 5 * 60 * 1000);
 
@@ -34,16 +39,33 @@ const Skylight = () => {
     message: ''
   });
 
-  const amenities = [
-    "Fully Furnished 1BHK Suite",
-    "Premium Bedding & Linens",
-    "Kitchenette with Basic Appliances",
-    "High-Speed WiFi",
-    "Heavy Duty ACs",
-    "Attached Bathroom",
-    "15/7 Food Plaza Access",
-    "Secure Parking",
-    "Mountain View Terrace"
+  const highlights = [
+    { icon: <Star className="w-5 h-5" />, label: "3-Star Comfort", desc: "Premium quality stay" },
+    { icon: <Plane className="w-5 h-5" />, label: "Near Airport", desc: "15 min from Jolly Grant" },
+    { icon: <Navigation className="w-5 h-5" />, label: "Highway Access", desc: "Right on NH 72" },
+    { icon: <Utensils className="w-5 h-5" />, label: "Food Plaza", desc: "15 hrs food access" },
+  ];
+
+  const amenitiesDetailed = [
+    { icon: <Wifi className="w-5 h-5" />, name: "High-Speed WiFi", desc: "Free unlimited internet" },
+    { icon: <Wind className="w-5 h-5" />, name: "Heavy Duty AC", desc: "Climate controlled rooms" },
+    { icon: <Tv className="w-5 h-5" />, name: "Smart TV", desc: "Entertainment on demand" },
+    { icon: <Coffee className="w-5 h-5" />, name: "Kitchenette", desc: "Basic cooking appliances" },
+    { icon: <Bath className="w-5 h-5" />, name: "Modern Bathroom", desc: "Premium fixtures & hot water" },
+    { icon: <Car className="w-5 h-5" />, name: "Secure Parking", desc: "Free covered parking" },
+    { icon: <Mountain className="w-5 h-5" />, name: "Mountain View", desc: "Scenic terrace views" },
+    { icon: <Shield className="w-5 h-5" />, name: "24/7 Security", desc: "Safe & secure premises" },
+  ];
+
+  const whyChooseUs = [
+    "Fully furnished 1BHK suite with premium bedding & linens",
+    "Strategic location on Dehradun-Haridwar Highway (NH 72)",
+    "Just 15 minutes from Jolly Grant Airport, Dehradun",
+    "15 hours access to 5 premium food brands in-house",
+    "Perfect stopover for travelers heading to Mussoorie, Rishikesh & Haridwar",
+    "Mountain view rooftop terrace for relaxation",
+    "Ideal for families, couples & business travelers",
+    "Affordable luxury at competitive rates"
   ];
 
   const galleryImages = [
@@ -160,149 +182,284 @@ const Skylight = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <Header />
       
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
-        <div className="container mx-auto px-4">
-          <Link to="/" className="inline-flex items-center gap-2 text-amber-600 hover:text-amber-700 mb-6 transition-colors">
+      <section className="relative min-h-[85vh] flex items-center bg-gradient-to-br from-slate-900 via-slate-800 to-amber-900">
+        {/* Background Image Overlay */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-30"
+          style={{ backgroundImage: `url('/lovable-uploads/87a8e661-e5dd-4095-a7ef-100c715b8e04.png')` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-transparent" />
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <Link to="/" className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 mb-8 transition-colors">
             <ArrowLeft className="w-4 h-4" />
-            Back to Home
+            Back to Culinary Central 72
           </Link>
           
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            {/* Content */}
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-medium">
-                  🏨 Premium Accommodation
-                </div>
-                
-                <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
-                  <span className="text-amber-600">Skylight</span>
-                  <span className="block">Premium Suite</span>
-                </h1>
-                
-                <p className="text-xl text-gray-600 leading-relaxed">
-                  Your home away from home. A beautifully furnished 1BHK suite right above 
-                  our food plaza - perfect for travelers seeking comfort, privacy, and 15hrs access to great food.
-                </p>
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-1 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full text-sm font-medium border border-amber-500/30">
+                <Star className="w-4 h-4 fill-amber-400" />
+                <Star className="w-4 h-4 fill-amber-400" />
+                <Star className="w-4 h-4 fill-amber-400" />
+                <span className="ml-2">Premium Suite</span>
               </div>
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
+              <span className="text-amber-400">Skylight</span>
+              <span className="block text-white/90">Premium Suite</span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-gray-300 leading-relaxed mb-8 max-w-2xl">
+              Experience 3-star comfort on the Dehradun-Haridwar Highway. A luxurious 1BHK suite 
+              at Culinary Central 72, just 15 minutes from Jolly Grant Airport.
+            </p>
 
-              {/* Key Features */}
-              <div className="grid grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="flex items-center justify-center w-14 h-14 bg-amber-100 rounded-xl mb-3 mx-auto">
-                    <User className="w-7 h-7 text-amber-600" />
-                  </div>
-                  <div className="text-xl font-bold text-gray-900">1BHK</div>
-                  <div className="text-sm text-gray-600">Family Suite</div>
-                </div>
-                <div className="text-center">
-                  <div className="flex items-center justify-center w-14 h-14 bg-amber-100 rounded-xl mb-3 mx-auto">
-                    <Clock className="w-7 h-7 text-amber-600" />
-                  </div>
-                  <div className="text-xl font-bold text-gray-900">15hrs</div>
-                  <div className="text-sm text-gray-600">Food Access</div>
-                </div>
-                <div className="text-center">
-                  <div className="flex items-center justify-center w-14 h-14 bg-amber-100 rounded-xl mb-3 mx-auto">
-                    <MapPin className="w-7 h-7 text-amber-600" />
-                  </div>
-                  <div className="text-xl font-bold text-gray-900">Prime</div>
-                  <div className="text-sm text-gray-600">Location</div>
-                </div>
+            {/* Location Tags */}
+            <div className="flex flex-wrap gap-3 mb-10">
+              <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm border border-white/20">
+                <MapPin className="w-4 h-4 text-amber-400" />
+                NH 72, Majri Grant, Doiwala
               </div>
-
-              {/* Amenities */}
-              <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Premium Amenities</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {amenities.map((amenity, index) => (
-                    <div key={index} className="flex items-center gap-3 text-gray-600 bg-white/60 rounded-lg px-4 py-2">
-                      <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                      <span>{amenity}</span>
-                    </div>
-                  ))}
-                </div>
+              <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm border border-white/20">
+                <Plane className="w-4 h-4 text-amber-400" />
+                15 min from Jolly Grant Airport
               </div>
-
-              {/* Highway Travellers Module */}
-              <div className="bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-2xl p-8">
-                <h3 className="text-2xl font-bold mb-4 flex items-center gap-3">
-                  <Car className="w-7 h-7" />
-                  Perfect for Highway Travellers
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                  <div className="flex items-center gap-3 bg-white/10 rounded-lg px-4 py-3">
-                    <Shield className="w-5 h-5" />
-                    <span>Safe & Secure</span>
-                  </div>
-                  <div className="flex items-center gap-3 bg-white/10 rounded-lg px-4 py-3">
-                    <Utensils className="w-5 h-5" />
-                    <span>Food Access</span>
-                  </div>
-                  <div className="flex items-center gap-3 bg-white/10 rounded-lg px-4 py-3">
-                    <MapPin className="w-5 h-5" />
-                    <span>Highway Location</span>
-                  </div>
-                </div>
-                <p className="mb-6 opacity-90 leading-relaxed">
-                  Strategically located on NH 72 for easy access. Clean, comfortable accommodation 
-                  with direct access to premium food options. Perfect for overnight stays during long journeys.
-                </p>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-3xl font-bold">₹2,499</div>
-                    <div className="text-sm opacity-75">per night</div>
-                  </div>
-                  <Button 
-                    className="bg-white text-amber-600 hover:bg-gray-100 text-lg px-6 py-3"
-                    onClick={handleAirbnbClick}
-                  >
-                    Book on Airbnb
-                  </Button>
-                </div>
+              <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm border border-white/20">
+                <Building2 className="w-4 h-4 text-amber-400" />
+                Above Culinary Central 72 Food Plaza
               </div>
             </div>
 
-            {/* Images */}
-            <div className="space-y-6">
-              <Card className="overflow-hidden shadow-2xl rounded-2xl">
+            {/* Price & CTAs */}
+            <div className="flex flex-wrap items-center gap-6">
+              <div className="text-white">
+                <div className="text-4xl font-bold text-amber-400">₹2,499</div>
+                <div className="text-gray-400">per night</div>
+              </div>
+              <div className="flex gap-4">
+                <Button 
+                  size="lg"
+                  className="bg-amber-500 hover:bg-amber-600 text-white text-lg px-8"
+                  onClick={() => document.getElementById('booking-enquiry')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Book Now
+                </Button>
+                <Button 
+                  size="lg"
+                  variant="outline"
+                  className="border-white/30 text-white hover:bg-white/10 text-lg px-8"
+                  onClick={handleAirbnbClick}
+                >
+                  View on Airbnb
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-8 h-12 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
+            <div className="w-1.5 h-3 bg-amber-400 rounded-full" />
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Highlights */}
+      <section className="py-8 bg-amber-500">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {highlights.map((item, index) => (
+              <div key={index} className="flex items-center gap-4 text-white">
+                <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-xl">
+                  {item.icon}
+                </div>
+                <div>
+                  <div className="font-bold">{item.label}</div>
+                  <div className="text-sm text-white/80">{item.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                About Skylight Suite
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                Your Perfect <span className="text-amber-600">Highway Retreat</span>
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                Skylight is a premium 1BHK family suite located above Culinary Central 72, a multi-brand 
+                food plaza on the Dehradun-Haridwar Highway (NH 72). Designed for travelers seeking 
+                comfort without compromise, our suite offers the perfect blend of convenience and luxury.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                Whether you're on a road trip to Mussoorie, visiting the holy cities of Rishikesh and 
+                Haridwar, or need a comfortable stay near Jolly Grant Airport - Skylight provides an 
+                oasis of calm with easy highway access and direct entry to our food plaza featuring 
+                5 premium food brands.
+              </p>
+
+              {/* Why Choose Us */}
+              <div className="space-y-3">
+                {whyChooseUs.slice(0, 5).map((item, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-4">
                 <img 
                   src="/lovable-uploads/87a8e661-e5dd-4095-a7ef-100c715b8e04.png"
-                  alt="Skylight Suite Living Room"
-                  className="w-full h-80 object-cover"
+                  alt="Skylight Living Room"
+                  className="w-full h-64 object-cover rounded-2xl shadow-lg"
                 />
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Spacious Living Area</h3>
-                  <p className="text-gray-600">Comfortable seating with mountain views and modern amenities.</p>
+                <img 
+                  src="/lovable-uploads/a3a7906d-a429-4239-9f6d-82741c364afe.png"
+                  alt="Skylight Kitchen"
+                  className="w-full h-48 object-cover rounded-2xl shadow-lg"
+                />
+              </div>
+              <div className="space-y-4 pt-8">
+                <img 
+                  src="/lovable-uploads/0235182c-5032-4e24-a894-aa5a0feb3247.png"
+                  alt="Skylight Bedroom"
+                  className="w-full h-48 object-cover rounded-2xl shadow-lg"
+                />
+                <img 
+                  src="/lovable-uploads/225f9cc7-87ab-4ab7-861d-c31696443978.png"
+                  alt="Skylight Terrace"
+                  className="w-full h-64 object-cover rounded-2xl shadow-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Amenities Section */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-amber-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+              Premium Amenities
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Everything You <span className="text-amber-600">Need</span>
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Our suite comes fully equipped with modern amenities to make your stay comfortable and memorable.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {amenitiesDetailed.map((amenity, index) => (
+              <Card key={index} className="bg-white hover:shadow-xl transition-shadow duration-300 border-0 shadow-lg">
+                <CardContent className="p-6 text-center">
+                  <div className="flex items-center justify-center w-14 h-14 bg-amber-100 rounded-2xl mb-4 mx-auto text-amber-600">
+                    {amenity.icon}
+                  </div>
+                  <h3 className="font-bold text-gray-900 mb-1">{amenity.name}</h3>
+                  <p className="text-sm text-gray-600">{amenity.desc}</p>
                 </CardContent>
               </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              <div className="grid grid-cols-2 gap-4">
-                <Card className="overflow-hidden rounded-xl">
-                  <img 
-                    src="/lovable-uploads/3611bea2-215b-4b8c-aa04-d0e84291b5de.png"
-                    alt="Skylight Suite Bedroom"
-                    className="w-full h-40 object-cover"
-                  />
-                  <CardContent className="p-4">
-                    <h4 className="font-semibold text-gray-900">Premium Bedroom</h4>
-                  </CardContent>
-                </Card>
-                
-                <Card className="overflow-hidden rounded-xl">
-                  <img 
-                    src="/lovable-uploads/e0b5fc35-2499-4cd1-bfa1-34220b54622d.png"
-                    alt="Skylight Suite Kitchen"
-                    className="w-full h-40 object-cover"
-                  />
-                  <CardContent className="p-4">
-                    <h4 className="font-semibold text-gray-900">Working Kitchen</h4>
-                  </CardContent>
-                </Card>
+      {/* Location Section */}
+      <section className="py-20 bg-slate-900 text-white">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <MapPin className="w-4 h-4" />
+                Prime Location
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                Strategically Located on <span className="text-amber-400">NH 72</span>
+              </h2>
+              <p className="text-lg text-gray-300 leading-relaxed mb-8">
+                Skylight is perfectly positioned on the Dehradun-Haridwar Highway, making it an ideal 
+                stopover for travelers. Our location offers easy access to major destinations while 
+                providing a peaceful retreat from the journey.
+              </p>
+
+              <div className="space-y-6 mb-10">
+                <div className="flex items-start gap-4">
+                  <div className="flex items-center justify-center w-12 h-12 bg-amber-500/20 rounded-xl flex-shrink-0">
+                    <Plane className="w-6 h-6 text-amber-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg mb-1">Jolly Grant Airport</h3>
+                    <p className="text-gray-400">Just 15 minutes drive - perfect for early flights or late arrivals</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="flex items-center justify-center w-12 h-12 bg-amber-500/20 rounded-xl flex-shrink-0">
+                    <MapPin className="w-6 h-6 text-amber-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg mb-1">Gateway to Uttarakhand</h3>
+                    <p className="text-gray-400">En route to Mussoorie, Rishikesh, Haridwar & the Himalayas</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="flex items-center justify-center w-12 h-12 bg-amber-500/20 rounded-xl flex-shrink-0">
+                    <Car className="w-6 h-6 text-amber-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg mb-1">Easy Highway Access</h3>
+                    <p className="text-gray-400">Direct access from NH 72 with ample secure parking</p>
+                  </div>
+                </div>
+              </div>
+
+              <SecureExternalLink href="https://maps.app.goo.gl/rTw9h2WEYNhr7G2e7">
+                <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white">
+                  <MapPin className="w-5 h-5 mr-2" />
+                  Get Directions
+                </Button>
+              </SecureExternalLink>
+            </div>
+
+            <div className="bg-slate-800 rounded-3xl p-8">
+              <h3 className="text-xl font-bold mb-6 text-amber-400">Distance from Skylight</h3>
+              <div className="space-y-4">
+                {[
+                  { place: "Jolly Grant Airport", distance: "12 km", time: "15 min" },
+                  { place: "Dehradun City Center", distance: "18 km", time: "25 min" },
+                  { place: "Rishikesh", distance: "28 km", time: "35 min" },
+                  { place: "Haridwar", distance: "42 km", time: "50 min" },
+                  { place: "Mussoorie", distance: "50 km", time: "1.5 hrs" },
+                  { place: "Doiwala Railway Station", distance: "3 km", time: "5 min" },
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center justify-between py-3 border-b border-slate-700 last:border-0">
+                    <span className="text-gray-300">{item.place}</span>
+                    <div className="text-right">
+                      <span className="text-white font-semibold">{item.distance}</span>
+                      <span className="text-gray-500 text-sm ml-2">({item.time})</span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -310,219 +467,342 @@ const Skylight = () => {
       </section>
 
       {/* Gallery Section */}
-      <section className="py-16 bg-white">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Suite Gallery</h2>
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+              Suite Gallery
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Take a <span className="text-amber-600">Virtual Tour</span>
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Explore every corner of our beautifully designed suite
+            </p>
+          </div>
+          
           <div className="relative px-12">
             <Carousel className="w-full">
               <CarouselContent>
                 {galleryImages.map((image, index) => (
                   <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/4">
-                    <Card className="overflow-hidden group cursor-pointer rounded-xl" onClick={() => handleImageClick(index)}>
+                    <Card className="overflow-hidden group cursor-pointer rounded-xl border-0 shadow-lg" onClick={() => handleImageClick(index)}>
                       <div className="relative">
                         <img
                           src={image.src}
                           alt={image.alt}
-                          className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
+                          className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
                         />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                          <Expand className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                          <Expand className="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </div>
                       </div>
-                      <CardContent className="p-3">
-                        <p className="text-sm text-gray-600 truncate">{image.alt}</p>
+                      <CardContent className="p-4 bg-white">
+                        <p className="text-sm text-gray-600 truncate font-medium">{image.alt}</p>
                       </CardContent>
                     </Card>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="bg-white/90 hover:bg-white border-amber-200 text-amber-600 hover:text-amber-700 shadow-lg" />
-              <CarouselNext className="bg-white/90 hover:bg-white border-amber-200 text-amber-600 hover:text-amber-700 shadow-lg" />
+              <CarouselPrevious className="bg-white hover:bg-amber-50 border-amber-200 text-amber-600 hover:text-amber-700 shadow-lg" />
+              <CarouselNext className="bg-white hover:bg-amber-50 border-amber-200 text-amber-600 hover:text-amber-700 shadow-lg" />
             </Carousel>
           </div>
         </div>
       </section>
 
-      {/* Booking Enquiry Section */}
-      <section id="booking-enquiry" className="py-16 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
+      {/* Food Plaza Access */}
+      <section className="py-20 bg-gradient-to-br from-amber-500 to-orange-600 text-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <Utensils className="w-4 h-4" />
+                Exclusive Benefit
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                15 Hours Access to Premium Food Plaza
+              </h2>
+              <p className="text-xl text-white/90 leading-relaxed mb-8">
+                As a Skylight guest, enjoy direct access to Culinary Central 72 - our multi-brand 
+                food plaza featuring 5 premium food brands. From breakfast to late-night snacks, 
+                you're covered.
+              </p>
+
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                {["Burger Singh", "Chicago Pizza", "Baskin Robbins", "Waffle Station", "The Nukkad Tapri"].map((brand, index) => (
+                  <div key={index} className="flex items-center gap-3 bg-white/10 rounded-lg px-4 py-3">
+                    <div className="w-2 h-2 bg-white rounded-full" />
+                    <span>{brand}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Link to="/#brands">
+                <Button size="lg" className="bg-white text-amber-600 hover:bg-gray-100">
+                  Explore Food Brands
+                </Button>
+              </Link>
+            </div>
+
+            <div className="relative">
+              <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
+                <div className="text-center mb-8">
+                  <Clock className="w-16 h-16 mx-auto mb-4 text-white/80" />
+                  <h3 className="text-3xl font-bold mb-2">Food Plaza Hours</h3>
+                  <p className="text-white/80">9:00 AM - 12:00 AM Daily</p>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between py-3 border-b border-white/20">
+                    <span>Breakfast</span>
+                    <span className="font-semibold">9:00 AM onwards</span>
+                  </div>
+                  <div className="flex items-center justify-between py-3 border-b border-white/20">
+                    <span>Lunch</span>
+                    <span className="font-semibold">12:00 PM - 3:00 PM</span>
+                  </div>
+                  <div className="flex items-center justify-between py-3 border-b border-white/20">
+                    <span>Dinner</span>
+                    <span className="font-semibold">7:00 PM - 11:00 PM</span>
+                  </div>
+                  <div className="flex items-center justify-between py-3">
+                    <span>Late Night</span>
+                    <span className="font-semibold">Until 12:00 AM</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Booking Enquiry Section */}
+      <section id="booking-enquiry" className="py-20 bg-gradient-to-br from-slate-50 to-amber-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
                 📞 Direct Booking
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                 Book Your <span className="text-amber-600">Stay</span>
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Fill out the form below and we'll get back to you within 24 hours to confirm your booking.
+                Fill out the form below and we'll get back to you within 24 hours to confirm your booking. 
+                You can also book instantly on Airbnb.
               </p>
             </div>
 
-            <Card className="shadow-2xl rounded-2xl overflow-hidden">
-              <CardContent className="p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        <User className="w-4 h-4 inline mr-2" />
-                        Full Name *
-                      </label>
-                      <Input
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        placeholder="Your full name"
-                        className={validationErrors.name ? 'border-red-500' : ''}
-                      />
-                      {validationErrors.name && (
-                        <p className="text-red-500 text-sm mt-1">{validationErrors.name}</p>
-                      )}
-                    </div>
+            <div className="grid lg:grid-cols-5 gap-8">
+              {/* Contact Info */}
+              <div className="lg:col-span-2 space-y-6">
+                <Card className="bg-gradient-to-br from-slate-900 to-slate-800 text-white border-0 shadow-xl">
+                  <CardContent className="p-8">
+                    <h3 className="text-2xl font-bold mb-6">Contact Us Directly</h3>
                     
+                    <div className="space-y-6">
+                      <a href="tel:+919997731372" className="flex items-center gap-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors">
+                        <div className="flex items-center justify-center w-12 h-12 bg-amber-500 rounded-xl">
+                          <Phone className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <div className="text-sm text-gray-400">Call us</div>
+                          <div className="font-semibold">+91 9997731372</div>
+                        </div>
+                      </a>
+                      
+                      <a href="mailto:culinarycentral72@gmail.com" className="flex items-center gap-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors">
+                        <div className="flex items-center justify-center w-12 h-12 bg-amber-500 rounded-xl">
+                          <Mail className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <div className="text-sm text-gray-400">Email us</div>
+                          <div className="font-semibold text-sm">culinarycentral72@gmail.com</div>
+                        </div>
+                      </a>
+                    </div>
+
+                    <div className="mt-8 pt-6 border-t border-white/20">
+                      <Button 
+                        className="w-full bg-amber-500 hover:bg-amber-600 text-white py-6 text-lg"
+                        onClick={handleAirbnbClick}
+                      >
+                        Book Instantly on Airbnb
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white border-0 shadow-xl">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="text-4xl font-bold text-amber-600">₹2,499</div>
+                      <div className="text-gray-600">per night</div>
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      * Prices may vary based on season and availability. Contact us for best rates.
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Booking Form */}
+              <Card className="lg:col-span-3 shadow-2xl rounded-2xl overflow-hidden border-0">
+                <CardContent className="p-8">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <User className="w-4 h-4 inline mr-2" />
+                          Full Name *
+                        </label>
+                        <Input
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          placeholder="Your full name"
+                          className={validationErrors.name ? 'border-red-500' : ''}
+                        />
+                        {validationErrors.name && (
+                          <p className="text-red-500 text-sm mt-1">{validationErrors.name}</p>
+                        )}
+                      </div>
+                      
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <Mail className="w-4 h-4 inline mr-2" />
+                          Email Address *
+                        </label>
+                        <Input
+                          name="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          placeholder="your@email.com"
+                          className={validationErrors.email ? 'border-red-500' : ''}
+                        />
+                        {validationErrors.email && (
+                          <p className="text-red-500 text-sm mt-1">{validationErrors.email}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <Phone className="w-4 h-4 inline mr-2" />
+                          Phone Number *
+                        </label>
+                        <Input
+                          name="phone"
+                          type="tel"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          placeholder="+91 XXXXX XXXXX"
+                          className={validationErrors.phone ? 'border-red-500' : ''}
+                        />
+                        {validationErrors.phone && (
+                          <p className="text-red-500 text-sm mt-1">{validationErrors.phone}</p>
+                        )}
+                      </div>
+                      
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <Users className="w-4 h-4 inline mr-2" />
+                          Number of Guests *
+                        </label>
+                        <Input
+                          name="guests"
+                          type="number"
+                          min="1"
+                          max="4"
+                          value={formData.guests}
+                          onChange={handleInputChange}
+                          placeholder="1-4 guests"
+                          className={validationErrors.guests ? 'border-red-500' : ''}
+                        />
+                        {validationErrors.guests && (
+                          <p className="text-red-500 text-sm mt-1">{validationErrors.guests}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <Calendar className="w-4 h-4 inline mr-2" />
+                          Check-in Date *
+                        </label>
+                        <Input
+                          name="checkIn"
+                          type="date"
+                          value={formData.checkIn}
+                          onChange={handleInputChange}
+                          className={validationErrors.checkIn ? 'border-red-500' : ''}
+                        />
+                        {validationErrors.checkIn && (
+                          <p className="text-red-500 text-sm mt-1">{validationErrors.checkIn}</p>
+                        )}
+                      </div>
+                      
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <Calendar className="w-4 h-4 inline mr-2" />
+                          Check-out Date *
+                        </label>
+                        <Input
+                          name="checkOut"
+                          type="date"
+                          value={formData.checkOut}
+                          onChange={handleInputChange}
+                          className={validationErrors.checkOut ? 'border-red-500' : ''}
+                        />
+                        {validationErrors.checkOut && (
+                          <p className="text-red-500 text-sm mt-1">{validationErrors.checkOut}</p>
+                        )}
+                      </div>
+                    </div>
+
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        <Mail className="w-4 h-4 inline mr-2" />
-                        Email Address *
+                        Special Requests (Optional)
                       </label>
-                      <Input
-                        name="email"
-                        type="email"
-                        value={formData.email}
+                      <Textarea
+                        name="message"
+                        value={formData.message}
                         onChange={handleInputChange}
-                        placeholder="your@email.com"
-                        className={validationErrors.email ? 'border-red-500' : ''}
+                        placeholder="Any special requirements or questions?"
+                        rows={4}
+                        className={validationErrors.message ? 'border-red-500' : ''}
                       />
-                      {validationErrors.email && (
-                        <p className="text-red-500 text-sm mt-1">{validationErrors.email}</p>
+                      {validationErrors.message && (
+                        <p className="text-red-500 text-sm mt-1">{validationErrors.message}</p>
                       )}
                     </div>
-                  </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        <Phone className="w-4 h-4 inline mr-2" />
-                        Phone Number *
-                      </label>
-                      <Input
-                        name="phone"
-                        type="tel"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        placeholder="+91 9876543210"
-                        className={validationErrors.phone ? 'border-red-500' : ''}
-                      />
-                      {validationErrors.phone && (
-                        <p className="text-red-500 text-sm mt-1">{validationErrors.phone}</p>
-                      )}
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        <Users className="w-4 h-4 inline mr-2" />
-                        Number of Guests *
-                      </label>
-                      <Input
-                        name="guests"
-                        type="text"
-                        value={formData.guests}
-                        onChange={handleInputChange}
-                        placeholder="e.g., 2 adults, 1 child"
-                        className={validationErrors.guests ? 'border-red-500' : ''}
-                      />
-                      {validationErrors.guests && (
-                        <p className="text-red-500 text-sm mt-1">{validationErrors.guests}</p>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        <Calendar className="w-4 h-4 inline mr-2" />
-                        Check-in Date *
-                      </label>
-                      <Input
-                        name="checkIn"
-                        type="date"
-                        value={formData.checkIn}
-                        onChange={handleInputChange}
-                        min={new Date().toISOString().split('T')[0]}
-                        className={validationErrors.checkIn ? 'border-red-500' : ''}
-                      />
-                      {validationErrors.checkIn && (
-                        <p className="text-red-500 text-sm mt-1">{validationErrors.checkIn}</p>
-                      )}
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        <Calendar className="w-4 h-4 inline mr-2" />
-                        Check-out Date *
-                      </label>
-                      <Input
-                        name="checkOut"
-                        type="date"
-                        value={formData.checkOut}
-                        onChange={handleInputChange}
-                        min={formData.checkIn || new Date().toISOString().split('T')[0]}
-                        className={validationErrors.checkOut ? 'border-red-500' : ''}
-                      />
-                      {validationErrors.checkOut && (
-                        <p className="text-red-500 text-sm mt-1">{validationErrors.checkOut}</p>
-                      )}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Special Requests (Optional)
-                    </label>
-                    <Textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      placeholder="Any special requests or requirements..."
-                      rows={4}
-                      className={validationErrors.message ? 'border-red-500' : ''}
-                    />
-                    {validationErrors.message && (
-                      <p className="text-red-500 text-sm mt-1">{validationErrors.message}</p>
-                    )}
-                  </div>
-
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-amber-600 hover:bg-amber-700 text-white text-lg py-6"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                        Submitting...
-                      </>
-                    ) : (
-                      'Submit Booking Enquiry'
-                    )}
-                  </Button>
-
-                  <p className="text-center text-sm text-gray-500">
-                    Or book instantly via{' '}
-                    <button 
-                      type="button"
-                      onClick={handleAirbnbClick}
-                      className="text-amber-600 hover:text-amber-700 font-medium underline"
+                    <Button 
+                      type="submit" 
+                      className="w-full bg-amber-500 hover:bg-amber-600 text-white py-6 text-lg font-semibold"
+                      disabled={isSubmitting}
                     >
-                      Airbnb
-                    </button>
-                  </p>
-                </form>
-              </CardContent>
-            </Card>
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                          Submitting...
+                        </>
+                      ) : (
+                        'Submit Booking Enquiry'
+                      )}
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
+
+      <Footer />
 
       <ImageModal
         isOpen={isModalOpen}
@@ -532,11 +812,11 @@ const Skylight = () => {
       />
 
       <SubmissionSuccessDialog 
-        isOpen={showSuccessDialog}
+        isOpen={showSuccessDialog} 
         onClose={() => setShowSuccessDialog(false)}
+        title="Booking Enquiry Received!"
+        message="Thank you for your interest in Skylight Suite. We'll review your enquiry and get back to you within 24 hours to confirm availability and complete your booking."
       />
-
-      <Footer />
     </div>
   );
 };
