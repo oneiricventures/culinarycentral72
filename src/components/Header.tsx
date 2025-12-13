@@ -1,10 +1,13 @@
 
 import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, MapPin, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   const handleCall = () => {
     window.location.href = 'tel:+919997731372';
@@ -44,11 +47,23 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
-            <a href="#home" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">Home</a>
-            <a href="#brands" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">Our Brands</a>
-            <a href="#skylight" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">Skylight Stay</a>
-            <a href="#about" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">About</a>
-            <a href="#lease" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">Lease Space</a>
+            {isHomePage ? (
+              <>
+                <a href="#home" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">Home</a>
+                <a href="#brands" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">Our Brands</a>
+                <Link to="/skylight" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">Skylight Stay</Link>
+                <a href="#about" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">About</a>
+                <a href="#lease" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">Lease Space</a>
+              </>
+            ) : (
+              <>
+                <Link to="/" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">Home</Link>
+                <Link to="/#brands" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">Our Brands</Link>
+                <Link to="/skylight" className="text-orange-600 font-medium transition-colors">Skylight Stay</Link>
+                <Link to="/#about" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">About</Link>
+                <Link to="/#lease" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">Lease Space</Link>
+              </>
+            )}
           </nav>
 
           {/* CTA Buttons */}
@@ -83,11 +98,23 @@ const Header = () => {
         {isMenuOpen && (
           <div className="lg:hidden py-4 border-t border-gray-200">
             <nav className="flex flex-col gap-4">
-              <a href="#home" className="text-gray-700 font-medium py-2">Home</a>
-              <a href="#brands" className="text-gray-700 font-medium py-2">Our Brands</a>
-              <a href="#skylight" className="text-gray-700 font-medium py-2">Skylight Stay</a>
-              <a href="#about" className="text-gray-700 font-medium py-2">About</a>
-              <a href="#lease" className="text-gray-700 font-medium py-2">Lease Space</a>
+              {isHomePage ? (
+                <>
+                  <a href="#home" className="text-gray-700 font-medium py-2">Home</a>
+                  <a href="#brands" className="text-gray-700 font-medium py-2">Our Brands</a>
+                  <Link to="/skylight" className="text-gray-700 font-medium py-2" onClick={() => setIsMenuOpen(false)}>Skylight Stay</Link>
+                  <a href="#about" className="text-gray-700 font-medium py-2">About</a>
+                  <a href="#lease" className="text-gray-700 font-medium py-2">Lease Space</a>
+                </>
+              ) : (
+                <>
+                  <Link to="/" className="text-gray-700 font-medium py-2" onClick={() => setIsMenuOpen(false)}>Home</Link>
+                  <Link to="/#brands" className="text-gray-700 font-medium py-2" onClick={() => setIsMenuOpen(false)}>Our Brands</Link>
+                  <Link to="/skylight" className="text-orange-600 font-medium py-2" onClick={() => setIsMenuOpen(false)}>Skylight Stay</Link>
+                  <Link to="/#about" className="text-gray-700 font-medium py-2" onClick={() => setIsMenuOpen(false)}>About</Link>
+                  <Link to="/#lease" className="text-gray-700 font-medium py-2" onClick={() => setIsMenuOpen(false)}>Lease Space</Link>
+                </>
+              )}
               <div className="flex flex-col gap-2 pt-4">
                 <Button 
                   variant="outline" 
