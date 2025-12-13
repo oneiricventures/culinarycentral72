@@ -1,9 +1,10 @@
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { MapPin, User, Clock, Expand, Shield, Car, Utensils } from 'lucide-react';
+import { MapPin, User, Clock, Expand, Shield, Car, Utensils, ArrowRight } from 'lucide-react';
 import ImageModal from './ImageModal';
 
 const SkylightSection = () => {
@@ -129,17 +130,28 @@ const SkylightSection = () => {
                 Strategically located on NH 72 for easy access. Clean, comfortable accommodation 
                 with direct access to premium food options. Perfect for overnight stays during long journeys.
               </p>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between flex-wrap gap-4">
                 <div>
                   <div className="text-2xl font-bold">₹2,499</div>
                   <div className="text-sm opacity-75">per night</div>
                 </div>
-                <Button 
-                  className="bg-white text-amber-600 hover:bg-gray-100"
-                  onClick={handleAirbnbClick}
-                >
-                  Book Now
-                </Button>
+                <div className="flex gap-3">
+                  <Button 
+                    className="bg-white text-amber-600 hover:bg-gray-100"
+                    onClick={handleAirbnbClick}
+                  >
+                    Book on Airbnb
+                  </Button>
+                  <Link to="/skylight">
+                    <Button 
+                      variant="outline"
+                      className="border-white text-white hover:bg-white/20"
+                    >
+                      Enquire Now
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

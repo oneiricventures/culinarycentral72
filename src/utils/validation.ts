@@ -36,6 +36,42 @@ export const leaseInquirySchema = z.object({
 
 export type LeaseInquiryFormData = z.infer<typeof leaseInquirySchema>;
 
+// Skylight booking enquiry schema
+export const skylightBookingSchema = z.object({
+  name: z.string()
+    .min(1, 'Name is required')
+    .max(100, 'Name must be less than 100 characters')
+    .regex(/^[a-zA-Z\s.''-]+$/, 'Name contains invalid characters'),
+  
+  email: z.string()
+    .min(1, 'Email is required')
+    .email('Please enter a valid email address')
+    .max(255, 'Email must be less than 255 characters'),
+  
+  phone: z.string()
+    .min(1, 'Phone number is required')
+    .regex(/^[\+]?[1-9][\d]{0,15}$/, 'Please enter a valid phone number')
+    .max(20, 'Phone number must be less than 20 characters'),
+  
+  checkIn: z.string()
+    .min(1, 'Check-in date is required'),
+  
+  checkOut: z.string()
+    .min(1, 'Check-out date is required'),
+  
+  guests: z.string()
+    .min(1, 'Number of guests is required')
+    .max(50, 'Guest information must be less than 50 characters')
+    .regex(/^[a-zA-Z0-9\s,]+$/, 'Guest information contains invalid characters'),
+  
+  message: z.string()
+    .max(1000, 'Message must be less than 1000 characters')
+    .regex(/^[a-zA-Z0-9\s.,!?&''""\n\r-]*$/, 'Message contains invalid characters')
+    .optional()
+});
+
+export type SkylightBookingFormData = z.infer<typeof skylightBookingSchema>;
+
 // Input sanitization utilities
 export const sanitizeInput = (input: string): string => {
   return input
