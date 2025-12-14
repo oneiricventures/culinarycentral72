@@ -55,7 +55,7 @@ const Skylight = () => {
       hasKitchenette: false,
       bedType: 'Double Bed',
       maxGuests: 2,
-      image: '/lovable-uploads/0235182c-5032-4e24-a894-aa5a0feb3247.png'
+      image: '/lovable-uploads/Classic_Room.png'
     },
     {
       id: 'premium',
@@ -71,7 +71,7 @@ const Skylight = () => {
       hasKitchenette: false,
       bedType: 'Double Bed',
       maxGuests: 3,
-      image: '/lovable-uploads/09df96a5-9b71-4181-9b40-543cdbde181e.png'
+      image: '/lovable-uploads/Premium_Room.png'
     },
     {
       id: 'grand-suite',
@@ -238,27 +238,27 @@ const Skylight = () => {
       <SkylightHeader />
       
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-slate-900 via-slate-800 to-amber-900">
+      <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-stone-900 via-stone-800 to-stone-700">
         {/* Background Image Overlay */}
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-30"
           style={{ backgroundImage: `url('/lovable-uploads/87a8e661-e5dd-4095-a7ef-100c715b8e04.png')` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-stone-900/90 via-stone-900/70 to-transparent" />
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-6">
-              <div className="flex items-center gap-1 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full text-sm font-medium border border-amber-500/30">
-                <Star className="w-4 h-4 fill-amber-400" />
-                <Star className="w-4 h-4 fill-amber-400" />
-                <Star className="w-4 h-4 fill-amber-400" />
+              <div className="flex items-center gap-1 bg-amber-600/20 text-amber-300 px-4 py-2 rounded-full text-sm font-medium border border-amber-600/30">
+                <Star className="w-4 h-4 fill-amber-300" />
+                <Star className="w-4 h-4 fill-amber-300" />
+                <Star className="w-4 h-4 fill-amber-300" />
                 <span className="ml-2">Premium Hotel</span>
               </div>
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
-              <span className="text-amber-400">Skylight</span>
+              <span className="text-amber-300">Skylight</span>
               <span className="block text-white/90">Suites</span>
             </h1>
             
@@ -273,11 +273,11 @@ const Skylight = () => {
             {/* Location Tags */}
             <div className="flex flex-wrap gap-3 mb-10">
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm border border-white/20">
-                <MapPin className="w-4 h-4 text-amber-400" />
+                <MapPin className="w-4 h-4 text-amber-300" />
                 NH 72, Majri Grant, Doiwala
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm border border-white/20">
-                <Plane className="w-4 h-4 text-amber-400" />
+                <Plane className="w-4 h-4 text-amber-300" />
                 15 min from Jolly Grant Airport
               </div>
             </div>
@@ -286,7 +286,7 @@ const Skylight = () => {
             <div className="flex flex-wrap items-center gap-4">
               <Button 
                 size="lg"
-                className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold text-lg px-10 py-6"
+                className="bg-amber-500 hover:bg-amber-600 text-stone-900 font-bold text-lg px-10 py-6"
                 onClick={() => document.getElementById('booking-enquiry')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Book Direct & Save
@@ -295,7 +295,7 @@ const Skylight = () => {
                 <Button 
                   size="lg"
                   variant="outline"
-                  className="border-white/30 text-white hover:bg-white/10 text-lg px-6"
+                  className="border-amber-300/50 text-amber-200 bg-amber-900/30 hover:bg-amber-800/50 text-lg px-6"
                 >
                   <ExternalLink className="w-4 h-4 mr-2" />
                   Read Reviews on Airbnb
@@ -308,18 +308,18 @@ const Skylight = () => {
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <div className="w-8 h-12 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
-            <div className="w-1.5 h-3 bg-amber-400 rounded-full" />
+            <div className="w-1.5 h-3 bg-amber-300 rounded-full" />
           </div>
         </div>
       </section>
 
       {/* Quick Highlights */}
-      <section className="py-8 bg-amber-500">
+      <section className="py-8 bg-stone-700">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {highlights.map((item, index) => (
               <div key={index} className="flex items-center gap-4 text-white">
-                <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-xl">
+                <div className="flex items-center justify-center w-12 h-12 bg-amber-500/20 rounded-xl text-amber-300">
                   {item.icon}
                 </div>
                 <div>
@@ -336,12 +336,12 @@ const Skylight = () => {
       <section id="rooms" className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+            <div className="inline-flex items-center gap-2 bg-stone-100 text-stone-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
               <Bed className="w-4 h-4" />
               Our Rooms
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Choose Your <span className="text-amber-600">Perfect Stay</span>
+              Choose Your <span className="text-stone-600">Perfect Stay</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               From comfortable classic rooms for transit travellers to spacious suites for extended stays - 
@@ -358,13 +358,13 @@ const Skylight = () => {
                     alt={room.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute top-4 right-4 bg-amber-500 text-white px-4 py-2 rounded-full font-bold text-lg">
+                  <div className="absolute top-4 right-4 bg-stone-700 text-white px-4 py-2 rounded-full font-bold text-lg">
                     {room.price}<span className="text-sm font-normal">/night</span>
                   </div>
                 </div>
                 <CardContent className="p-6">
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">{room.name}</h3>
-                  <p className="text-sm text-amber-600 font-medium mb-4">{room.otaTitle}</p>
+                  <p className="text-sm text-stone-600 font-medium mb-4">{room.otaTitle}</p>
                   
                   <div className="flex items-center gap-4 mb-4 text-gray-600 text-sm">
                     <div className="flex items-center gap-1">
@@ -381,7 +381,7 @@ const Skylight = () => {
 
                   <div className="flex flex-wrap gap-2 mb-4">
                     {room.highlights.slice(0, 3).map((highlight, idx) => (
-                      <span key={idx} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
+                      <span key={idx} className="text-xs bg-stone-100 text-stone-600 px-2 py-1 rounded">
                         {highlight}
                       </span>
                     ))}
@@ -392,7 +392,7 @@ const Skylight = () => {
                   </div>
 
                   <Button 
-                    className="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold"
+                    className="w-full bg-stone-700 hover:bg-stone-800 text-white font-semibold"
                     onClick={() => handleBookRoom(room.name)}
                   >
                     Book Now
@@ -403,7 +403,7 @@ const Skylight = () => {
           </div>
 
           {/* Room Comparison Table */}
-          <div className="mt-16 bg-gray-50 rounded-2xl p-8">
+          <div className="mt-16 bg-stone-50 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Room Comparison</h3>
             <div className="overflow-x-auto">
               <table className="w-full">
@@ -412,7 +412,7 @@ const Skylight = () => {
                     <th className="text-left py-4 px-4 font-semibold text-gray-700">Feature</th>
                     <th className="text-center py-4 px-4 font-semibold text-gray-700">Classic Room</th>
                     <th className="text-center py-4 px-4 font-semibold text-gray-700">Premium Room</th>
-                    <th className="text-center py-4 px-4 font-semibold text-amber-600">Skylight Grand Suite</th>
+                    <th className="text-center py-4 px-4 font-semibold text-stone-700">Skylight Grand Suite</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -420,37 +420,43 @@ const Skylight = () => {
                     <td className="py-4 px-4 text-gray-600">Room Size</td>
                     <td className="py-4 px-4 text-center">180 sq ft</td>
                     <td className="py-4 px-4 text-center">220 sq ft</td>
-                    <td className="py-4 px-4 text-center font-medium text-amber-600">550 sq ft</td>
+                    <td className="py-4 px-4 text-center font-medium text-stone-700">550 sq ft</td>
                   </tr>
-                  <tr className="border-b border-gray-100 bg-gray-50/50">
+                  <tr className="border-b border-gray-100 bg-stone-50/50">
                     <td className="py-4 px-4 text-gray-600">Bed Type</td>
                     <td className="py-4 px-4 text-center">Double Bed</td>
                     <td className="py-4 px-4 text-center">Double Bed</td>
                     <td className="py-4 px-4 text-center">Double Bed</td>
                   </tr>
                   <tr className="border-b border-gray-100">
+                    <td className="py-4 px-4 text-gray-600">Private Bath</td>
+                    <td className="py-4 px-4 text-center text-green-600">✓</td>
+                    <td className="py-4 px-4 text-center text-green-600">✓</td>
+                    <td className="py-4 px-4 text-center text-green-600">✓</td>
+                  </tr>
+                  <tr className="border-b border-gray-100 bg-stone-50/50">
                     <td className="py-4 px-4 text-gray-600">Living Area</td>
                     <td className="py-4 px-4 text-center text-gray-400">—</td>
                     <td className="py-4 px-4 text-center text-gray-400">—</td>
                     <td className="py-4 px-4 text-center text-green-600">✓</td>
                   </tr>
-                  <tr className="border-b border-gray-100 bg-gray-50/50">
+                  <tr className="border-b border-gray-100">
                     <td className="py-4 px-4 text-gray-600">Kitchenette</td>
                     <td className="py-4 px-4 text-center text-gray-400">—</td>
                     <td className="py-4 px-4 text-center text-gray-400">—</td>
                     <td className="py-4 px-4 text-center text-green-600">✓</td>
                   </tr>
-                  <tr className="border-b border-gray-100">
+                  <tr className="border-b border-gray-100 bg-stone-50/50">
                     <td className="py-4 px-4 text-gray-600">Ideal For</td>
                     <td className="py-4 px-4 text-center text-sm">Short stays</td>
                     <td className="py-4 px-4 text-center text-sm">Comfort stays</td>
-                    <td className="py-4 px-4 text-center text-sm font-medium text-amber-600">Extended stays</td>
+                    <td className="py-4 px-4 text-center text-sm font-medium text-stone-700">Extended stays</td>
                   </tr>
-                  <tr className="bg-gray-50/50">
+                  <tr>
                     <td className="py-4 px-4 text-gray-600">Max Guests</td>
                     <td className="py-4 px-4 text-center">2</td>
                     <td className="py-4 px-4 text-center">3</td>
-                    <td className="py-4 px-4 text-center font-medium text-amber-600">4</td>
+                    <td className="py-4 px-4 text-center font-medium text-stone-700">4</td>
                   </tr>
                 </tbody>
               </table>
@@ -460,7 +466,7 @@ const Skylight = () => {
           {/* Tags */}
           <div className="mt-12 flex flex-wrap justify-center gap-3">
             {tags.map((tag, index) => (
-              <span key={index} className="bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-medium">
+              <span key={index} className="bg-stone-100 text-stone-700 px-4 py-2 rounded-full text-sm font-medium">
                 {tag}
               </span>
             ))}
@@ -469,14 +475,14 @@ const Skylight = () => {
       </section>
 
       {/* Amenities Section */}
-      <section id="amenities" className="py-20 bg-gradient-to-br from-slate-50 to-amber-50">
+      <section id="amenities" className="py-20 bg-gradient-to-br from-stone-50 to-stone-100">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+            <div className="inline-flex items-center gap-2 bg-stone-200 text-stone-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
               Premium Amenities
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Everything You <span className="text-amber-600">Need</span>
+              Everything You <span className="text-stone-600">Need</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               All rooms come equipped with modern amenities to make your stay comfortable and memorable.
@@ -487,7 +493,7 @@ const Skylight = () => {
             {amenitiesDetailed.map((amenity, index) => (
               <Card key={index} className="bg-white hover:shadow-xl transition-shadow duration-300 border-0 shadow-lg">
                 <CardContent className="p-6 text-center">
-                  <div className="flex items-center justify-center w-14 h-14 bg-amber-100 rounded-2xl mb-4 mx-auto text-amber-600">
+                  <div className="flex items-center justify-center w-14 h-14 bg-stone-100 rounded-2xl mb-4 mx-auto text-stone-600">
                     {amenity.icon}
                   </div>
                   <h3 className="font-bold text-gray-900 mb-1">{amenity.name}</h3>
@@ -503,11 +509,11 @@ const Skylight = () => {
       <section id="gallery" className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+            <div className="inline-flex items-center gap-2 bg-stone-100 text-stone-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
               Photo Gallery
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Take a <span className="text-amber-600">Virtual Tour</span>
+              Take a <span className="text-stone-600">Virtual Tour</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Explore our beautifully designed rooms and common areas
@@ -537,24 +543,24 @@ const Skylight = () => {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="bg-white hover:bg-amber-50 border-amber-200 text-amber-600 hover:text-amber-700 shadow-lg" />
-              <CarouselNext className="bg-white hover:bg-amber-50 border-amber-200 text-amber-600 hover:text-amber-700 shadow-lg" />
+              <CarouselPrevious className="bg-white hover:bg-stone-50 border-stone-200 text-stone-600 hover:text-stone-700 shadow-lg" />
+              <CarouselNext className="bg-white hover:bg-stone-50 border-stone-200 text-stone-600 hover:text-stone-700 shadow-lg" />
             </Carousel>
           </div>
         </div>
       </section>
 
       {/* Location Section */}
-      <section id="location" className="py-20 bg-slate-900 text-white">
+      <section id="location" className="py-20 bg-stone-800 text-white">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <MapPin className="w-4 h-4" />
                 Prime Location
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                Strategically Located on <span className="text-amber-400">NH 72</span>
+                Strategically Located on <span className="text-amber-300">NH 72</span>
               </h2>
               <p className="text-lg text-gray-300 leading-relaxed mb-8">
                 Skylight Suites is perfectly positioned on the Dehradun-Haridwar Highway, making it an ideal 
@@ -565,7 +571,7 @@ const Skylight = () => {
               <div className="space-y-6 mb-10">
                 <div className="flex items-start gap-4">
                   <div className="flex items-center justify-center w-12 h-12 bg-amber-500/20 rounded-xl flex-shrink-0">
-                    <Plane className="w-6 h-6 text-amber-400" />
+                    <Plane className="w-6 h-6 text-amber-300" />
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-1">Jolly Grant Airport</h3>
@@ -574,7 +580,7 @@ const Skylight = () => {
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="flex items-center justify-center w-12 h-12 bg-amber-500/20 rounded-xl flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-amber-400" />
+                    <MapPin className="w-6 h-6 text-amber-300" />
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-1">Gateway to Uttarakhand</h3>
@@ -583,7 +589,7 @@ const Skylight = () => {
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="flex items-center justify-center w-12 h-12 bg-amber-500/20 rounded-xl flex-shrink-0">
-                    <Car className="w-6 h-6 text-amber-400" />
+                    <Car className="w-6 h-6 text-amber-300" />
                   </div>
                   <div>
                     <h3 className="font-bold text-lg mb-1">Easy Highway Access</h3>
@@ -593,15 +599,15 @@ const Skylight = () => {
               </div>
 
               <SecureExternalLink href="https://maps.app.goo.gl/rTw9h2WEYNhr7G2e7">
-                <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white">
+                <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-stone-900 font-semibold">
                   <MapPin className="w-5 h-5 mr-2" />
                   Get Directions
                 </Button>
               </SecureExternalLink>
             </div>
 
-            <div className="bg-slate-800 rounded-3xl p-8">
-              <h3 className="text-xl font-bold mb-6 text-amber-400">Distance from Skylight Suites</h3>
+            <div className="bg-stone-700 rounded-3xl p-8">
+              <h3 className="text-xl font-bold mb-6 text-amber-300">Distance from Skylight Suites</h3>
               <div className="space-y-4">
                 {[
                   { place: "Jolly Grant Airport", distance: "12 km", time: "15 min" },
@@ -611,7 +617,7 @@ const Skylight = () => {
                   { place: "Mussoorie", distance: "50 km", time: "1.5 hrs" },
                   { place: "Doiwala Railway Station", distance: "3 km", time: "5 min" },
                 ].map((item, index) => (
-                  <div key={index} className="flex items-center justify-between py-3 border-b border-slate-700 last:border-0">
+                  <div key={index} className="flex items-center justify-between py-3 border-b border-stone-600 last:border-0">
                     <span className="text-gray-300">{item.place}</span>
                     <div className="text-right">
                       <span className="text-white font-semibold">{item.distance}</span>
@@ -626,7 +632,7 @@ const Skylight = () => {
       </section>
 
       {/* Food Plaza Access */}
-      <section className="py-20 bg-gradient-to-br from-amber-500 to-orange-600 text-white">
+      <section className="py-20 bg-gradient-to-br from-stone-600 to-stone-700 text-white">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -646,14 +652,14 @@ const Skylight = () => {
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {["Burger Singh", "Chicago Pizza", "Baskin Robbins", "Waffle Station", "The Nukkad Tapri"].map((brand, index) => (
                   <div key={index} className="flex items-center gap-3 bg-white/10 rounded-lg px-4 py-3">
-                    <div className="w-2 h-2 bg-white rounded-full" />
+                    <div className="w-2 h-2 bg-amber-300 rounded-full" />
                     <span>{brand}</span>
                   </div>
                 ))}
               </div>
 
               <Link to="/#brands">
-                <Button size="lg" className="bg-white text-amber-600 hover:bg-gray-100">
+                <Button size="lg" className="bg-white text-stone-700 hover:bg-gray-100 font-semibold">
                   Explore Food Brands
                 </Button>
               </Link>
@@ -691,15 +697,15 @@ const Skylight = () => {
       </section>
 
       {/* Booking Enquiry Section */}
-      <section id="booking-enquiry" className="py-20 bg-gradient-to-br from-slate-50 to-amber-50">
+      <section id="booking-enquiry" className="py-20 bg-gradient-to-br from-stone-50 to-stone-100">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 bg-amber-500 text-white px-6 py-2 rounded-full text-sm font-bold mb-4">
+              <div className="inline-flex items-center gap-2 bg-stone-700 text-white px-6 py-2 rounded-full text-sm font-bold mb-4">
                 Book Direct & Save
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Reserve Your <span className="text-amber-600">Room</span>
+                Reserve Your <span className="text-stone-600">Room</span>
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 Book directly with us for the best rates. We'll confirm your booking within 24 hours.
@@ -709,13 +715,13 @@ const Skylight = () => {
             <div className="grid lg:grid-cols-5 gap-8">
               {/* Contact Info */}
               <div className="lg:col-span-2 space-y-6">
-                <Card className="bg-gradient-to-br from-slate-900 to-slate-800 text-white border-0 shadow-xl">
+                <Card className="bg-gradient-to-br from-stone-800 to-stone-700 text-white border-0 shadow-xl">
                   <CardContent className="p-8">
                     <h3 className="text-2xl font-bold mb-6">Contact Us Directly</h3>
                     
                     <div className="space-y-6">
                       <a href="tel:+919997731372" className="flex items-center gap-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors">
-                        <div className="flex items-center justify-center w-12 h-12 bg-amber-500 rounded-xl">
+                        <div className="flex items-center justify-center w-12 h-12 bg-amber-500/80 rounded-xl">
                           <Phone className="w-6 h-6" />
                         </div>
                         <div>
@@ -725,7 +731,7 @@ const Skylight = () => {
                       </a>
                       
                       <a href="mailto:culinarycentral72@gmail.com" className="flex items-center gap-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors">
-                        <div className="flex items-center justify-center w-12 h-12 bg-amber-500 rounded-xl">
+                        <div className="flex items-center justify-center w-12 h-12 bg-amber-500/80 rounded-xl">
                           <Mail className="w-6 h-6" />
                         </div>
                         <div>
@@ -740,7 +746,7 @@ const Skylight = () => {
                       <SecureExternalLink href="https://www.airbnb.co.in/rooms/1389016749522622097">
                         <Button 
                           variant="outline"
-                          className="w-full border-white/30 text-white hover:bg-white/10"
+                          className="w-full border-amber-300/50 text-amber-200 bg-amber-900/30 hover:bg-amber-800/50"
                         >
                           <ExternalLink className="w-4 h-4 mr-2" />
                           View on Airbnb (Read Reviews)
@@ -764,7 +770,7 @@ const Skylight = () => {
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-gray-600">Grand Suite</span>
-                        <span className="font-bold text-amber-600">₹3,999</span>
+                        <span className="font-bold text-stone-700">₹3,999</span>
                       </div>
                     </div>
                     <div className="text-xs text-gray-500 mt-4">
@@ -792,8 +798,8 @@ const Skylight = () => {
                             onClick={() => setSelectedRoomType(room.name)}
                             className={`p-3 rounded-lg border-2 text-sm font-medium transition-all ${
                               selectedRoomType === room.name
-                                ? 'border-amber-500 bg-amber-50 text-amber-700'
-                                : 'border-gray-200 hover:border-amber-300'
+                                ? 'border-stone-600 bg-stone-50 text-stone-700'
+                                : 'border-gray-200 hover:border-stone-400'
                             }`}
                           >
                             {room.name.replace('Skylight ', '')}
@@ -934,7 +940,7 @@ const Skylight = () => {
 
                     <Button 
                       type="submit" 
-                      className="w-full bg-amber-500 hover:bg-amber-600 text-white py-6 text-lg font-bold"
+                      className="w-full bg-stone-700 hover:bg-stone-800 text-white py-6 text-lg font-bold"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (
