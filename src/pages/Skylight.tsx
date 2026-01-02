@@ -91,7 +91,7 @@ Guests: ${formData.guests || 'Not selected'}`;
   };
 
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-background font-sans">
       <SkylightHeader />
       
       {/* Hero Section */}
@@ -100,25 +100,25 @@ Guests: ${formData.guests || 'Not selected'}`;
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url('/lovable-uploads/hero-room.jpg')` }}
         />
-        <div className="absolute inset-0 bg-stone-900/40" />
+        <div className="absolute inset-0 bg-[#3d3429]/50" />
         
         <div className="container mx-auto px-4 relative z-10 text-center pt-20">
-          <p className="text-stone-200 uppercase tracking-[0.3em] text-sm mb-6">
+          <p className="text-[#e8ddd0] uppercase tracking-[0.3em] text-sm mb-6 font-sans">
             Culinary Central 72 • Dehradun–Haridwar Highway
           </p>
           
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-white leading-tight mb-8 max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-light text-[#f5efe8] leading-tight mb-8 max-w-4xl mx-auto">
             An Elevated Boutique Stay Near Dehradun, Rishikesh & Haridwar
           </h1>
           
-          <p className="text-lg md:text-xl text-stone-200 max-w-2xl mx-auto mb-12 font-light">
+          <p className="text-lg md:text-xl text-[#e8ddd0] max-w-2xl mx-auto mb-12 font-sans font-light">
             Skylight Suites offers thoughtfully designed rooms, refined comfort, and a prime location just minutes from Dehradun Airport—set within the vibrant Culinary Central 72.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button 
               size="lg"
-              className="bg-stone-100 hover:bg-white text-stone-900 font-medium px-8 py-6 text-base"
+              className="bg-[#c9b896] hover:bg-[#d4c6a8] text-[#3d3429] font-sans font-medium px-8 py-6 text-base"
               onClick={() => document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Book Your Stay
@@ -126,7 +126,7 @@ Guests: ${formData.guests || 'Not selected'}`;
             <Button 
               size="lg"
               variant="outline"
-              className="border-stone-100/50 text-stone-100 bg-transparent hover:bg-stone-100/10 px-8 py-6 text-base"
+              className="border-[#c9b896]/50 text-[#f5efe8] bg-transparent hover:bg-[#c9b896]/10 px-8 py-6 text-base font-sans"
               onClick={() => document.getElementById('rooms')?.scrollIntoView({ behavior: 'smooth' })}
             >
               View Rooms & Suites
@@ -136,23 +136,23 @@ Guests: ${formData.guests || 'Not selected'}`;
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-8 h-12 rounded-full border-2 border-white/40 flex items-start justify-center p-2">
-            <div className="w-1 h-3 bg-white/60 rounded-full" />
+          <div className="w-8 h-12 rounded-full border-2 border-[#c9b896]/40 flex items-start justify-center p-2">
+            <div className="w-1 h-3 bg-[#c9b896]/60 rounded-full" />
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 bg-stone-50">
+      <section id="about" className="py-24 bg-background">
         <div className="container mx-auto px-4">
-          <p className="text-stone-500 uppercase tracking-[0.2em] text-sm mb-4 text-center">About Skylight Suites</p>
-          <h2 className="text-3xl md:text-5xl font-light text-stone-800 text-center mb-8">
+          <p className="text-muted-foreground uppercase tracking-[0.2em] text-sm mb-4 text-center font-sans">About Skylight Suites</p>
+          <h2 className="text-3xl md:text-5xl font-serif font-light text-foreground text-center mb-8">
             A Modern Retreat in the Heart of Uttarakhand
           </h2>
-          <p className="text-lg text-stone-600 max-w-3xl mx-auto text-center mb-16 leading-relaxed">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-center mb-16 leading-relaxed font-sans">
             Skylight Suites is a newly built boutique hotel designed for travellers who value comfort, space, and thoughtful details. Ideally located between Dehradun, Rishikesh, and Haridwar, the property offers seamless access to the region while providing a serene, modern retreat.
           </p>
-          <p className="text-stone-600 max-w-2xl mx-auto text-center mb-16">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-center mb-16 font-sans">
             Whether you're visiting for leisure, family travel, or an extended stay, Skylight Suites blends contemporary design with warm hospitality.
           </p>
 
@@ -164,11 +164,11 @@ Guests: ${formData.guests || 'Not selected'}`;
               { icon: <Users className="w-6 h-6" />, title: 'Located on', subtitle: 'Culinary Central 72' }
             ].map((item, index) => (
               <div key={index} className="text-center">
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-stone-100 text-stone-600 mb-4">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-accent text-foreground mb-4">
                   {item.icon}
                 </div>
-                <h3 className="font-medium text-stone-800">{item.title}</h3>
-                {item.subtitle && <p className="text-stone-500 text-sm">{item.subtitle}</p>}
+                <h3 className="font-sans font-medium text-foreground">{item.title}</h3>
+                {item.subtitle && <p className="text-muted-foreground text-sm font-sans">{item.subtitle}</p>}
               </div>
             ))}
           </div>
@@ -176,10 +176,10 @@ Guests: ${formData.guests || 'Not selected'}`;
       </section>
 
       {/* Rooms Section */}
-      <section id="rooms" className="py-24 bg-white">
+      <section id="rooms" className="py-24 bg-card">
         <div className="container mx-auto px-4">
-          <p className="text-stone-500 uppercase tracking-[0.2em] text-sm mb-4 text-center">Rooms & Suites</p>
-          <h2 className="text-3xl md:text-5xl font-light text-stone-800 text-center mb-16">
+          <p className="text-muted-foreground uppercase tracking-[0.2em] text-sm mb-4 text-center font-sans">Rooms & Suites</p>
+          <h2 className="text-3xl md:text-5xl font-serif font-light text-foreground text-center mb-16">
             A Collection of Refined Spaces
           </h2>
 
@@ -196,27 +196,27 @@ Guests: ${formData.guests || 'Not selected'}`;
                   </div>
                 </div>
                 <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
-                  <p className="text-stone-500 italic mb-4">{room.tagline}</p>
-                  <h3 className="text-3xl md:text-4xl font-light text-stone-800 mb-4">{room.name}</h3>
+                  <p className="text-muted-foreground italic mb-4 font-serif">{room.tagline}</p>
+                  <h3 className="text-3xl md:text-4xl font-serif font-light text-foreground mb-4">{room.name}</h3>
                   
                   <div className="flex items-baseline gap-3 mb-6">
-                    <span className="text-3xl font-medium text-stone-800">{room.price}</span>
-                    <span className="text-lg text-stone-400 line-through">{room.originalPrice}</span>
-                    <span className="text-sm text-stone-500">incl. tax</span>
+                    <span className="text-3xl font-sans font-medium text-foreground">{room.price}</span>
+                    <span className="text-lg text-muted-foreground line-through font-sans">{room.originalPrice}</span>
+                    <span className="text-sm text-muted-foreground font-sans">incl. tax</span>
                   </div>
 
-                  <p className="text-stone-600 mb-8 leading-relaxed">{room.description}</p>
+                  <p className="text-muted-foreground mb-8 leading-relaxed font-sans">{room.description}</p>
 
                   <div className="flex flex-wrap gap-3 mb-8">
                     {room.features.map((feature, idx) => (
-                      <span key={idx} className="px-4 py-2 bg-stone-100 text-stone-700 rounded-full text-sm">
+                      <span key={idx} className="px-4 py-2 bg-accent text-foreground rounded-full text-sm font-sans">
                         {feature}
                       </span>
                     ))}
                   </div>
 
                   <Button 
-                    className="bg-stone-800 hover:bg-stone-900 text-white px-8"
+                    className="bg-[#8b7355] hover:bg-[#7a6549] text-[#f5efe8] px-8 font-sans"
                     onClick={() => {
                       setFormData(prev => ({ ...prev, roomType: room.name }));
                       document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
@@ -232,40 +232,40 @@ Guests: ${formData.guests || 'Not selected'}`;
       </section>
 
       {/* Culinary Central Section */}
-      <section id="dining" className="py-24 bg-stone-100">
+      <section id="dining" className="py-24 bg-accent">
         <div className="container mx-auto px-4">
-          <p className="text-stone-500 uppercase tracking-[0.2em] text-sm mb-4 text-center">Culinary Central 72</p>
-          <h2 className="text-3xl md:text-5xl font-light text-stone-800 text-center mb-8">
+          <p className="text-muted-foreground uppercase tracking-[0.2em] text-sm mb-4 text-center font-sans">Culinary Central 72</p>
+          <h2 className="text-3xl md:text-5xl font-serif font-light text-foreground text-center mb-8">
             Stay Above a Curated Culinary Destination
           </h2>
-          <p className="text-lg text-stone-600 max-w-3xl mx-auto text-center mb-16">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-center mb-16 font-sans">
             Skylight Suites is located within Culinary Central 72, home to some of India's most loved food brands—making dining effortless and family-friendly.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             {foodBrands.map((brand, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 flex flex-col items-center justify-center shadow-sm">
+              <div key={index} className="bg-card rounded-2xl p-8 flex flex-col items-center justify-center shadow-sm">
                 <img 
                   src={brand.logo} 
                   alt={`${brand.name} logo`}
                   className="h-16 object-contain mb-4"
                 />
-                <span className="text-stone-600 text-sm font-medium">{brand.name}</span>
+                <span className="text-muted-foreground text-sm font-sans font-medium">{brand.name}</span>
               </div>
             ))}
           </div>
 
-          <p className="text-stone-600 text-center italic">
+          <p className="text-muted-foreground text-center italic font-serif">
             Perfect for relaxed family meals, quick bites, or late-evening desserts—just steps away.
           </p>
         </div>
       </section>
 
       {/* Location Section */}
-      <section id="location" className="py-24 bg-white">
+      <section id="location" className="py-24 bg-card">
         <div className="container mx-auto px-4">
-          <p className="text-stone-500 uppercase tracking-[0.2em] text-sm mb-4 text-center">Location</p>
-          <h2 className="text-3xl md:text-5xl font-light text-stone-800 text-center mb-16">
+          <p className="text-muted-foreground uppercase tracking-[0.2em] text-sm mb-4 text-center font-sans">Location</p>
+          <h2 className="text-3xl md:text-5xl font-serif font-light text-foreground text-center mb-16">
             Perfectly Positioned
           </h2>
 
@@ -276,8 +276,8 @@ Guests: ${formData.guests || 'Not selected'}`;
               'Easy highway access',
               'Ideal stopover or base for exploration'
             ].map((item, index) => (
-              <div key={index} className="text-center p-6 bg-stone-50 rounded-2xl">
-                <p className="text-stone-700">{item}</p>
+              <div key={index} className="text-center p-6 bg-background rounded-2xl">
+                <p className="text-foreground font-sans">{item}</p>
               </div>
             ))}
           </div>
@@ -285,37 +285,37 @@ Guests: ${formData.guests || 'Not selected'}`;
       </section>
 
       {/* Find Us Section */}
-      <section className="py-24 bg-stone-100">
+      <section className="py-24 bg-accent">
         <div className="container mx-auto px-4">
-          <p className="text-stone-500 uppercase tracking-[0.2em] text-sm mb-4 text-center">Find Us</p>
-          <h2 className="text-3xl md:text-5xl font-light text-stone-800 text-center mb-8">
+          <p className="text-muted-foreground uppercase tracking-[0.2em] text-sm mb-4 text-center font-sans">Find Us</p>
+          <h2 className="text-3xl md:text-5xl font-serif font-light text-foreground text-center mb-8">
             Our Location
           </h2>
-          <p className="text-stone-600 text-center max-w-2xl mx-auto mb-16">
+          <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-16 font-sans">
             Conveniently located on the Dehradun–Haridwar Highway, Skylight Suites offers easy access to major destinations.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
             <div className="text-center">
-              <h3 className="font-medium text-stone-800 mb-4">Address</h3>
-              <p className="text-stone-600">Skylight Suites</p>
-              <p className="text-stone-600">Culinary Central 72</p>
-              <p className="text-stone-600">Dehradun–Haridwar Highway</p>
-              <p className="text-stone-600">Uttarakhand, India</p>
+              <h3 className="font-sans font-medium text-foreground mb-4">Address</h3>
+              <p className="text-muted-foreground font-sans">Skylight Suites</p>
+              <p className="text-muted-foreground font-sans">Culinary Central 72</p>
+              <p className="text-muted-foreground font-sans">Dehradun–Haridwar Highway</p>
+              <p className="text-muted-foreground font-sans">Uttarakhand, India</p>
             </div>
             <div className="text-center">
-              <h3 className="font-medium text-stone-800 mb-4">From Airport</h3>
-              <p className="text-stone-600">18 minutes from Jolly Grant Airport (Dehradun)</p>
+              <h3 className="font-sans font-medium text-foreground mb-4">From Airport</h3>
+              <p className="text-muted-foreground font-sans">18 minutes from Jolly Grant Airport (Dehradun)</p>
             </div>
             <div className="text-center">
-              <h3 className="font-medium text-stone-800 mb-4">Nearby</h3>
-              <p className="text-stone-600">Rishikesh • Haridwar • Dehradun City</p>
+              <h3 className="font-sans font-medium text-foreground mb-4">Nearby</h3>
+              <p className="text-muted-foreground font-sans">Rishikesh • Haridwar • Dehradun City</p>
             </div>
           </div>
 
           <div className="text-center">
             <SecureExternalLink href="https://maps.app.goo.gl/KmRfYVRifoKECFJ4A">
-              <Button className="bg-stone-800 hover:bg-stone-900 text-white px-8">
+              <Button className="bg-[#8b7355] hover:bg-[#7a6549] text-[#f5efe8] px-8 font-sans">
                 <MapPin className="w-4 h-4 mr-2" />
                 Get Directions
               </Button>
@@ -325,47 +325,47 @@ Guests: ${formData.guests || 'Not selected'}`;
       </section>
 
       {/* Booking Section */}
-      <section id="booking" className="py-24 bg-stone-800">
+      <section id="booking" className="py-24 bg-[#5c4d3c]">
         <div className="container mx-auto px-4">
-          <p className="text-stone-400 uppercase tracking-[0.2em] text-sm mb-4 text-center">Book Direct</p>
-          <h2 className="text-3xl md:text-5xl font-light text-white text-center mb-8">
+          <p className="text-[#c9b896] uppercase tracking-[0.2em] text-sm mb-4 text-center font-sans">Book Direct</p>
+          <h2 className="text-3xl md:text-5xl font-serif font-light text-[#f5efe8] text-center mb-8">
             Reserve Your Stay
           </h2>
-          <p className="text-stone-300 text-center max-w-2xl mx-auto mb-12">
+          <p className="text-[#d4c6a8] text-center max-w-2xl mx-auto mb-12 font-sans">
             Send your booking request directly via WhatsApp for the fastest response and best available rates.
           </p>
 
-          <Card className="max-w-2xl mx-auto bg-stone-50 border-0 shadow-2xl">
+          <Card className="max-w-2xl mx-auto bg-background border-0 shadow-2xl">
             <CardContent className="p-8">
               <div className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-stone-700 mb-2">Full Name</label>
+                  <label className="block text-sm font-sans font-medium text-foreground mb-2">Full Name</label>
                   <Input
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                     placeholder="Your full name"
-                    className="bg-white border-stone-200"
+                    className="bg-card border-border font-sans"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-stone-700 mb-2">Phone Number</label>
+                  <label className="block text-sm font-sans font-medium text-foreground mb-2">Phone Number</label>
                   <Input
                     value={formData.phone}
                     onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
                     placeholder="+91 XXXXX XXXXX"
-                    className="bg-white border-stone-200"
+                    className="bg-card border-border font-sans"
                   />
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-stone-700 mb-2">Check-in Date</label>
+                    <label className="block text-sm font-sans font-medium text-foreground mb-2">Check-in Date</label>
                     <Popover>
                       <PopoverTrigger asChild>
                         <Button
                           variant="outline"
-                          className="w-full justify-start text-left font-normal bg-white border-stone-200"
+                          className="w-full justify-start text-left font-sans font-normal bg-card border-border"
                         >
                           {checkInDate ? format(checkInDate, 'PPP') : 'Select date'}
                           <ChevronDown className="ml-auto h-4 w-4 opacity-50" />
@@ -384,12 +384,12 @@ Guests: ${formData.guests || 'Not selected'}`;
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-stone-700 mb-2">Check-out Date</label>
+                    <label className="block text-sm font-sans font-medium text-foreground mb-2">Check-out Date</label>
                     <Popover>
                       <PopoverTrigger asChild>
                         <Button
                           variant="outline"
-                          className="w-full justify-start text-left font-normal bg-white border-stone-200"
+                          className="w-full justify-start text-left font-sans font-normal bg-card border-border"
                         >
                           {checkOutDate ? format(checkOutDate, 'PPP') : 'Select date'}
                           <ChevronDown className="ml-auto h-4 w-4 opacity-50" />
@@ -410,9 +410,9 @@ Guests: ${formData.guests || 'Not selected'}`;
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-stone-700 mb-2">Room Type</label>
+                    <label className="block text-sm font-sans font-medium text-foreground mb-2">Room Type</label>
                     <Select value={formData.roomType} onValueChange={(value) => setFormData(prev => ({ ...prev, roomType: value }))}>
-                      <SelectTrigger className="bg-white border-stone-200">
+                      <SelectTrigger className="bg-card border-border font-sans">
                         <SelectValue placeholder="Select room type" />
                       </SelectTrigger>
                       <SelectContent>
@@ -424,9 +424,9 @@ Guests: ${formData.guests || 'Not selected'}`;
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-stone-700 mb-2">Number of Guests</label>
+                    <label className="block text-sm font-sans font-medium text-foreground mb-2">Number of Guests</label>
                     <Select value={formData.guests} onValueChange={(value) => setFormData(prev => ({ ...prev, guests: value }))}>
-                      <SelectTrigger className="bg-white border-stone-200">
+                      <SelectTrigger className="bg-card border-border font-sans">
                         <SelectValue placeholder="Select guests" />
                       </SelectTrigger>
                       <SelectContent>
@@ -441,41 +441,41 @@ Guests: ${formData.guests || 'Not selected'}`;
                 </div>
 
                 <Button 
-                  className="w-full bg-green-600 hover:bg-green-700 text-white py-6 text-lg font-medium"
+                  className="w-full bg-[#4a7c59] hover:bg-[#3d6a4a] text-[#f5efe8] py-6 text-lg font-sans font-medium"
                   onClick={handleWhatsAppBooking}
                 >
                   Send Booking Request on WhatsApp
                 </Button>
 
-                <div className="pt-6 border-t border-stone-200">
-                  <p className="text-stone-500 text-sm text-center mb-4">Prefer booking through your favourite platform?</p>
+                <div className="pt-6 border-t border-border">
+                  <p className="text-muted-foreground text-sm text-center mb-4 font-sans">Prefer booking through your favourite platform?</p>
                   <div className="flex flex-wrap justify-center gap-3">
                     <SecureExternalLink href="https://www.airbnb.co.in/rooms/1389016749522622097?check_in=2025-12-27&check_out=2025-12-28&guests=1&adults=1&s=67&unique_share_id=46581a5a-46a0-46bf-b795-a151972ff97f">
-                      <Button variant="outline" size="sm" className="border-stone-300 text-stone-700">
+                      <Button variant="outline" size="sm" className="border-border text-foreground font-sans">
                         <ExternalLink className="w-3 h-3 mr-2" />
                         Airbnb
                       </Button>
                     </SecureExternalLink>
                     <SecureExternalLink href="https://www.makemytrip.com/hotels/skylight_suites-details-rishikesh.html">
-                      <Button variant="outline" size="sm" className="border-stone-300 text-stone-700">
+                      <Button variant="outline" size="sm" className="border-border text-foreground font-sans">
                         <ExternalLink className="w-3 h-3 mr-2" />
                         MakeMyTrip
                       </Button>
                     </SecureExternalLink>
                     <SecureExternalLink href="https://www.booking.com/Share-0BaGCuG">
-                      <Button variant="outline" size="sm" className="border-stone-300 text-stone-700">
+                      <Button variant="outline" size="sm" className="border-border text-foreground font-sans">
                         <ExternalLink className="w-3 h-3 mr-2" />
                         Booking.com
                       </Button>
                     </SecureExternalLink>
                     <SecureExternalLink href="https://www.agoda.com/skylight-suites/hotel/dehradun-in.html?cid=1844104&ds=vMRpdd3cEDhVQ7KH">
-                      <Button variant="outline" size="sm" className="border-stone-300 text-stone-700">
+                      <Button variant="outline" size="sm" className="border-border text-foreground font-sans">
                         <ExternalLink className="w-3 h-3 mr-2" />
                         Agoda
                       </Button>
                     </SecureExternalLink>
                   </div>
-                  <p className="text-stone-400 text-xs text-center mt-4">
+                  <p className="text-muted-foreground text-xs text-center mt-4 font-sans">
                     Skylight Suites is available across leading travel platforms for your convenience.
                   </p>
                 </div>
@@ -486,8 +486,8 @@ Guests: ${formData.guests || 'Not selected'}`;
       </section>
 
       {/* Footer */}
-      <footer className="py-8 bg-stone-900 text-center">
-        <p className="text-stone-400 text-sm">
+      <footer className="py-8 bg-[#3d3429] text-center">
+        <p className="text-[#c9b896] text-sm font-sans">
           © {new Date().getFullYear()} Skylight Suites. All rights reserved.
         </p>
       </footer>
