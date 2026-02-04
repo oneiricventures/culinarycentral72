@@ -5,7 +5,7 @@ import { MapPin, Clock, Users, Star, Zap } from 'lucide-react';
 
 const HeroSection = () => {
   const handleCall = () => {
-    window.location.href = 'tel:+919997731372';
+    window.location.href = 'tel:+919773511297';
   };
 
   return (

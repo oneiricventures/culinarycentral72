@@ -10,7 +10,7 @@ const Header = () => {
   const isHomePage = location.pathname === '/';
 
   const handleCall = () => {
-    window.location.href = 'tel:+919997731372';
+    window.location.href = 'tel:+919773511297';
   };
 
   return (
@@ -25,7 +25,7 @@ const Header = () => {
             </div>
             <div className="flex items-center gap-1">
               <Phone className="w-4 h-4 text-orange-500" />
-              <span>+91 9997731372</span>
+              <span>+91 9773511297</span>
             </div>
           </div>
           <div className="text-orange-600 font-medium">
