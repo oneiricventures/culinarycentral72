@@ -316,7 +316,7 @@ Guests: ${formData.guests || 'Not selected'}`;
           {/* Google Map Embed */}
           <div className="max-w-4xl mx-auto mb-12 rounded-2xl overflow-hidden shadow-lg">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3442.0!2d78.0!3d30.25!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3908d0e89b5f9a7d%3A0x6d57b05d5e6b8b7e!2sSkylight%20Suites!5e0!3m2!1sen!2sin!4v1707048000000!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d55000!2d78.153499!3d30.141378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1707048000000"
               width="100%"
               height="400"
               style={{ border: 0 }}
