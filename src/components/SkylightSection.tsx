@@ -145,7 +145,7 @@ const SkylightSection = () => {
                   <Link to="/skylight">
                     <Button 
                       variant="outline"
-                      className="border-white text-white hover:bg-white/20"
+                      className="border-white text-amber-900 bg-white hover:bg-white/90"
                     >
                       Enquire Now
                       <ArrowRight className="w-4 h-4 ml-2" />
