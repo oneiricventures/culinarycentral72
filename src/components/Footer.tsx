@@ -9,7 +9,7 @@ const Footer = () => {
   };
 
   const handleWhatsApp = () => {
-    window.open('https://wa.me/919773511297', '_blank');
+    window.open('https://wa.me/919773511297?text=hi', '_blank');
   };
 
   const handleLocationClick = () => {
