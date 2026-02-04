@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 
 const BrandsSection = () => {
   const handleCall = () => {
-    window.location.href = 'tel:+919997731372';
+    window.location.href = 'tel:+919773511297';
   };
 
   const handleLeaseSpaceClick = () => {
