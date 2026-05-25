@@ -30,6 +30,10 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, "index.html"),
+        skylight: path.resolve(__dirname, "skylight/index.html"),
+      },
       output: {
         // Ensure consistent chunk naming for better caching
         chunkFileNames: 'assets/[name].[hash].js',
