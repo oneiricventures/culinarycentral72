@@ -1,14 +1,15 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { 
-  MapPin, Plane, Clock, Users, ChevronDown, ExternalLink
+import {
+  MapPin, Plane, Clock, Users, ChevronDown, ExternalLink, Phone, MessageCircle
 } from 'lucide-react';
 import SkylightHeader from '@/components/SkylightHeader';
 import SecureExternalLink from '@/components/SecureExternalLink';
-import { 
+import { trackConversion } from '@/lib/tracking';
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -22,6 +23,11 @@ import {
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
+
+const AIRBNB_URL = 'https://www.airbnb.co.in/rooms/1389016749522622097';
+const MMT_URL = 'MMT_URL';
+const PHONE_NUMBER = '+919920371372';
+const WHATSAPP_NUMBER = '919920371372';
 
 const Skylight = () => {
   const [checkInDate, setCheckInDate] = useState<Date | undefined>();
