@@ -160,22 +160,31 @@ Notes: ${formData.notes || '-'}`;
             An Elevated Boutique Stay Near Dehradun, Rishikesh & Haridwar
           </h1>
           
-          <p className="text-lg md:text-xl text-[#e8ddd0] max-w-2xl mx-auto mb-12 font-sans font-light">
+          <p className="text-lg md:text-xl text-[#e8ddd0] max-w-2xl mx-auto mb-6 font-sans font-light">
             Skylight Suites offers thoughtfully designed rooms, refined comfort, and a prime location just minutes from Dehradun Airport—set within the vibrant Culinary Central 72.
           </p>
 
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-8 text-[#f5efe8] font-sans">
+            <span className="text-lg md:text-xl font-medium">₹2,500–₹4,000 / night</span>
+            <span className="text-[#c9b896]">•</span>
+            <span className="inline-flex items-center gap-1 text-sm md:text-base">
+              <span aria-hidden="true">★</span> 4.9
+              <span className="text-[#d4c6a8]">on Airbnb</span>
+            </span>
+          </div>
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button 
+            <Button
               size="lg"
-              className="bg-[#c9b896] hover:bg-[#d4c6a8] text-[#3d3429] font-sans font-medium px-8 py-6 text-base"
-              onClick={() => document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-[#c9b896] hover:bg-[#d4c6a8] text-[#3d3429] font-sans font-medium px-8 py-6 text-base min-h-[44px]"
+              onClick={openAirbnb}
             >
-              Book Your Stay
+              Book on Airbnb
             </Button>
-            <Button 
+            <Button
               size="lg"
               variant="outline"
-              className="border-[#c9b896]/50 text-[#f5efe8] bg-transparent hover:bg-[#c9b896]/10 px-8 py-6 text-base font-sans"
+              className="border-[#c9b896]/50 text-[#f5efe8] bg-transparent hover:bg-[#c9b896]/10 px-8 py-6 text-base font-sans min-h-[44px]"
               onClick={() => document.getElementById('rooms')?.scrollIntoView({ behavior: 'smooth' })}
             >
               View Rooms & Suites
