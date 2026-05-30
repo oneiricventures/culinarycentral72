@@ -120,18 +120,23 @@ const Skylight = () => {
   const handleWhatsAppBooking = () => {
     const checkIn = checkInDate ? format(checkInDate, 'dd MMM yyyy') : 'Not selected';
     const checkOut = checkOutDate ? format(checkOutDate, 'dd MMM yyyy') : 'Not selected';
-    
-    const message = `Hi, I'd like to book a room at Skylight Suites.
 
-Name: ${formData.name || 'Not provided'}
-Phone: ${formData.phone || 'Not provided'}
+    const message = `Booking Request – Skylight Suites
 Check-in: ${checkIn}
 Check-out: ${checkOut}
+Guests: ${formData.guests || 'Not selected'}
+Name: ${formData.name || 'Not provided'}
+Phone: ${formData.phone || 'Not provided'}
 Room Type: ${formData.roomType || 'Not selected'}
-Guests: ${formData.guests || 'Not selected'}`;
+Notes: ${formData.notes || '-'}`;
 
-    const whatsappUrl = `https://wa.me/919773511297?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    trackConversion('LABEL_BOOKING_REQUEST', () => {
+      window.open(
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
+        '_blank',
+        'noopener'
+      );
+    });
   };
 
   return (
