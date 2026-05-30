@@ -246,9 +246,11 @@ Notes: ${formData.notes || '-'}`;
               <div key={room.id} className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                 <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
                   <div className="relative overflow-hidden rounded-2xl">
-                    <img 
-                      src={room.image} 
+                    <img
+                      src={room.image}
                       alt={room.name}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-80 lg:h-[500px] object-cover"
                     />
                   </div>
