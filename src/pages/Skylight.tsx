@@ -391,12 +391,13 @@ Notes: ${formData.notes || '-'}`;
           </div>
 
           <div className="text-center">
-            <SecureExternalLink href="https://maps.app.goo.gl/KmRfYVRifoKECFJ4A">
-              <Button className="bg-[#8b7355] hover:bg-[#7a6549] text-[#f5efe8] px-8 font-sans">
-                <MapPin className="w-4 h-4 mr-2" />
-                Get Directions
-              </Button>
-            </SecureExternalLink>
+            <Button
+              className="bg-[#8b7355] hover:bg-[#7a6549] text-[#f5efe8] px-8 font-sans min-h-[44px]"
+              onClick={openDirections}
+            >
+              <MapPin className="w-4 h-4 mr-2" />
+              Get Directions
+            </Button>
           </div>
         </div>
       </section>
