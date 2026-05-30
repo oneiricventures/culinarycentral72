@@ -32,12 +32,50 @@ const WHATSAPP_NUMBER = '919920371372';
 const Skylight = () => {
   const [checkInDate, setCheckInDate] = useState<Date | undefined>();
   const [checkOutDate, setCheckOutDate] = useState<Date | undefined>();
+  const [showBookingForm, setShowBookingForm] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     roomType: '',
-    guests: ''
+    guests: '',
+    notes: ''
   });
+
+  // Fire engaged-view conversion after 15s on the page (filters out bounces).
+  useEffect(() => {
+    const t = setTimeout(() => {
+      trackConversion('LABEL_PAGE_ENGAGED');
+    }, 15000);
+    return () => clearTimeout(t);
+  }, []);
+
+  const openAirbnb = () =>
+    trackConversion('LABEL_AIRBNB', () =>
+      window.open(AIRBNB_URL, '_blank', 'noopener')
+    );
+
+  const openMMT = () =>
+    trackConversion('LABEL_MMT', () =>
+      window.open(MMT_URL, '_blank', 'noopener')
+    );
+
+  const openWhatsAppBook = () =>
+    trackConversion('LABEL_WHATSAPP_BOOK', () =>
+      window.open(
+        `https://wa.me/${WHATSAPP_NUMBER}?text=` +
+          encodeURIComponent(
+            'Hi, I would like to book Skylight Suites. Please share availability and rates.'
+          ),
+        '_blank',
+        'noopener'
+      )
+    );
+
+  const openDirections = () =>
+    trackConversion('LABEL_DIRECTIONS', () =>
+      window.open('https://maps.app.goo.gl/iiTUswp5c36aiway7', '_blank', 'noopener')
+    );
+
 
   const rooms = [
     {
