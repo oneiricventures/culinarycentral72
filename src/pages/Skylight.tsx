@@ -614,8 +614,6 @@ Notes: ${formData.notes || '-'}`;
 
       {/* Spacer so sticky bar doesn't overlap footer on mobile */}
       <div className="md:hidden h-20" aria-hidden="true" />
-        </div>
-      </section>
 
       {/* Footer */}
       <footer className="py-8 bg-[#3d3429] text-center">
