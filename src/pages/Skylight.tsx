@@ -305,9 +305,11 @@ Notes: ${formData.notes || '-'}`;
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             {foodBrands.map((brand, index) => (
               <div key={index} className="bg-card rounded-2xl p-8 flex flex-col items-center justify-center shadow-sm">
-                <img 
-                  src={brand.logo} 
+                <img
+                  src={brand.logo}
                   alt={`${brand.name} logo`}
+                  loading="lazy"
+                  decoding="async"
                   className="h-16 object-contain mb-4"
                 />
                 <span className="text-muted-foreground text-sm font-sans font-medium">{brand.name}</span>
