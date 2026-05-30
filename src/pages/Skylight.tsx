@@ -7,7 +7,7 @@ import {
   MapPin, Plane, Clock, Users, ChevronDown, ExternalLink, Phone, MessageCircle
 } from 'lucide-react';
 import SkylightHeader from '@/components/SkylightHeader';
-import SecureExternalLink from '@/components/SecureExternalLink';
+
 import { trackConversion } from '@/lib/tracking';
 import {
   Select,
