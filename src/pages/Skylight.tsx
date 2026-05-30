@@ -414,152 +414,206 @@ Notes: ${formData.notes || '-'}`;
           </p>
 
           <Card className="max-w-2xl mx-auto bg-background border-0 shadow-2xl">
-            <CardContent className="p-8">
-              <div className="space-y-6">
-                <div>
-                  <label className="block text-sm font-sans font-medium text-foreground mb-2">Full Name</label>
-                  <Input
-                    value={formData.name}
-                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                    placeholder="Your full name"
-                    className="bg-card border-border font-sans"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-sans font-medium text-foreground mb-2">Phone Number</label>
-                  <Input
-                    value={formData.phone}
-                    onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                    placeholder="+91 XXXXX XXXXX"
-                    className="bg-card border-border font-sans"
-                  />
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-sans font-medium text-foreground mb-2">Check-in Date</label>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant="outline"
-                          className="w-full justify-start text-left font-sans font-normal bg-card border-border"
-                        >
-                          {checkInDate ? format(checkInDate, 'PPP') : 'Select date'}
-                          <ChevronDown className="ml-auto h-4 w-4 opacity-50" />
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={checkInDate}
-                          onSelect={setCheckInDate}
-                          disabled={(date) => date < new Date()}
-                          initialFocus
-                        />
-                      </PopoverContent>
-                    </Popover>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-sans font-medium text-foreground mb-2">Check-out Date</label>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant="outline"
-                          className="w-full justify-start text-left font-sans font-normal bg-card border-border"
-                        >
-                          {checkOutDate ? format(checkOutDate, 'PPP') : 'Select date'}
-                          <ChevronDown className="ml-auto h-4 w-4 opacity-50" />
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={checkOutDate}
-                          onSelect={setCheckOutDate}
-                          disabled={(date) => date < (checkInDate || new Date())}
-                          initialFocus
-                        />
-                      </PopoverContent>
-                    </Popover>
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-sans font-medium text-foreground mb-2">Room Type</label>
-                    <Select value={formData.roomType} onValueChange={(value) => setFormData(prev => ({ ...prev, roomType: value }))}>
-                      <SelectTrigger className="bg-card border-border font-sans">
-                        <SelectValue placeholder="Select room type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Classic Room">Classic Room</SelectItem>
-                        <SelectItem value="Premium Room">Premium Room</SelectItem>
-                        <SelectItem value="Skylight Grand Suite">Skylight Grand Suite</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-sans font-medium text-foreground mb-2">Number of Guests</label>
-                    <Select value={formData.guests} onValueChange={(value) => setFormData(prev => ({ ...prev, guests: value }))}>
-                      <SelectTrigger className="bg-card border-border font-sans">
-                        <SelectValue placeholder="Select guests" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="1 Guest">1 Guest</SelectItem>
-                        <SelectItem value="2 Guests">2 Guests</SelectItem>
-                        <SelectItem value="3 Guests">3 Guests</SelectItem>
-                        <SelectItem value="4 Guests">4 Guests</SelectItem>
-                        <SelectItem value="5+ Guests">5+ Guests</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-
-                <Button 
-                  className="w-full bg-[#4a7c59] hover:bg-[#3d6a4a] text-[#f5efe8] py-6 text-lg font-sans font-medium"
-                  onClick={handleWhatsAppBooking}
+            <CardContent className="p-6 md:p-8 space-y-6">
+              {/* Primary booking CTAs */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <Button
+                  className="bg-[#c9b896] hover:bg-[#d4c6a8] text-[#3d3429] font-sans font-medium min-h-[44px]"
+                  onClick={openAirbnb}
                 >
-                  Send Booking Request on WhatsApp
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Book on Airbnb
                 </Button>
-
-                <div className="pt-6 border-t border-border">
-                  <p className="text-muted-foreground text-sm text-center mb-4 font-sans">Prefer booking through your favourite platform?</p>
-                  <div className="flex flex-wrap justify-center gap-3">
-                    <SecureExternalLink href="https://www.airbnb.co.in/rooms/1389016749522622097?check_in=2025-12-27&check_out=2025-12-28&guests=1&adults=1&s=67&unique_share_id=46581a5a-46a0-46bf-b795-a151972ff97f">
-                      <Button variant="outline" size="sm" className="border-border text-foreground font-sans">
-                        <ExternalLink className="w-3 h-3 mr-2" />
-                        Airbnb
-                      </Button>
-                    </SecureExternalLink>
-                    <SecureExternalLink href="https://www.makemytrip.com/hotels/skylight_suites-details-rishikesh.html">
-                      <Button variant="outline" size="sm" className="border-border text-foreground font-sans">
-                        <ExternalLink className="w-3 h-3 mr-2" />
-                        MakeMyTrip
-                      </Button>
-                    </SecureExternalLink>
-                    <SecureExternalLink href="https://www.booking.com/Share-0BaGCuG">
-                      <Button variant="outline" size="sm" className="border-border text-foreground font-sans">
-                        <ExternalLink className="w-3 h-3 mr-2" />
-                        Booking.com
-                      </Button>
-                    </SecureExternalLink>
-                    <SecureExternalLink href="https://www.agoda.com/skylight-suites/hotel/dehradun-in.html?cid=1844104&ds=vMRpdd3cEDhVQ7KH">
-                      <Button variant="outline" size="sm" className="border-border text-foreground font-sans">
-                        <ExternalLink className="w-3 h-3 mr-2" />
-                        Agoda
-                      </Button>
-                    </SecureExternalLink>
-                  </div>
-                  <p className="text-muted-foreground text-xs text-center mt-4 font-sans">
-                    Skylight Suites is available across leading travel platforms for your convenience.
-                  </p>
-                </div>
+                <Button
+                  className="bg-[#8b7355] hover:bg-[#7a6549] text-[#f5efe8] font-sans font-medium min-h-[44px]"
+                  onClick={openMMT}
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Book on MakeMyTrip
+                </Button>
+                <Button
+                  className="bg-[#25D366] hover:bg-[#1ebe57] text-white font-sans font-medium min-h-[44px]"
+                  onClick={openWhatsAppBook}
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Book on WhatsApp
+                </Button>
               </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <a href={`tel:${PHONE_NUMBER}`} className="w-full">
+                  <Button
+                    variant="outline"
+                    className="w-full border-[#8b7355] text-[#8b7355] hover:bg-[#8b7355]/10 font-sans min-h-[44px]"
+                  >
+                    <Phone className="w-4 h-4 mr-2" />
+                    Call Now
+                  </Button>
+                </a>
+                <Button
+                  variant="outline"
+                  className="w-full border-border text-foreground font-sans min-h-[44px]"
+                  onClick={() => setShowBookingForm((v) => !v)}
+                  aria-expanded={showBookingForm}
+                >
+                  {showBookingForm ? 'Hide booking form' : 'Send Booking Request'}
+                  <ChevronDown
+                    className={`w-4 h-4 ml-2 transition-transform ${showBookingForm ? 'rotate-180' : ''}`}
+                  />
+                </Button>
+              </div>
+
+              {/* Collapsible structured booking request form */}
+              {showBookingForm && (
+                <form
+                  className="space-y-6 pt-2"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleWhatsAppBooking();
+                  }}
+                >
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-sans font-medium text-foreground mb-2">Check-in Date</label>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            className="w-full justify-start text-left font-sans font-normal bg-card border-border min-h-[44px]"
+                          >
+                            {checkInDate ? format(checkInDate, 'PPP') : 'Select date'}
+                            <ChevronDown className="ml-auto h-4 w-4 opacity-50" />
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={checkInDate}
+                            onSelect={setCheckInDate}
+                            disabled={(date) => date < new Date()}
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-sans font-medium text-foreground mb-2">Check-out Date</label>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            className="w-full justify-start text-left font-sans font-normal bg-card border-border min-h-[44px]"
+                          >
+                            {checkOutDate ? format(checkOutDate, 'PPP') : 'Select date'}
+                            <ChevronDown className="ml-auto h-4 w-4 opacity-50" />
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={checkOutDate}
+                            onSelect={setCheckOutDate}
+                            disabled={(date) => date < (checkInDate || new Date())}
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-sans font-medium text-foreground mb-2">Number of Guests</label>
+                      <Select value={formData.guests} onValueChange={(value) => setFormData(prev => ({ ...prev, guests: value }))}>
+                        <SelectTrigger className="bg-card border-border font-sans min-h-[44px]">
+                          <SelectValue placeholder="Select guests" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="1 Guest">1 Guest</SelectItem>
+                          <SelectItem value="2 Guests">2 Guests</SelectItem>
+                          <SelectItem value="3 Guests">3 Guests</SelectItem>
+                          <SelectItem value="4 Guests">4 Guests</SelectItem>
+                          <SelectItem value="5+ Guests">5+ Guests</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-sans font-medium text-foreground mb-2">Room Type</label>
+                      <Select value={formData.roomType} onValueChange={(value) => setFormData(prev => ({ ...prev, roomType: value }))}>
+                        <SelectTrigger className="bg-card border-border font-sans min-h-[44px]">
+                          <SelectValue placeholder="Select room type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Classic Room">Classic Room</SelectItem>
+                          <SelectItem value="Premium Room">Premium Room</SelectItem>
+                          <SelectItem value="Skylight Grand Suite">Skylight Grand Suite</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-sans font-medium text-foreground mb-2">Full Name</label>
+                    <Input
+                      value={formData.name}
+                      onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                      placeholder="Your full name"
+                      className="bg-card border-border font-sans min-h-[44px]"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-sans font-medium text-foreground mb-2">Notes (optional)</label>
+                    <Input
+                      value={formData.notes}
+                      onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
+                      placeholder="Anything we should know?"
+                      className="bg-card border-border font-sans min-h-[44px]"
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full bg-[#4a7c59] hover:bg-[#3d6a4a] text-[#f5efe8] py-6 text-lg font-sans font-medium min-h-[44px]"
+                  >
+                    Send Booking Request on WhatsApp
+                  </Button>
+                </form>
+              )}
             </CardContent>
           </Card>
+        </div>
+      </section>
+
+      {/* Sticky mobile bottom action bar */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#3d3429] border-t border-[#5c4d3c] grid grid-cols-3 gap-2 p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
+        <a href={`tel:${PHONE_NUMBER}`} className="w-full">
+          <Button className="w-full bg-[#8b7355] hover:bg-[#7a6549] text-[#f5efe8] font-sans min-h-[44px]">
+            <Phone className="w-4 h-4 mr-1" />
+            Call
+          </Button>
+        </a>
+        <Button
+          className="w-full bg-[#25D366] hover:bg-[#1ebe57] text-white font-sans min-h-[44px]"
+          onClick={openWhatsAppBook}
+        >
+          <MessageCircle className="w-4 h-4 mr-1" />
+          WhatsApp
+        </Button>
+        <Button
+          className="w-full bg-[#c9b896] hover:bg-[#d4c6a8] text-[#3d3429] font-sans font-medium min-h-[44px]"
+          onClick={openAirbnb}
+        >
+          Airbnb
+        </Button>
+      </div>
+
+      {/* Spacer so sticky bar doesn't overlap footer on mobile */}
+      <div className="md:hidden h-20" aria-hidden="true" />
         </div>
       </section>
 
