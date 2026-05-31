@@ -165,7 +165,7 @@ Notes: ${formData.notes || '-'}`;
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-8 text-[#f5efe8] font-sans">
-            <span className="text-lg md:text-xl font-medium">₹2,500–₹4,000 / night</span>
+            <span className="text-lg md:text-xl font-medium">₹2199 - ₹3999 / night</span>
             <span className="text-[#c9b896]">•</span>
             <span className="inline-flex items-center gap-1 text-sm md:text-base">
               <span aria-hidden="true">★</span> 4.9
