@@ -193,7 +193,7 @@ Notes: ${formData.notes || '-'}`;
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="hidden md:block absolute bottom-2 left-1/2 transform -translate-x-1/2 animate-bounce">
           <div className="w-8 h-12 rounded-full border-2 border-[#c9b896]/40 flex items-start justify-center p-2">
             <div className="w-1 h-3 bg-[#c9b896]/60 rounded-full" />
           </div>
