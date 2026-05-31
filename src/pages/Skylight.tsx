@@ -25,7 +25,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 
 const AIRBNB_URL = 'https://www.airbnb.co.in/rooms/1389016749522622097';
-const MMT_URL = 'MMT_URL';
+const MMT_URL = 'https://www.makemytrip.com/hotels/skylight_suites-details-rishikesh.html';
 const PHONE_NUMBER = '+919920371372';
 const WHATSAPP_NUMBER = '919920371372';
 
@@ -44,23 +44,23 @@ const Skylight = () => {
   // Fire engaged-view conversion after 15s on the page (filters out bounces).
   useEffect(() => {
     const t = setTimeout(() => {
-      trackConversion('LABEL_PAGE_ENGAGED');
+      trackConversion('srSzCMDW_rUcEM3cnt8_');
     }, 15000);
     return () => clearTimeout(t);
   }, []);
 
   const openAirbnb = () =>
-    trackConversion('LABEL_AIRBNB', () =>
+    trackConversion('sOoGCOfL_rUcEM3cnt8_', () =>
       window.open(AIRBNB_URL, '_blank', 'noopener')
     );
 
   const openMMT = () =>
-    trackConversion('LABEL_MMT', () =>
+    trackConversion('H_67CIqA_7UcEM3cnt8_', () =>
       window.open(MMT_URL, '_blank', 'noopener')
     );
 
   const openWhatsAppBook = () =>
-    trackConversion('LABEL_WHATSAPP_BOOK', () =>
+    trackConversion('JQ3RCP6d6LUcEM3cnt8_', () =>
       window.open(
         `https://wa.me/${WHATSAPP_NUMBER}?text=` +
           encodeURIComponent(
@@ -72,7 +72,7 @@ const Skylight = () => {
     );
 
   const openDirections = () =>
-    trackConversion('LABEL_DIRECTIONS', () =>
+    trackConversion('6pIFCJyP_7UcEM3cnt8_', () =>
       window.open('https://maps.app.goo.gl/iiTUswp5c36aiway7', '_blank', 'noopener')
     );
 
@@ -130,7 +130,7 @@ Phone: ${formData.phone || 'Not provided'}
 Room Type: ${formData.roomType || 'Not selected'}
 Notes: ${formData.notes || '-'}`;
 
-    trackConversion('LABEL_BOOKING_REQUEST', () => {
+    trackConversion('2IXOCKXa_rUcEM3cnt8_', () => {
       window.open(
         `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
         '_blank',
@@ -165,10 +165,10 @@ Notes: ${formData.notes || '-'}`;
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-8 text-[#f5efe8] font-sans">
-            <span className="text-lg md:text-xl font-medium">₹2,500–₹4,000 / night</span>
+            <span className="text-lg md:text-xl font-medium">₹2199 - ₹3999 / night</span>
             <span className="text-[#c9b896]">•</span>
             <span className="inline-flex items-center gap-1 text-sm md:text-base">
-              <span aria-hidden="true">★</span> 4.9
+              <span aria-hidden="true">★</span> 4.9 star
               <span className="text-[#d4c6a8]">on Airbnb</span>
             </span>
           </div>
@@ -193,7 +193,7 @@ Notes: ${formData.notes || '-'}`;
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="hidden md:block absolute bottom-2 left-1/2 transform -translate-x-1/2 animate-bounce">
           <div className="w-8 h-12 rounded-full border-2 border-[#c9b896]/40 flex items-start justify-center p-2">
             <div className="w-1 h-3 bg-[#c9b896]/60 rounded-full" />
           </div>
@@ -578,9 +578,10 @@ Notes: ${formData.notes || '-'}`;
 
                   <Button
                     type="submit"
-                    className="w-full bg-[#4a7c59] hover:bg-[#3d6a4a] text-[#f5efe8] py-6 text-lg font-sans font-medium min-h-[44px]"
+                    className="w-full whitespace-nowrap bg-[#4a7c59] hover:bg-[#3d6a4a] text-[#f5efe8] py-6 text-lg font-sans font-medium min-h-[44px]"
                   >
-                    Send Booking Request on WhatsApp
+                    <span className="md:hidden">Send Booking Request</span>
+                    <span className="hidden md:inline">Send Booking Request on WhatsApp</span>
                   </Button>
                 </form>
               )}
