@@ -25,7 +25,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 
 const AIRBNB_URL = 'https://www.airbnb.co.in/rooms/1389016749522622097';
-const MMT_URL = 'MMT_URL';
+const MMT_URL = 'https://www.makemytrip.com/hotels/skylight_suites-details-rishikesh.html';
 const PHONE_NUMBER = '+919920371372';
 const WHATSAPP_NUMBER = '919920371372';
 
@@ -44,23 +44,23 @@ const Skylight = () => {
   // Fire engaged-view conversion after 15s on the page (filters out bounces).
   useEffect(() => {
     const t = setTimeout(() => {
-      trackConversion('LABEL_PAGE_ENGAGED');
+      trackConversion('srSzCMDW_rUcEM3cnt8_');
     }, 15000);
     return () => clearTimeout(t);
   }, []);
 
   const openAirbnb = () =>
-    trackConversion('LABEL_AIRBNB', () =>
+    trackConversion('sOoGCOfL_rUcEM3cnt8_', () =>
       window.open(AIRBNB_URL, '_blank', 'noopener')
     );
 
   const openMMT = () =>
-    trackConversion('LABEL_MMT', () =>
+    trackConversion('H_67CIqA_7UcEM3cnt8_', () =>
       window.open(MMT_URL, '_blank', 'noopener')
     );
 
   const openWhatsAppBook = () =>
-    trackConversion('LABEL_WHATSAPP_BOOK', () =>
+    trackConversion('JQ3RCP6d6LUcEM3cnt8_', () =>
       window.open(
         `https://wa.me/${WHATSAPP_NUMBER}?text=` +
           encodeURIComponent(
@@ -72,7 +72,7 @@ const Skylight = () => {
     );
 
   const openDirections = () =>
-    trackConversion('LABEL_DIRECTIONS', () =>
+    trackConversion('6pIFCJyP_7UcEM3cnt8_', () =>
       window.open('https://maps.app.goo.gl/iiTUswp5c36aiway7', '_blank', 'noopener')
     );
 
@@ -130,7 +130,7 @@ Phone: ${formData.phone || 'Not provided'}
 Room Type: ${formData.roomType || 'Not selected'}
 Notes: ${formData.notes || '-'}`;
 
-    trackConversion('LABEL_BOOKING_REQUEST', () => {
+    trackConversion('2IXOCKXa_rUcEM3cnt8_', () => {
       window.open(
         `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
         '_blank',
