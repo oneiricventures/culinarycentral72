@@ -43,7 +43,9 @@ const Skylight = () => {
 
   // Fire engaged-view conversion after 15s on the page (filters out bounces).
   useEffect(() => {
+    console.log('[PageEngaged] effect mounted at', Date.now());
     const t = setTimeout(() => {
+      console.log('[PageEngaged] timer fired at', Date.now());
       trackConversion('srSzCMDW_rUcEM3cnt8_');
     }, 15000);
     return () => clearTimeout(t);
