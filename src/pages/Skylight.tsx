@@ -168,7 +168,7 @@ Notes: ${formData.notes || '-'}`;
             <span className="text-lg md:text-xl font-medium">₹2199 - ₹3999 / night</span>
             <span className="text-[#c9b896]">•</span>
             <span className="inline-flex items-center gap-1 text-sm md:text-base">
-              <span aria-hidden="true">★</span> 4.9
+              <span aria-hidden="true">★</span> 4.9 star
               <span className="text-[#d4c6a8]">on Airbnb</span>
             </span>
           </div>
