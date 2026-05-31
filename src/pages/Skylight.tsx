@@ -578,9 +578,10 @@ Notes: ${formData.notes || '-'}`;
 
                   <Button
                     type="submit"
-                    className="w-full bg-[#4a7c59] hover:bg-[#3d6a4a] text-[#f5efe8] py-6 text-lg font-sans font-medium min-h-[44px]"
+                    className="w-full whitespace-nowrap bg-[#4a7c59] hover:bg-[#3d6a4a] text-[#f5efe8] py-6 text-lg font-sans font-medium min-h-[44px]"
                   >
-                    Send Booking Request on WhatsApp
+                    <span className="md:hidden">Send Booking Request</span>
+                    <span className="hidden md:inline">Send Booking Request on WhatsApp</span>
                   </Button>
                 </form>
               )}
