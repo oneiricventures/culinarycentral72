@@ -43,12 +43,24 @@ const Skylight = () => {
 
   // Fire engaged-view conversion after 15s on the page (filters out bounces).
   useEffect(() => {
+    // Skip if conversion has already fired in this page session
+    if ((window as any).__skylightPageEngagedFired) return;
+
+    // Mark a scheduled flag so we don't schedule multiple timers across remounts
+    if ((window as any).__skylightPageEngagedScheduled) return;
+    (window as any).__skylightPageEngagedScheduled = true;
+
     console.log('[PageEngaged] effect mounted at', Date.now());
-    const t = setTimeout(() => {
+
+    setTimeout(() => {
+      if ((window as any).__skylightPageEngagedFired) return;
+      (window as any).__skylightPageEngagedFired = true;
       console.log('[PageEngaged] timer fired at', Date.now());
       trackConversion('srSzCMDW_rUcEM3cnt8_');
     }, 15000);
-    return () => clearTimeout(t);
+
+    // NO CLEANUP — let the timer survive component unmount/remount cycles
+    // The window-level flags prevent duplicate scheduling and duplicate firing
   }, []);
 
   const openAirbnb = () =>
