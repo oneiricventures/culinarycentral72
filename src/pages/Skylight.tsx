@@ -643,6 +643,32 @@ Notes: ${formData.notes || '-'}`;
         </div>
       </section>
 
+      {/* FAQ Section (SEO – matches FAQPage JSON-LD) */}
+      <section id="faq" className="py-24 bg-background">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <p className="text-muted-foreground uppercase tracking-[0.2em] text-sm mb-4 text-center font-sans">FAQ</p>
+          <h2 className="text-3xl md:text-5xl font-serif font-light text-foreground text-center mb-12">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full">
+            {[
+              { q: 'How far is Skylight Suites from Jolly Grant Airport?', a: 'Skylight Suites is approximately 18 minutes by car from Jolly Grant Airport (Dehradun). The property is located on Haridwar-Dehradun Highway in Resham Majri Grant, making it one of the closest serviced apartments to the airport.' },
+              { q: 'Is Skylight Suites suitable as a base for Char Dham Yatra?', a: 'Yes. Skylight Suites is ideally positioned as a starting point for Char Dham Yatra — close to Rishikesh, Haridwar, and the gateway road to Yamunotri, Gangotri, Kedarnath, and Badrinath. Many yatra travellers use it as a comfortable base for their first or last night.' },
+              { q: 'What are the rates at Skylight Suites?', a: 'Rooms range from ₹2,199 to ₹3,999 per night depending on the room type and season. Book directly on Airbnb or via WhatsApp for the latest rates and availability.' },
+              { q: 'How far is Skylight Suites from Rishikesh and Haridwar?', a: 'Rishikesh is approximately 25 km (about 35 minutes by car) and Haridwar is approximately 35 km (about 45 minutes by car) from Skylight Suites. This makes it a convenient mid-point for visiting both pilgrimage cities in a single trip.' },
+              { q: 'Does Skylight Suites have a restaurant?', a: 'Skylight Suites sits directly above Culinary Central 72, a multi-cuisine food plaza. Guests get exclusive discounts on dining at restaurants downstairs.' },
+              { q: 'Is Skylight Suites pet-friendly?', a: 'Yes, Skylight Suites welcomes well-behaved pets. Please mention your pet when booking so we can prepare the room accordingly.' },
+              { q: 'Can I book Skylight Suites for a workation or long stay?', a: 'Yes. The 1BHK includes a fully equipped kitchen, fast Wi-Fi, RO water, AC, and a 1,000 sq ft mountain-view terrace — perfect for workations and extended stays. Contact us on WhatsApp for monthly rates.' },
+            ].map((item, idx) => (
+              <AccordionItem key={idx} value={`item-${idx}`}>
+                <AccordionTrigger className="text-left font-serif text-lg text-foreground">{item.q}</AccordionTrigger>
+                <AccordionContent className="text-muted-foreground font-sans leading-relaxed">{item.a}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
       {/* Sticky mobile bottom action bar */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#3d3429] border-t border-[#5c4d3c] grid grid-cols-3 gap-2 p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
         <a href={`tel:${PHONE_NUMBER}`} className="w-full">
