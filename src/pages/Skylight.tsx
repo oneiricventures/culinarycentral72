@@ -263,7 +263,7 @@ Notes: ${formData.notes || '-'}`;
                   <div className="relative overflow-hidden rounded-2xl">
                     <img
                       src={room.image}
-                      alt={room.name}
+                      alt={`${room.name} at Skylight Suites — ${room.tagline}`}
                       loading="lazy"
                       decoding="async"
                       className="w-full h-80 lg:h-[500px] object-cover"
