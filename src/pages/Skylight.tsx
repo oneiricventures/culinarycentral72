@@ -7,6 +7,7 @@ import {
   MapPin, Plane, Clock, Users, ChevronDown, ExternalLink, Phone, MessageCircle
 } from 'lucide-react';
 import SkylightHeader from '@/components/SkylightHeader';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 
 import { trackConversion } from '@/lib/tracking';
 import {
@@ -171,7 +172,7 @@ Notes: ${formData.notes || '-'}`;
           </p>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-light text-[#f5efe8] leading-tight mb-8 max-w-4xl mx-auto">
-            An Elevated Boutique Stay Near Dehradun, Rishikesh & Haridwar
+            Skylight Suites — Boutique 1BHK Serviced Apartments Near Jolly Grant Airport, Dehradun
           </h1>
           
           <p className="text-lg md:text-xl text-[#e8ddd0] max-w-2xl mx-auto mb-6 font-sans font-light">
@@ -262,7 +263,7 @@ Notes: ${formData.notes || '-'}`;
                   <div className="relative overflow-hidden rounded-2xl">
                     <img
                       src={room.image}
-                      alt={room.name}
+                      alt={`${room.name} at Skylight Suites — ${room.tagline}`}
                       loading="lazy"
                       decoding="async"
                       className="w-full h-80 lg:h-[500px] object-cover"
@@ -413,6 +414,44 @@ Notes: ${formData.notes || '-'}`;
               Get Directions
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Location & Nearby Destinations Section (SEO) */}
+      <section id="nearby" className="py-24 bg-background">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <p className="text-muted-foreground uppercase tracking-[0.2em] text-sm mb-4 text-center font-sans">Location & Distances</p>
+          <h2 className="text-3xl md:text-5xl font-serif font-light text-foreground text-center mb-8">
+            Location &amp; Nearby Destinations
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-10 font-sans">
+            Skylight Suites sits on the Haridwar–Dehradun Highway in Resham Majri Grant, a quiet residential area on the outskirts of Dehradun, Uttarakhand. The property is strategically positioned to give guests fast access to the airport, key pilgrimage destinations, and the Char Dham circuit gateway.
+          </p>
+
+          <h3 className="text-2xl font-serif font-light text-foreground mb-4">Distances from Skylight Suites</h3>
+          <ul className="space-y-2 text-muted-foreground font-sans mb-10 list-disc pl-6">
+            <li>Jolly Grant Airport (DED) — 12 km (≈18 min drive)</li>
+            <li>Rishikesh — 25 km (≈35 min drive)</li>
+            <li>Haridwar — 35 km (≈45 min drive)</li>
+            <li>Dehradun city centre — 22 km (≈30 min drive)</li>
+            <li>Mussoorie — 55 km (≈90 min drive)</li>
+            <li>Rajaji National Park — 20 km (≈30 min drive)</li>
+          </ul>
+
+          <h3 className="text-2xl font-serif font-light text-foreground mb-4">Char Dham Yatra Starting Point</h3>
+          <p className="text-muted-foreground leading-relaxed mb-10 font-sans">
+            For pilgrims undertaking the Char Dham Yatra to Yamunotri, Gangotri, Kedarnath, and Badrinath, Skylight Suites is an ideal first-night or last-night base. The road to Rishikesh — the traditional starting point of the yatra — connects directly from the highway outside the property.
+          </p>
+
+          <h3 className="text-2xl font-serif font-light text-foreground mb-4">Great For</h3>
+          <ul className="space-y-2 text-muted-foreground font-sans list-disc pl-6">
+            <li>Char Dham Yatra travellers needing a comfortable base near the airport</li>
+            <li>Rishikesh visitors who prefer quieter accommodation outside the city</li>
+            <li>Haridwar pilgrims wanting modern amenities</li>
+            <li>Workation travellers seeking mountain views and reliable Wi-Fi</li>
+            <li>Delhi weekenders driving up for short breaks</li>
+            <li>Families travelling with pets</li>
+          </ul>
         </div>
       </section>
 
@@ -601,6 +640,32 @@ Notes: ${formData.notes || '-'}`;
               )}
             </CardContent>
           </Card>
+        </div>
+      </section>
+
+      {/* FAQ Section (SEO – matches FAQPage JSON-LD) */}
+      <section id="faq" className="py-24 bg-background">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <p className="text-muted-foreground uppercase tracking-[0.2em] text-sm mb-4 text-center font-sans">FAQ</p>
+          <h2 className="text-3xl md:text-5xl font-serif font-light text-foreground text-center mb-12">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full">
+            {[
+              { q: 'How far is Skylight Suites from Jolly Grant Airport?', a: 'Skylight Suites is approximately 18 minutes by car from Jolly Grant Airport (Dehradun). The property is located on Haridwar-Dehradun Highway in Resham Majri Grant, making it one of the closest serviced apartments to the airport.' },
+              { q: 'Is Skylight Suites suitable as a base for Char Dham Yatra?', a: 'Yes. Skylight Suites is ideally positioned as a starting point for Char Dham Yatra — close to Rishikesh, Haridwar, and the gateway road to Yamunotri, Gangotri, Kedarnath, and Badrinath. Many yatra travellers use it as a comfortable base for their first or last night.' },
+              { q: 'What are the rates at Skylight Suites?', a: 'Rooms range from ₹2,199 to ₹3,999 per night depending on the room type and season. Book directly on Airbnb or via WhatsApp for the latest rates and availability.' },
+              { q: 'How far is Skylight Suites from Rishikesh and Haridwar?', a: 'Rishikesh is approximately 25 km (about 35 minutes by car) and Haridwar is approximately 35 km (about 45 minutes by car) from Skylight Suites. This makes it a convenient mid-point for visiting both pilgrimage cities in a single trip.' },
+              { q: 'Does Skylight Suites have a restaurant?', a: 'Skylight Suites sits directly above Culinary Central 72, a multi-cuisine food plaza. Guests get exclusive discounts on dining at restaurants downstairs.' },
+              { q: 'Is Skylight Suites pet-friendly?', a: 'Yes, Skylight Suites welcomes well-behaved pets. Please mention your pet when booking so we can prepare the room accordingly.' },
+              { q: 'Can I book Skylight Suites for a workation or long stay?', a: 'Yes. The 1BHK includes a fully equipped kitchen, fast Wi-Fi, RO water, AC, and a 1,000 sq ft mountain-view terrace — perfect for workations and extended stays. Contact us on WhatsApp for monthly rates.' },
+            ].map((item, idx) => (
+              <AccordionItem key={idx} value={`item-${idx}`}>
+                <AccordionTrigger className="text-left font-serif text-lg text-foreground">{item.q}</AccordionTrigger>
+                <AccordionContent className="text-muted-foreground font-sans leading-relaxed">{item.a}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
 
