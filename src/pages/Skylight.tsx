@@ -171,7 +171,7 @@ Notes: ${formData.notes || '-'}`;
           </p>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-light text-[#f5efe8] leading-tight mb-8 max-w-4xl mx-auto">
-            An Elevated Boutique Stay Near Dehradun, Rishikesh & Haridwar
+            Skylight Suites — Boutique 1BHK Serviced Apartments Near Jolly Grant Airport, Dehradun
           </h1>
           
           <p className="text-lg md:text-xl text-[#e8ddd0] max-w-2xl mx-auto mb-6 font-sans font-light">
