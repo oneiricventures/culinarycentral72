@@ -7,6 +7,7 @@ import {
   MapPin, Plane, Clock, Users, ChevronDown, ExternalLink, Phone, MessageCircle
 } from 'lucide-react';
 import SkylightHeader from '@/components/SkylightHeader';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 
 import { trackConversion } from '@/lib/tracking';
 import {
@@ -413,6 +414,44 @@ Notes: ${formData.notes || '-'}`;
               Get Directions
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Location & Nearby Destinations Section (SEO) */}
+      <section id="nearby" className="py-24 bg-background">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <p className="text-muted-foreground uppercase tracking-[0.2em] text-sm mb-4 text-center font-sans">Location & Distances</p>
+          <h2 className="text-3xl md:text-5xl font-serif font-light text-foreground text-center mb-8">
+            Location &amp; Nearby Destinations
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-10 font-sans">
+            Skylight Suites sits on the Haridwar–Dehradun Highway in Resham Majri Grant, a quiet residential area on the outskirts of Dehradun, Uttarakhand. The property is strategically positioned to give guests fast access to the airport, key pilgrimage destinations, and the Char Dham circuit gateway.
+          </p>
+
+          <h3 className="text-2xl font-serif font-light text-foreground mb-4">Distances from Skylight Suites</h3>
+          <ul className="space-y-2 text-muted-foreground font-sans mb-10 list-disc pl-6">
+            <li>Jolly Grant Airport (DED) — 12 km (≈18 min drive)</li>
+            <li>Rishikesh — 25 km (≈35 min drive)</li>
+            <li>Haridwar — 35 km (≈45 min drive)</li>
+            <li>Dehradun city centre — 22 km (≈30 min drive)</li>
+            <li>Mussoorie — 55 km (≈90 min drive)</li>
+            <li>Rajaji National Park — 20 km (≈30 min drive)</li>
+          </ul>
+
+          <h3 className="text-2xl font-serif font-light text-foreground mb-4">Char Dham Yatra Starting Point</h3>
+          <p className="text-muted-foreground leading-relaxed mb-10 font-sans">
+            For pilgrims undertaking the Char Dham Yatra to Yamunotri, Gangotri, Kedarnath, and Badrinath, Skylight Suites is an ideal first-night or last-night base. The road to Rishikesh — the traditional starting point of the yatra — connects directly from the highway outside the property.
+          </p>
+
+          <h3 className="text-2xl font-serif font-light text-foreground mb-4">Great For</h3>
+          <ul className="space-y-2 text-muted-foreground font-sans list-disc pl-6">
+            <li>Char Dham Yatra travellers needing a comfortable base near the airport</li>
+            <li>Rishikesh visitors who prefer quieter accommodation outside the city</li>
+            <li>Haridwar pilgrims wanting modern amenities</li>
+            <li>Workation travellers seeking mountain views and reliable Wi-Fi</li>
+            <li>Delhi weekenders driving up for short breaks</li>
+            <li>Families travelling with pets</li>
+          </ul>
         </div>
       </section>
 
