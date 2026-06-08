@@ -126,10 +126,10 @@ const Skylight = () => {
   ];
 
   const foodBrands = [
-    { name: 'Burger Singh', logo: '/lovable-uploads/burger-singh.png' },
-    { name: 'Chicago Pizza', logo: '/lovable-uploads/chicago-pizza.png' },
-    { name: 'Baskin Robbins', logo: '/lovable-uploads/baskin-robbins.svg' },
-    { name: 'The Nukkad Tapri', logo: '/lovable-uploads/nukkad-tapri.png' }
+    { name: 'Burger Singh', logo: '/lovable-uploads/burger-singh.png', sizeClass: 'h-28' },
+    { name: 'Chicago Pizza', logo: '/lovable-uploads/chicago-pizza.png', sizeClass: 'h-16' },
+    { name: 'Baskin Robbins', logo: '/lovable-uploads/baskin-robbins.svg', sizeClass: 'h-16' },
+    { name: 'The Nukkad Tapri', logo: '/lovable-uploads/nukkad-tapri.png', sizeClass: 'h-28' }
   ];
 
   const handleWhatsAppBooking = () => {
