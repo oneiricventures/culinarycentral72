@@ -325,7 +325,7 @@ Notes: ${formData.notes || '-'}`;
                   alt={`${brand.name} logo`}
                   loading="lazy"
                   decoding="async"
-                  className="h-16 object-contain mb-4"
+                  className={`${brand.sizeClass} object-contain mb-4`}
                 />
                 <span className="text-muted-foreground text-sm font-sans font-medium">{brand.name}</span>
               </div>
