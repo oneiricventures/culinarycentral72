@@ -172,11 +172,11 @@ Notes: ${formData.notes || '-'}`;
           </p>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-light text-[#f5efe8] leading-tight mb-8 max-w-4xl mx-auto">
-            Skylight Suites — Boutique 1BHK Serviced Apartments Near Jolly Grant Airport, Dehradun
+            Skylight Suites — 4-Star Boutique Suite Apartments Near Dehradun Airport (Jolly Grant)
           </h1>
           
           <p className="text-lg md:text-xl text-[#e8ddd0] max-w-2xl mx-auto mb-6 font-sans font-light">
-            Skylight Suites offers thoughtfully designed rooms, refined comfort, and a prime location just minutes from Dehradun Airport—set within the vibrant Culinary Central 72.
+            Skylight Suites is a 4-star boutique property offering modern 1BHK suite apartments and hotel rooms near Dehradun Airport (Jolly Grant). Set above Culinary Central 72 — a multi-cuisine food court on the ground floor — our suites feature mountain-view terraces, fully equipped kitchens, and refined comfort just 18 minutes from the airport. An ideal base for Char Dham yatra, Rishikesh, Haridwar, and weekend Dehradun trips.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-8 text-[#f5efe8] font-sans">
