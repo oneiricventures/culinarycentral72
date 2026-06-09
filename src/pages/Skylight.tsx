@@ -252,9 +252,12 @@ Notes: ${formData.notes || '-'}`;
       <section id="rooms" className="py-24 bg-card">
         <div className="container mx-auto px-4">
           <p className="text-muted-foreground uppercase tracking-[0.2em] text-sm mb-4 text-center font-sans">Rooms & Suites</p>
-          <h2 className="text-3xl md:text-5xl font-serif font-light text-foreground text-center mb-16">
-            A Collection of Refined Spaces
+          <h2 className="text-3xl md:text-5xl font-serif font-light text-foreground text-center mb-6">
+            Suite Apartments & Hotel Rooms
           </h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-center mb-16 font-sans">
+            Three room categories — all 4-star, all with private balcony or terrace access, all with the modern amenities expected of a boutique hotel near Dehradun Airport.
+          </p>
 
           <div className="space-y-20">
             {rooms.map((room, index) => (
@@ -311,10 +314,10 @@ Notes: ${formData.notes || '-'}`;
         <div className="container mx-auto px-4">
           <p className="text-muted-foreground uppercase tracking-[0.2em] text-sm mb-4 text-center font-sans">Culinary Central 72</p>
           <h2 className="text-3xl md:text-5xl font-serif font-light text-foreground text-center mb-8">
-            Stay Above a Curated Culinary Destination
+            On-Site Dining — Ground Floor Food Court
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-center mb-16 font-sans">
-            Skylight Suites is located within Culinary Central 72, home to some of India's most loved food brands—making dining effortless and family-friendly.
+            Skylight Suites sits directly above Culinary Central 72, a multi-cuisine food court on the ground floor of the property. Guests get exclusive discounts on dining at any of the restaurants downstairs — no need to step outside for meals.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
@@ -335,7 +338,7 @@ Notes: ${formData.notes || '-'}`;
           </div>
 
           <p className="text-muted-foreground text-center italic font-serif">
-            Perfect for relaxed family meals, quick bites, or late-evening desserts—just steps away.
+            Perfect for relaxed family meals, quick bites, or late-evening desserts—all available at the food court just downstairs.
           </p>
         </div>
       </section>
@@ -661,6 +664,9 @@ Notes: ${formData.notes || '-'}`;
               { q: 'Does Skylight Suites have a restaurant?', a: 'Skylight Suites sits directly above Culinary Central 72, a multi-cuisine food plaza featuring Burger Singh, Chicago Pizza, Baskin Robbins, Waffle Station and The Nukkad Tapri. Guests get exclusive discounts on dining at the restaurants downstairs.' },
               { q: 'Is Skylight Suites pet-friendly?', a: 'Yes, Skylight Suites welcomes well-behaved pets. Please mention your pet when booking so we can prepare the room accordingly.' },
               { q: 'Can I book Skylight Suites for a workation or long stay?', a: 'Yes. The 1BHK includes a fully equipped kitchen, fast Wi-Fi, RO water, AC, and a 1,000 sq ft mountain-view terrace — perfect for workations and extended stays. Contact us on WhatsApp for monthly rates.' },
+              { q: 'Is Skylight Suites a 4-star hotel?', a: 'Yes. Skylight Suites is a 4-star boutique property offering suite apartments and hotel rooms with modern amenities — fully equipped kitchens, fast Wi-Fi, AC, RO water, private terraces or balconies, and a multi-cuisine food court on the ground floor.' },
+              { q: 'How far is Skylight Suites from Dehradun Airport?', a: 'Skylight Suites is approximately 18 minutes by car from Dehradun Airport (also known as Jolly Grant Airport, IATA code DED). The property is located on the Haridwar-Dehradun Highway in Resham Majri Grant, making it one of the most convenient suite apartment options for travellers flying into or out of Dehradun.' },
+              { q: 'Is there a food court or restaurant at Skylight Suites?', a: 'Yes. Skylight Suites is located directly above Culinary Central 72, a multi-cuisine food court on the ground floor of the property. Guests get exclusive discounts on dining at the food court, which features brands including Burger Singh, Chicago Pizza, Baskin Robbins, and The Nukkad Tapri — open across breakfast, lunch, and dinner.' },
             ].map((item, idx) => (
               <AccordionItem key={idx} value={`item-${idx}`}>
                 <AccordionTrigger className="text-left font-serif text-lg text-foreground">{item.q}</AccordionTrigger>
