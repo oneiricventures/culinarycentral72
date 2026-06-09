@@ -319,15 +319,17 @@ Notes: ${formData.notes || '-'}`;
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             {foodBrands.map((brand, index) => (
-              <div key={index} className="bg-card rounded-2xl p-8 flex flex-col items-center justify-center shadow-sm">
-                <img
-                  src={brand.logo}
-                  alt={`${brand.name} logo`}
-                  loading="lazy"
-                  decoding="async"
-                  className={`${brand.sizeClass} object-contain mb-4`}
-                />
-                <span className="text-muted-foreground text-sm font-sans font-medium">{brand.name}</span>
+              <div key={index} className="bg-card rounded-2xl p-8 flex flex-col items-center shadow-sm">
+                <div className="h-32 w-full flex items-center justify-center mb-4">
+                  <img
+                    src={brand.logo}
+                    alt={`${brand.name} logo`}
+                    loading="lazy"
+                    decoding="async"
+                    className={`${brand.sizeClass} max-w-full object-contain`}
+                  />
+                </div>
+                <span className="text-muted-foreground text-sm font-sans font-medium text-center">{brand.name}</span>
               </div>
             ))}
           </div>
