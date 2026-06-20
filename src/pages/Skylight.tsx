@@ -8,6 +8,15 @@ import {
 } from 'lucide-react';
 import SkylightHeader from '@/components/SkylightHeader';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@/components/ui/carousel';
+import classicWashdoor from '@/assets/Classic_from_washdoor.jpg.asset.json';
+import classicCbed from '@/assets/Classic_Cbed.jpg.asset.json';
+import classicCorner from '@/assets/Classic_from_corner.jpg.asset.json';
+import classicBalcony from '@/assets/Classic_Balcony1.jpg.asset.json';
+import classicTV from '@/assets/Classic_TV2.jpg.asset.json';
+import classicWash1 from '@/assets/Classic_Washroom1.jpg.asset.json';
+import classicWash2 from '@/assets/Classic_Washroom2.jpg.asset.json';
+import classicWash5 from '@/assets/Classic_Washroom5.jpg.asset.json';
 
 import { trackConversion } from '@/lib/tracking';
 import {
