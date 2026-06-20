@@ -8,6 +8,15 @@ import {
 } from 'lucide-react';
 import SkylightHeader from '@/components/SkylightHeader';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@/components/ui/carousel';
+import classicWashdoor from '@/assets/Classic_from_washdoor.jpg.asset.json';
+import classicCbed from '@/assets/Classic_Cbed.jpg.asset.json';
+import classicCorner from '@/assets/Classic_from_corner.jpg.asset.json';
+import classicBalcony from '@/assets/Classic_Balcony1.jpg.asset.json';
+import classicTV from '@/assets/Classic_TV2.jpg.asset.json';
+import classicWash1 from '@/assets/Classic_Washroom1.jpg.asset.json';
+import classicWash2 from '@/assets/Classic_Washroom2.jpg.asset.json';
+import classicWash5 from '@/assets/Classic_Washroom5.jpg.asset.json';
 
 import { trackConversion } from '@/lib/tracking';
 import {
@@ -101,7 +110,17 @@ const Skylight = () => {
       originalPrice: '₹2,499',
       description: 'A well-appointed room offering modern comforts and a calming atmosphere—ideal for short stays and effortless stopovers.',
       features: ['Double bed', 'Private bathroom', 'Modern interiors', 'Ideal for 2 guests'],
-      image: '/lovable-uploads/classic-bed1.jpg'
+      image: classicWashdoor.url,
+      images: [
+        { url: classicWashdoor.url, alt: 'Classic Room view from washroom door' },
+        { url: classicCbed.url, alt: 'Classic Room king bed with upholstered headboard' },
+        { url: classicCorner.url, alt: 'Classic Room corner view with wardrobe and TV' },
+        { url: classicBalcony.url, alt: 'Classic Room private balcony' },
+        { url: classicTV.url, alt: 'Classic Room TV and work desk' },
+        { url: classicWash1.url, alt: 'Classic Room ensuite washroom entry' },
+        { url: classicWash2.url, alt: 'Classic Room marble washroom with rain shower' },
+        { url: classicWash5.url, alt: 'Classic Room washroom vanity' },
+      ]
     },
     {
       id: 'premium',
@@ -264,13 +283,33 @@ Notes: ${formData.notes || '-'}`;
               <div key={room.id} className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                 <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
                   <div className="relative overflow-hidden rounded-2xl">
-                    <img
-                      src={room.image}
-                      alt={`${room.name} at Skylight Suites — ${room.tagline}`}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-80 lg:h-[500px] object-cover"
-                    />
+                    {room.images && room.images.length > 1 ? (
+                      <Carousel opts={{ loop: true }} className="w-full">
+                        <CarouselContent>
+                          {room.images.map((img, i) => (
+                            <CarouselItem key={i}>
+                              <img
+                                src={img.url}
+                                alt={img.alt}
+                                loading={i === 0 ? 'eager' : 'lazy'}
+                                decoding="async"
+                                className="w-full h-80 lg:h-[500px] object-cover"
+                              />
+                            </CarouselItem>
+                          ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="left-3" />
+                        <CarouselNext className="right-3" />
+                      </Carousel>
+                    ) : (
+                      <img
+                        src={room.image}
+                        alt={`${room.name} at Skylight Suites — ${room.tagline}`}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-80 lg:h-[500px] object-cover"
+                      />
+                    )}
                   </div>
                 </div>
                 <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
