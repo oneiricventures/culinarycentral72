@@ -110,7 +110,17 @@ const Skylight = () => {
       originalPrice: '₹2,499',
       description: 'A well-appointed room offering modern comforts and a calming atmosphere—ideal for short stays and effortless stopovers.',
       features: ['Double bed', 'Private bathroom', 'Modern interiors', 'Ideal for 2 guests'],
-      image: '/lovable-uploads/classic-bed1.jpg'
+      image: classicWashdoor.url,
+      images: [
+        { url: classicWashdoor.url, alt: 'Classic Room view from washroom door' },
+        { url: classicCbed.url, alt: 'Classic Room king bed with upholstered headboard' },
+        { url: classicCorner.url, alt: 'Classic Room corner view with wardrobe and TV' },
+        { url: classicBalcony.url, alt: 'Classic Room private balcony' },
+        { url: classicTV.url, alt: 'Classic Room TV and work desk' },
+        { url: classicWash1.url, alt: 'Classic Room ensuite washroom entry' },
+        { url: classicWash2.url, alt: 'Classic Room marble washroom with rain shower' },
+        { url: classicWash5.url, alt: 'Classic Room washroom vanity' },
+      ]
     },
     {
       id: 'premium',
