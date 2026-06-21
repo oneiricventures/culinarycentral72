@@ -282,35 +282,39 @@ Notes: ${formData.notes || '-'}`;
             {rooms.map((room, index) => (
               <div key={room.id} className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                 <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                  <div className="relative overflow-hidden rounded-2xl">
-                    {room.images && room.images.length > 1 ? (
-                      <Carousel opts={{ loop: true }} className="w-full">
-                        <CarouselContent>
-                          {room.images.map((img, i) => (
-                            <CarouselItem key={i}>
-                              <img
-                                src={img.url}
-                                alt={img.alt}
-                                loading={i === 0 ? 'eager' : 'lazy'}
-                                decoding="async"
-                                className="w-full h-80 lg:h-[500px] object-cover"
-                              />
-                            </CarouselItem>
-                          ))}
-                        </CarouselContent>
-                        <CarouselPrevious className="left-3" />
-                        <CarouselNext className="right-3" />
-                      </Carousel>
-                    ) : (
-                      <img
-                        src={room.image}
-                        alt={`${room.name} at Skylight Suites — ${room.tagline}`}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-80 lg:h-[500px] object-cover"
-                      />
-                    )}
-                  </div>
+                    <div className="relative overflow-hidden rounded-2xl w-full">
+                      {room.images && room.images.length > 1 ? (
+                        <Carousel opts={{ loop: true }} className="w-full">
+                          <CarouselContent>
+                            {room.images.map((img, i) => (
+                              <CarouselItem key={i}>
+                                <div className="w-full h-80 lg:h-[500px]">
+                                  <img
+                                    src={img.url}
+                                    alt={img.alt}
+                                    loading={i === 0 ? 'eager' : 'lazy'}
+                                    decoding="async"
+                                    className="w-full h-full object-cover block"
+                                  />
+                                </div>
+                              </CarouselItem>
+                            ))}
+                          </CarouselContent>
+                          <CarouselPrevious className="left-3" />
+                          <CarouselNext className="right-3" />
+                        </Carousel>
+                      ) : (
+                        <div className="w-full h-80 lg:h-[500px]">
+                          <img
+                            src={room.image}
+                            alt={`${room.name} at Skylight Suites — ${room.tagline}`}
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full h-full object-cover block"
+                          />
+                        </div>
+                      )}
+                    </div>
                 </div>
                 <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
                   <p className="text-muted-foreground italic mb-4 font-serif">{room.tagline}</p>
