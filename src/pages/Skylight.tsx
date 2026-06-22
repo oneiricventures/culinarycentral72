@@ -130,7 +130,16 @@ const Skylight = () => {
       originalPrice: '₹2,999',
       description: 'Designed for guests who appreciate extra room to unwind, the Premium Room features refined interiors and enhanced comfort for a relaxed stay.',
       features: ['Spacious layout', 'Elegant finishes', 'Private bathroom', 'Ideal for 2 guests'],
-      image: '/lovable-uploads/premium-bed1.jpg'
+      image: '/lovable-uploads/Premium1_Full_View2.jpg',
+      images: [
+        { url: '/lovable-uploads/Premium1_Full_View2.jpg', alt: 'Premium Room full view with bed and ambient ceiling lighting' },
+        { url: '/lovable-uploads/Premium4_Bed1.jpg', alt: 'Premium Room bed and window view' },
+        { url: '/lovable-uploads/Premium4_Pantry2.jpeg', alt: 'Premium Room wardrobe and writing desk area' },
+        { url: '/lovable-uploads/Premium4_TV1.jpg', alt: 'Premium Room TV console and mirror' },
+        { url: '/lovable-uploads/Premium4_Washroom3.jpg', alt: 'Premium Room washroom vanity and toilet' },
+        { url: '/lovable-uploads/Premium4_Window1.jpeg', alt: 'Premium Room window view with curtains open' },
+        { url: '/lovable-uploads/Premium4_Window2.jpg', alt: 'Premium Room window and curtain wall' },
+      ]
     },
     {
       id: 'grand-suite',
