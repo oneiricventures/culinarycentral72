@@ -34,7 +34,9 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 
-const AIRBNB_URL = 'https://www.airbnb.co.in/rooms/1707060572887705983';
+const AIRBNB_URL_CLASSIC = 'https://www.airbnb.co.in/rooms/1707060572887705983';
+const AIRBNB_URL_PREMIUM = 'https://www.airbnb.co.in/rooms/1712125402006278418';
+const AIRBNB_URL_SUITE = 'https://www.airbnb.co.in/rooms/1389016749522622097';
 const MMT_URL = 'https://www.makemytrip.com/hotels/skylight_suites-details-rishikesh.html';
 const PHONE_NUMBER = '+919920371372';
 const WHATSAPP_NUMBER = '919920371372';
@@ -75,7 +77,7 @@ const Skylight = () => {
 
   const openAirbnb = () =>
     trackConversion('sOoGCOfL_rUcEM3cnt8_', () =>
-      window.open(AIRBNB_URL, '_blank', 'noopener')
+      window.open(AIRBNB_URL_CLASSIC, '_blank', 'noopener')
     );
 
   const openMMT = () =>
@@ -111,6 +113,7 @@ const Skylight = () => {
       description: 'A well-appointed room offering modern comforts and a calming atmosphere—ideal for short stays and effortless stopovers.',
       features: ['Double bed', 'Private bathroom', 'Modern interiors', 'Ideal for 2 guests'],
       image: classicWashdoor.url,
+      airbnbUrl: AIRBNB_URL_CLASSIC,
       images: [
         { url: classicWashdoor.url, alt: 'Classic Room view from washroom door' },
         { url: classicCbed.url, alt: 'Classic Room king bed with upholstered headboard' },
@@ -131,6 +134,7 @@ const Skylight = () => {
       description: 'Designed for guests who appreciate extra room to unwind, the Premium Room features refined interiors and enhanced comfort for a relaxed stay.',
       features: ['Spacious layout', 'Elegant finishes', 'Private bathroom', 'Ideal for 2 guests'],
       image: '/lovable-uploads/Premium1_Full_View2.jpg',
+      airbnbUrl: AIRBNB_URL_PREMIUM,
       images: [
         { url: '/lovable-uploads/Premium1_Full_View2.jpg', alt: 'Premium Room full view with bed and ambient ceiling lighting' },
         { url: '/lovable-uploads/Premium4_Bed1.jpg', alt: 'Premium Room bed and window view' },
@@ -149,7 +153,8 @@ const Skylight = () => {
       originalPrice: '₹4,999',
       description: 'An expansive one-bedroom suite with a separate living area and private kitchenette. Perfect for extended stays, families, or travellers seeking a home-like luxury experience.',
       features: ['Separate living room', 'Kitchenette', 'Generous space', 'Ideal for longer stays'],
-      image: '/lovable-uploads/grand-suite-livingroom.jpg'
+      image: '/lovable-uploads/grand-suite-livingroom.jpg',
+      airbnbUrl: AIRBNB_URL_SUITE
     }
   ];
 
@@ -347,10 +352,11 @@ Notes: ${formData.notes || '-'}`;
 
                   <Button 
                     className="bg-[#8b7355] hover:bg-[#7a6549] text-[#f5efe8] px-8 font-sans"
-                    onClick={() => {
-                      setFormData(prev => ({ ...prev, roomType: room.name }));
-                      document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
+                    onClick={() =>
+                      trackConversion('sOoGCOfL_rUcEM3cnt8_', () =>
+                        window.open(room.airbnbUrl, '_blank', 'noopener')
+                      )
+                    }
                   >
                     Book {room.name}
                   </Button>
