@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Skylight from "./pages/Skylight";
+import FrontDesk from "./pages/FrontDesk";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
