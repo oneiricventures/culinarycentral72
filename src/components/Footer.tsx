@@ -83,7 +83,7 @@ const Footer = () => {
               </li>
               <li>
                 <SecureExternalLink 
-                  href="https://www.airbnb.co.in/rooms/1389016749522622097?check_in=2025-07-15&check_out=2025-07-17&guests=2&adults=2&s=67&unique_share_id=5c10203a-0100-4651-8f20-492a894db481" 
+                  href="https://www.airbnb.co.in/rooms/1707060572887705983?check_in=2025-07-15&check_out=2025-07-17&guests=2&adults=2&s=67&unique_share_id=5c10203a-0100-4651-8f20-492a894db481" 
                   className="text-blue-400 hover:text-blue-300 transition-colors"
                 >
                   Skylight Suite

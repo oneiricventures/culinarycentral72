@@ -34,7 +34,7 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 
-const AIRBNB_URL = 'https://www.airbnb.co.in/rooms/1389016749522622097';
+const AIRBNB_URL = 'https://www.airbnb.co.in/rooms/1707060572887705983';
 const MMT_URL = 'https://www.makemytrip.com/hotels/skylight_suites-details-rishikesh.html';
 const PHONE_NUMBER = '+919920371372';
 const WHATSAPP_NUMBER = '919920371372';

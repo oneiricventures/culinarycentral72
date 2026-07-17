@@ -37,7 +37,7 @@ const SkylightSection = () => {
   ];
 
   const handleAirbnbClick = () => {
-    window.open('https://www.airbnb.co.in/rooms/1389016749522622097?check_in=2025-07-15&check_out=2025-07-17&guests=2&adults=2&s=67&unique_share_id=340567d8-4842-46ce-8670-bab1be651367', '_blank');
+    window.open('https://www.airbnb.co.in/rooms/1707060572887705983?check_in=2025-07-15&check_out=2025-07-17&guests=2&adults=2&s=67&unique_share_id=340567d8-4842-46ce-8670-bab1be651367', '_blank');
   };
 
   const handleImageClick = (index: number) => {
