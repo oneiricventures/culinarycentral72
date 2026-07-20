@@ -90,7 +90,7 @@ const Skylight = () => {
       window.open(
         `https://wa.me/${WHATSAPP_NUMBER}?text=` +
           encodeURIComponent(
-            'Hi, I would like to book Skylight Suites. Please share availability and rates.'
+            "Hi 👋 Interested in Skylight Suites — could you share what's available?"
           ),
         '_blank',
         'noopener'
@@ -547,13 +547,18 @@ Notes: ${formData.notes || '-'}`;
                   <ExternalLink className="w-4 h-4 mr-2" />
                   Book on MakeMyTrip
                 </Button>
-                <Button
-                  className="bg-[#25D366] hover:bg-[#1ebe57] text-white font-sans font-medium min-h-[44px]"
-                  onClick={openWhatsAppBook}
-                >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Book on WhatsApp
-                </Button>
+                <div className="flex flex-col">
+                  <Button
+                    className="bg-[#25D366] hover:bg-[#1ebe57] text-white font-sans font-medium min-h-[44px]"
+                    onClick={openWhatsAppBook}
+                  >
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    Chat on WhatsApp
+                  </Button>
+                  <p className="text-center text-[#8b7355] text-xs md:text-[13px] mt-1.5 font-sans">
+                    ⚡ We reply in under 15 min
+                  </p>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
