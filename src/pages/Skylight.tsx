@@ -90,7 +90,7 @@ const Skylight = () => {
       window.open(
         `https://wa.me/${WHATSAPP_NUMBER}?text=` +
           encodeURIComponent(
-            'Hi, I would like to book Skylight Suites. Please share availability and rates.'
+            "Hi 👋 Interested in Skylight Suites — could you share what's available?"
           ),
         '_blank',
         'noopener'
