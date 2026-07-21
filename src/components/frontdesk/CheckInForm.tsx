@@ -91,24 +91,21 @@ const CheckInForm: React.FC<Props> = ({ onCancel, onSaved }) => {
       const { data: userData } = await supabase.auth.getUser();
       const uid = userData.user?.id;
 
-      // Upload all files
-      const uploaded: { name: string; id_image_url: string }[] = [];
+      // Upload all files — store only the storage path; short-lived
+      // signed URLs are generated on demand when staff view a record.
+      const uploaded: { name: string; id_image_path: string }[] = [];
       for (let i = 0; i < guests.length; i++) {
         const g = guests[i];
-        let url = g.url ?? "";
+        let path = g.url ?? "";
         if (g.file) {
           const blob = await resizeImage(g.file);
-          const path = `${uid ?? "anon"}/${Date.now()}_${i}.jpg`;
+          path = `${uid ?? "anon"}/${Date.now()}_${i}.jpg`;
           const { error: upErr } = await supabase.storage
             .from("kyc")
             .upload(path, blob, { contentType: "image/jpeg", upsert: false });
           if (upErr) throw upErr;
-          const { data: signed } = await supabase.storage
-            .from("kyc")
-            .createSignedUrl(path, 60 * 60 * 24 * 365);
-          url = signed?.signedUrl ?? path;
         }
-        uploaded.push({ name: g.name.trim(), id_image_url: url });
+        uploaded.push({ name: g.name.trim(), id_image_path: path });
       }
 
       const { error: insErr } = await supabase.from("checkins").insert({

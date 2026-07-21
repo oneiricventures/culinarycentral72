@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
-export type Guest = { name: string; id_image_url: string };
+export type Guest = {
+  name: string;
+  // New records store only the storage path; legacy rows may still have a URL.
+  id_image_path?: string;
+  id_image_url?: string;
+};
 
 export type CheckIn = {
   id: string;
@@ -24,6 +30,49 @@ const platformLabel = (c: CheckIn) =>
   c.booking_platform === "Others" && c.booking_platform_other
     ? `Others: ${c.booking_platform_other}`
     : c.booking_platform;
+
+const ViewIdLink: React.FC<{ guest: Guest }> = ({ guest }) => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const open = async () => {
+    setError(null);
+    // Legacy row: url baked in. Best effort — still open it.
+    if (!guest.id_image_path && guest.id_image_url) {
+      window.open(guest.id_image_url, "_blank", "noopener,noreferrer");
+      return;
+    }
+    if (!guest.id_image_path) return;
+    setLoading(true);
+    const { data, error } = await supabase.storage
+      .from("kyc")
+      .createSignedUrl(guest.id_image_path, 60); // 60s: enough to open, short enough to limit leak window
+    setLoading(false);
+    if (error || !data?.signedUrl) {
+      setError("Unable to load ID");
+      return;
+    }
+    window.open(data.signedUrl, "_blank", "noopener,noreferrer");
+  };
+
+  if (!guest.id_image_path && !guest.id_image_url) {
+    return <span className="text-slate-400">No image</span>;
+  }
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={open}
+        disabled={loading}
+        className="text-[#c9a24b] hover:underline disabled:opacity-60"
+      >
+        {loading ? "Loading…" : "View ID"}
+      </button>
+      {error && <span className="text-xs text-red-600 ml-2">{error}</span>}
+    </>
+  );
+};
 
 const Row: React.FC<{ item: CheckIn }> = ({ item }) => {
   const [open, setOpen] = useState(false);
@@ -58,18 +107,7 @@ const Row: React.FC<{ item: CheckIn }> = ({ item }) => {
               {item.guests?.map((g, i) => (
                 <li key={i} className="flex flex-wrap items-center gap-2">
                   <span className="text-[#16233f]">{i + 1}. {g.name || "—"}</span>
-                  {g.id_image_url ? (
-                    <a
-                      href={g.id_image_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#c9a24b] hover:underline"
-                    >
-                      View ID
-                    </a>
-                  ) : (
-                    <span className="text-slate-400">No image</span>
-                  )}
+                  <ViewIdLink guest={g} />
                 </li>
               ))}
             </ul>
