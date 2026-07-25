@@ -229,6 +229,19 @@ Notes: ${formData.notes || '-'}`;
             >
               Book on Airbnb
             </Button>
+            <div className="flex flex-col items-center">
+              <Button
+                size="lg"
+                className="bg-[#25D366] hover:bg-[#1ebe57] text-white font-sans font-medium px-8 py-6 text-base min-h-[44px]"
+                onClick={openWhatsAppBook}
+              >
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Chat on WhatsApp
+              </Button>
+              <p className="text-center text-[#d4c6a8] text-xs md:text-[13px] mt-1.5 font-sans">
+                ⚡ We reply in under 15 min
+              </p>
+            </div>
             <Button
               size="lg"
               variant="outline"
