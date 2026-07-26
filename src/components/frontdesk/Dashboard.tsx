@@ -1,39 +1,41 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import Brand from "./Brand";
 import CheckInForm from "./CheckInForm";
-import CheckInsList, { CheckIn } from "./CheckInsList";
+import CheckInsList from "./CheckInsList";
+import type { CheckInRow } from "@/lib/frontdeskApi";
+import { apiPost, getToken } from "@/lib/frontdeskApi";
 import { LogOut, Plus, RefreshCw } from "lucide-react";
 
 type View = "home" | "new" | "saved";
 
-const Dashboard: React.FC = () => {
+type Props = {
+  onLogout: () => void;
+  onSessionExpired: () => void;
+};
+
+const Dashboard: React.FC<Props> = ({ onLogout, onSessionExpired }) => {
   const [view, setView] = useState<View>("home");
-  const [recent, setRecent] = useState<CheckIn[]>([]);
+  const [recent, setRecent] = useState<CheckInRow[]>([]);
   const [loadingRecent, setLoadingRecent] = useState(false);
 
   const [briefMode, setBriefMode] = useState<"single" | "range">("single");
   const [briefSingle, setBriefSingle] = useState("");
   const [briefFrom, setBriefFrom] = useState("");
   const [briefTo, setBriefTo] = useState("");
-  const [briefResults, setBriefResults] = useState<CheckIn[] | null>(null);
+  const [briefResults, setBriefResults] = useState<CheckInRow[] | null>(null);
   const [briefLoading, setBriefLoading] = useState(false);
   const [briefError, setBriefError] = useState<string | null>(null);
 
   const loadRecent = useCallback(async () => {
     setLoadingRecent(true);
-    const { data, error } = await supabase
-      .from("checkins")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .limit(10);
-    if (!error && data) setRecent(data as unknown as CheckIn[]);
+    const res = await apiPost<{ rows: CheckInRow[] }>({ action: "recent", token: getToken() });
     setLoadingRecent(false);
-  }, []);
+    if (res.result === "success") setRecent(res.rows || []);
+    else if (res.result === "unauthorized") onSessionExpired();
+  }, [onSessionExpired]);
 
   useEffect(() => {
     if (view === "home") loadRecent();
@@ -44,18 +46,29 @@ const Dashboard: React.FC = () => {
     setBriefLoading(true);
     setBriefResults(null);
     try {
-      let q = supabase.from("checkins").select("*").order("checkin_date", { ascending: true });
+      let from: string, to: string;
       if (briefMode === "single") {
         if (!briefSingle) throw new Error("Pick a date.");
-        q = q.eq("checkin_date", briefSingle);
+        from = briefSingle;
+        to = briefSingle;
       } else {
         if (!briefFrom || !briefTo) throw new Error("Pick both dates.");
         if (briefFrom > briefTo) throw new Error("From date must be before To date.");
-        q = q.gte("checkin_date", briefFrom).lte("checkin_date", briefTo);
+        from = briefFrom;
+        to = briefTo;
       }
-      const { data, error } = await q;
-      if (error) throw error;
-      setBriefResults((data ?? []) as unknown as CheckIn[]);
+      const res = await apiPost<{ rows: CheckInRow[] }>({
+        action: "briefs",
+        token: getToken(),
+        from,
+        to,
+      });
+      if (res.result === "unauthorized") {
+        onSessionExpired();
+        return;
+      }
+      if (res.result !== "success") throw new Error(res.message || "Failed to load briefs.");
+      setBriefResults(res.rows || []);
     } catch (e) {
       setBriefError((e as Error).message);
     } finally {
@@ -63,28 +76,26 @@ const Dashboard: React.FC = () => {
     }
   };
 
-  const signOut = async () => {
-    await supabase.auth.signOut();
-  };
+  const goHome = useCallback(() => setView("home"), []);
 
   const header = useMemo(
     () => (
       <header className="bg-[#16233f] text-white">
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="text-white [&_.text-\\[\\#16233f\\]]:text-white">
-            <Brand />
+            <Brand onClick={goHome} />
           </div>
           <Button
             variant="outline"
             className="border-white/30 text-white bg-transparent hover:bg-white/10 hover:text-white"
-            onClick={signOut}
+            onClick={onLogout}
           >
             <LogOut className="w-4 h-4 mr-2" /> Log out
           </Button>
         </div>
       </header>
     ),
-    [],
+    [goHome, onLogout],
   );
 
   if (view === "new") {
@@ -93,8 +104,9 @@ const Dashboard: React.FC = () => {
         {header}
         <main className="max-w-3xl mx-auto px-4 py-6">
           <CheckInForm
-            onCancel={() => setView("home")}
+            onCancel={goHome}
             onSaved={() => setView("saved")}
+            onSessionExpired={onSessionExpired}
           />
         </main>
       </div>
@@ -111,13 +123,10 @@ const Dashboard: React.FC = () => {
             <h2 className="text-xl font-semibold text-[#16233f] mt-4">Check-in saved</h2>
             <p className="text-slate-500 mt-1">The guest record has been recorded.</p>
             <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-              <Button
-                className="bg-[#16233f] hover:bg-[#0f1a30] text-white"
-                onClick={() => setView("new")}
-              >
+              <Button className="bg-[#16233f] hover:bg-[#0f1a30] text-white" onClick={() => setView("new")}>
                 Add another
               </Button>
-              <Button variant="outline" onClick={() => setView("home")}>
+              <Button variant="outline" onClick={goHome}>
                 Return home
               </Button>
             </div>
@@ -131,21 +140,16 @@ const Dashboard: React.FC = () => {
     <div className="min-h-screen bg-[#f4f6fa]">
       {header}
       <main className="max-w-5xl mx-auto px-4 py-6 space-y-6">
-        {/* Begin */}
         <section className="bg-white rounded-lg border border-slate-200 shadow-sm p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 className="text-lg font-semibold text-[#16233f]">Begin a check-in</h2>
             <p className="text-sm text-slate-500">Record a new guest arrival.</p>
           </div>
-          <Button
-            className="bg-[#16233f] hover:bg-[#0f1a30] text-white"
-            onClick={() => setView("new")}
-          >
+          <Button className="bg-[#16233f] hover:bg-[#0f1a30] text-white" onClick={() => setView("new")}>
             <Plus className="w-4 h-4 mr-2" /> New check-in
           </Button>
         </section>
 
-        {/* Last 10 */}
         <section className="bg-white rounded-lg border border-slate-200 shadow-sm p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-[#16233f]">Last 10 check-ins</h2>
@@ -157,7 +161,6 @@ const Dashboard: React.FC = () => {
           <CheckInsList items={recent} loading={loadingRecent} />
         </section>
 
-        {/* Briefs */}
         <section className="bg-white rounded-lg border border-slate-200 shadow-sm p-6">
           <h2 className="text-lg font-semibold text-[#16233f] mb-4">Check-in briefs</h2>
           <div className="flex gap-2 mb-4">
@@ -195,18 +198,12 @@ const Dashboard: React.FC = () => {
                 </div>
               </>
             )}
-            <Button
-              className="bg-[#c9a24b] hover:bg-[#b3893a] text-white"
-              onClick={runBrief}
-              disabled={briefLoading}
-            >
+            <Button className="bg-[#c9a24b] hover:bg-[#b3893a] text-white" onClick={runBrief} disabled={briefLoading}>
               {briefLoading ? "Loading…" : "View"}
             </Button>
           </div>
 
-          {briefError && (
-            <div className="mt-3 text-sm text-red-600">{briefError}</div>
-          )}
+          {briefError && <div className="mt-3 text-sm text-red-600">{briefError}</div>}
 
           {briefResults && (
             <div className="mt-5">
@@ -221,8 +218,5 @@ const Dashboard: React.FC = () => {
     </div>
   );
 };
-
-// Prevent unused-import type-check
-void Textarea;
 
 export default Dashboard;

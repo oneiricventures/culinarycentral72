@@ -1,28 +1,13 @@
 import React, { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Brand from "./Brand";
+import { apiPost, setSession } from "@/lib/frontdeskApi";
 
-const FRONTDESK_USERNAME = "frontdesk";
-const FRONTDESK_EMAIL = "frontdesk@skylightsuites.app";
+type Props = { onLogin: (token: string) => void; notice?: string | null };
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
-const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
-
-async function ensureFrontdeskUser() {
-  try {
-    await fetch(`${SUPABASE_URL}/functions/v1/bootstrap-frontdesk`, {
-      method: "POST",
-      headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` },
-    });
-  } catch {
-    /* noop */
-  }
-}
-
-const LoginScreen: React.FC = () => {
+const LoginScreen: React.FC<Props> = ({ onLogin, notice }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -32,23 +17,20 @@ const LoginScreen: React.FC = () => {
     e.preventDefault();
     setError(null);
     setBusy(true);
-
-    const email =
-      username.trim().toLowerCase() === FRONTDESK_USERNAME
-        ? FRONTDESK_EMAIL
-        : username.trim();
-
-    let { error: signInErr } = await supabase.auth.signInWithPassword({ email, password });
-
-    if (signInErr) {
-      // Try to bootstrap the shared account, then retry once.
-      await ensureFrontdeskUser();
-      const retry = await supabase.auth.signInWithPassword({ email, password });
-      signInErr = retry.error;
-    }
-
+    const res = await apiPost<{ token: string; username: string; name?: string }>({
+      action: "login",
+      username: username.trim(),
+      password,
+    });
     setBusy(false);
-    if (signInErr) setError("Invalid username or password.");
+    if (res.result === "success") {
+      setSession(res.token, res.name ?? res.username);
+      onLogin(res.token);
+    } else if (res.result === "error") {
+      setError(res.message || "Invalid username or password.");
+    } else {
+      setError("Invalid username or password.");
+    }
   };
 
   return (
@@ -67,6 +49,12 @@ const LoginScreen: React.FC = () => {
               Staff access only. Enter your front desk credentials.
             </p>
           </div>
+
+          {notice && (
+            <div className="text-sm text-amber-700 bg-amber-50 border border-amber-100 rounded px-3 py-2">
+              {notice}
+            </div>
+          )}
 
           <div className="space-y-2">
             <Label htmlFor="username">Username</Label>

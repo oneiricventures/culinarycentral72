@@ -2,23 +2,26 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { supabase } from "@/integrations/supabase/client";
-import { resizeImage } from "@/lib/imageResize";
+import { apiPost, fileToResizedDataUrl, getToken } from "@/lib/frontdeskApi";
 
-type Guest = { name: string; file: File | null; url: string | null };
+type Guest = { name: string; file: File | null };
 
 const PLATFORMS = ["Airbnb", "Booking.com", "Agoda", "MakeMyTrip", "Direct", "Others"] as const;
 
 const emailOk = (s: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s.trim());
 const mobileOk = (s: string) => /^[+\d][\d\s-]{6,19}$/.test(s.trim());
-
 const today = () => new Date().toISOString().slice(0, 10);
 
-type Props = { onCancel: () => void; onSaved: () => void };
+type Props = {
+  onCancel: () => void;
+  onSaved: () => void;
+  onSessionExpired: () => void;
+};
 
-const CheckInForm: React.FC<Props> = ({ onCancel, onSaved }) => {
+const CheckInForm: React.FC<Props> = ({ onCancel, onSaved, onSessionExpired }) => {
   const [primaryName, setPrimaryName] = useState("");
-  const [guestCount, setGuestCount] = useState(1);
+  const [guestCountStr, setGuestCountStr] = useState("1");
+  const guestCount = Math.max(1, Math.min(20, Number(guestCountStr) || 1));
   const [mobile, setMobile] = useState("");
   const [email, setEmail] = useState("");
   const [checkinDate, setCheckinDate] = useState("");
@@ -29,27 +32,27 @@ const CheckInForm: React.FC<Props> = ({ onCancel, onSaved }) => {
   const [headingTo, setHeadingTo] = useState("");
   const [consent, setConsent] = useState(true);
 
-  const [guests, setGuests] = useState<Guest[]>([{ name: "", file: null, url: null }]);
+  const [guests, setGuests] = useState<Guest[]>([{ name: "", file: null }]);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   const minDate = today();
 
-  // Sync guest blocks with guest count
+  // Sync guest blocks with guest count. Guests 2+ start blank.
   useEffect(() => {
     setGuests((prev) => {
       const next = prev.slice(0, guestCount);
-      while (next.length < guestCount) next.push({ name: "", file: null, url: null });
+      while (next.length < guestCount) next.push({ name: "", file: null });
       return next;
     });
   }, [guestCount]);
 
-  // Prefill guest #1 with primary name
+  // Keep Guest 1 name in sync with the primary guest name as it's typed.
   useEffect(() => {
     setGuests((prev) => {
       if (!prev.length) return prev;
-      if (prev[0].name && prev[0].name !== primaryName) return prev;
+      if (prev[0].name === primaryName) return prev;
       const copy = [...prev];
       copy[0] = { ...copy[0], name: primaryName };
       return copy;
@@ -76,7 +79,7 @@ const CheckInForm: React.FC<Props> = ({ onCancel, onSaved }) => {
     if (platform === "Others" && !platformOther.trim()) e.platformOther = "Please specify";
     guests.forEach((g, i) => {
       if (!g.name.trim()) e[`guest_name_${i}`] = "Required";
-      if (!g.file && !g.url) e[`guest_file_${i}`] = "ID image required";
+      if (!g.file) e[`guest_file_${i}`] = "ID image required";
     });
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -88,43 +91,39 @@ const CheckInForm: React.FC<Props> = ({ onCancel, onSaved }) => {
     if (!validate()) return;
     setBusy(true);
     try {
-      const { data: userData } = await supabase.auth.getUser();
-      const uid = userData.user?.id;
-
-      // Upload all files — store only the storage path; short-lived
-      // signed URLs are generated on demand when staff view a record.
-      const uploaded: { name: string; id_image_path: string }[] = [];
-      for (let i = 0; i < guests.length; i++) {
-        const g = guests[i];
-        let path = g.url ?? "";
-        if (g.file) {
-          const blob = await resizeImage(g.file);
-          path = `${uid ?? "anon"}/${Date.now()}_${i}.jpg`;
-          const { error: upErr } = await supabase.storage
-            .from("kyc")
-            .upload(path, blob, { contentType: "image/jpeg", upsert: false });
-          if (upErr) throw upErr;
-        }
-        uploaded.push({ name: g.name.trim(), id_image_path: path });
+      const guestsPayload: { name: string; idImage: string }[] = [];
+      for (const g of guests) {
+        const idImage = g.file ? await fileToResizedDataUrl(g.file) : "";
+        guestsPayload.push({ name: g.name.trim(), idImage });
       }
 
-      const { error: insErr } = await supabase.from("checkins").insert({
-        created_by: uid,
-        primary_name: primaryName.trim(),
-        guest_count: guestCount,
+      const platformValue =
+        platform === "Others" ? `Others: ${platformOther.trim()}` : platform;
+
+      const res = await apiPost({
+        action: "checkin",
+        token: getToken(),
+        primaryName: primaryName.trim(),
+        guestCount,
         mobile: mobile.trim(),
         email: email.trim(),
-        checkin_date: checkinDate,
-        checkout_date: checkoutDate,
-        booking_platform: platform,
-        booking_platform_other: platform === "Others" ? platformOther.trim() : null,
-        coming_from: comingFrom.trim(),
-        heading_to: headingTo.trim(),
-        consent,
-        guests: uploaded,
+        checkin: checkinDate,
+        checkout: checkoutDate,
+        platform: platformValue,
+        from: comingFrom.trim(),
+        to: headingTo.trim(),
+        consent: consent ? "Yes" : "No",
+        submittedAt: new Date().toISOString(),
+        guests: guestsPayload,
       });
-      if (insErr) throw insErr;
 
+      if (res.result === "unauthorized") {
+        onSessionExpired();
+        return;
+      }
+      if (res.result !== "success") {
+        throw new Error(res.message || "Failed to save");
+      }
       onSaved();
     } catch (e) {
       setSubmitError((e as Error).message ?? "Failed to save");
@@ -148,7 +147,12 @@ const CheckInForm: React.FC<Props> = ({ onCancel, onSaved }) => {
             <Input
               className={inputCls(`guest_name_${i}`)}
               value={g.name}
-              onChange={(e) => setGuestField(i, { name: e.target.value })}
+              onChange={(e) => {
+                const v = e.target.value;
+                setGuestField(i, { name: v });
+                // Keep primary name in sync when Guest 1 is edited directly.
+                if (i === 0) setPrimaryName(v);
+              }}
             />
             {fieldErr(`guest_name_${i}`)}
           </div>
@@ -160,9 +164,7 @@ const CheckInForm: React.FC<Props> = ({ onCancel, onSaved }) => {
               className={inputCls(`guest_file_${i}`)}
               onChange={(e) => setGuestField(i, { file: e.target.files?.[0] ?? null })}
             />
-            {g.file && (
-              <div className="text-xs text-slate-500 mt-1">Selected: {g.file.name}</div>
-            )}
+            {g.file && <div className="text-xs text-slate-500 mt-1">Selected: {g.file.name}</div>}
             {fieldErr(`guest_file_${i}`)}
           </div>
         </div>
@@ -183,18 +185,25 @@ const CheckInForm: React.FC<Props> = ({ onCancel, onSaved }) => {
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
           <Label>Primary guest full name</Label>
-          <Input className={inputCls("primaryName")} value={primaryName} onChange={(e) => setPrimaryName(e.target.value)} />
+          <Input
+            className={inputCls("primaryName")}
+            value={primaryName}
+            onChange={(e) => setPrimaryName(e.target.value)}
+          />
           {fieldErr("primaryName")}
         </div>
         <div>
           <Label>Number of guests</Label>
           <Input
             type="number"
+            inputMode="numeric"
             min={1}
             max={20}
+            step={1}
             className={inputCls("guestCount")}
-            value={guestCount}
-            onChange={(e) => setGuestCount(Math.max(1, Math.min(20, Number(e.target.value) || 1)))}
+            value={guestCountStr}
+            onChange={(e) => setGuestCountStr(e.target.value)}
+            onBlur={() => setGuestCountStr(String(guestCount))}
           />
           {fieldErr("guestCount")}
         </div>

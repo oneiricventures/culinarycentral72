@@ -1,4 +1,0 @@
-project_id = "vvarnwaqbxavrjevsmmx"
-
-[functions.bootstrap-frontdesk]
-verify_jwt = false
