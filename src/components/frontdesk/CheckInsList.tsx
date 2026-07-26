@@ -1,81 +1,35 @@
 import React, { useState } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import type { CheckInRow } from "@/lib/frontdeskApi";
 
-export type Guest = {
-  name: string;
-  // New records store only the storage path; legacy rows may still have a URL.
-  id_image_path?: string;
-  id_image_url?: string;
-};
+export type CheckIn = CheckInRow;
 
-export type CheckIn = {
-  id: string;
-  created_at: string;
-  primary_name: string;
-  guest_count: number;
-  mobile: string;
-  email: string;
-  checkin_date: string;
-  checkout_date: string;
-  booking_platform: string;
-  booking_platform_other: string | null;
-  coming_from: string;
-  heading_to: string;
-  consent: boolean;
-  guests: Guest[];
-};
+type KycEntry = { name: string; url: string };
 
-const platformLabel = (c: CheckIn) =>
-  c.booking_platform === "Others" && c.booking_platform_other
-    ? `Others: ${c.booking_platform_other}`
-    : c.booking_platform;
-
-const ViewIdLink: React.FC<{ guest: Guest }> = ({ guest }) => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const open = async () => {
-    setError(null);
-    // Legacy row: url baked in. Best effort — still open it.
-    if (!guest.id_image_path && guest.id_image_url) {
-      window.open(guest.id_image_url, "_blank", "noopener,noreferrer");
-      return;
-    }
-    if (!guest.id_image_path) return;
-    setLoading(true);
-    const { data, error } = await supabase.storage
-      .from("kyc")
-      .createSignedUrl(guest.id_image_path, 60); // 60s: enough to open, short enough to limit leak window
-    setLoading(false);
-    if (error || !data?.signedUrl) {
-      setError("Unable to load ID");
-      return;
-    }
-    window.open(data.signedUrl, "_blank", "noopener,noreferrer");
-  };
-
-  if (!guest.id_image_path && !guest.id_image_url) {
-    return <span className="text-slate-400">No image</span>;
-  }
-
-  return (
-    <>
-      <button
-        type="button"
-        onClick={open}
-        disabled={loading}
-        className="text-[#c9a24b] hover:underline disabled:opacity-60"
-      >
-        {loading ? "Loading…" : "View ID"}
-      </button>
-      {error && <span className="text-xs text-red-600 ml-2">{error}</span>}
-    </>
-  );
+// `kyc` is newline-separated; each line "Guest name: https://drive-link".
+const parseKyc = (kyc: string): KycEntry[] => {
+  if (!kyc) return [];
+  return kyc
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const idx = line.indexOf("http");
+      if (idx === -1) return { name: line.replace(/:\s*$/, ""), url: "" };
+      const url = line.slice(idx).trim();
+      const name = line.slice(0, idx).replace(/:\s*$/, "").trim();
+      return { name: name || "Guest", url };
+    });
 };
 
 const Row: React.FC<{ item: CheckIn }> = ({ item }) => {
   const [open, setOpen] = useState(false);
+  const kyc = parseKyc(item.kyc || "");
+  const guestNames = (item.guestNames || "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
   return (
     <div className="border border-slate-200 rounded-md">
       <button
@@ -85,33 +39,59 @@ const Row: React.FC<{ item: CheckIn }> = ({ item }) => {
       >
         {open ? <ChevronDown className="w-4 h-4 text-slate-400" /> : <ChevronRight className="w-4 h-4 text-slate-400" />}
         <div className="flex-1 grid grid-cols-1 sm:grid-cols-5 gap-2 text-sm">
-          <div className="font-medium text-[#16233f]">{item.primary_name}</div>
-          <div className="text-slate-600">{item.guest_count} guest{item.guest_count === 1 ? "" : "s"}</div>
-          <div className="text-slate-600">{platformLabel(item)}</div>
+          <div className="font-medium text-[#16233f]">{item.primaryName}</div>
+          <div className="text-slate-600">
+            {item.guestCount} guest{item.guestCount === "1" ? "" : "s"}
+          </div>
+          <div className="text-slate-600">{item.platform}</div>
           <div className="text-slate-600">{item.mobile}</div>
-          <div className="text-slate-600">{item.checkin_date} → {item.checkout_date}</div>
+          <div className="text-slate-600">
+            {item.checkin} → {item.checkout}
+          </div>
         </div>
       </button>
       {open && (
         <div className="border-t border-slate-200 px-4 py-3 bg-slate-50/50 text-sm space-y-2">
-          <div><span className="text-slate-500">Email:</span> {item.email}</div>
           <div>
-            <span className="text-slate-500">From → To:</span> {item.coming_from} → {item.heading_to}
+            <span className="text-slate-500">Email:</span> {item.email}
           </div>
           <div>
-            <span className="text-slate-500">Consent:</span> {item.consent ? "Yes" : "No"}
+            <span className="text-slate-500">From → To:</span> {item.from} → {item.to}
           </div>
           <div>
-            <div className="text-slate-500 mb-1">Guests & KYC:</div>
-            <ul className="space-y-1">
-              {item.guests?.map((g, i) => (
-                <li key={i} className="flex flex-wrap items-center gap-2">
-                  <span className="text-[#16233f]">{i + 1}. {g.name || "—"}</span>
-                  <ViewIdLink guest={g} />
-                </li>
-              ))}
-            </ul>
+            <span className="text-slate-500">Consent:</span> {item.consent}
           </div>
+          {guestNames.length > 0 && (
+            <div>
+              <span className="text-slate-500">Guests:</span> {guestNames.join(", ")}
+            </div>
+          )}
+          {kyc.length > 0 && (
+            <div>
+              <div className="text-slate-500 mb-1">KYC:</div>
+              <ul className="space-y-1">
+                {kyc.map((k, i) => (
+                  <li key={i} className="flex flex-wrap items-center gap-2">
+                    <span className="text-[#16233f]">
+                      {i + 1}. {k.name}
+                    </span>
+                    {k.url ? (
+                      <a
+                        href={k.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#c9a24b] hover:underline"
+                      >
+                        view ID
+                      </a>
+                    ) : (
+                      <span className="text-slate-400">No image</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -123,8 +103,8 @@ const CheckInsList: React.FC<{ items: CheckIn[]; loading: boolean }> = ({ items,
   if (!items.length) return <div className="text-sm text-slate-500">No check-ins yet.</div>;
   return (
     <div className="space-y-2">
-      {items.map((c) => (
-        <Row key={c.id} item={c} />
+      {items.map((c, i) => (
+        <Row key={i} item={c} />
       ))}
     </div>
   );

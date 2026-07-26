@@ -1,32 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
-import type { Session } from "@supabase/supabase-js";
+import React, { useEffect, useState, useCallback } from "react";
 import LoginScreen from "@/components/frontdesk/LoginScreen";
 import Dashboard from "@/components/frontdesk/Dashboard";
+import { getToken, clearSession } from "@/lib/frontdeskApi";
 
 const FrontDesk: React.FC = () => {
-  const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [token, setToken] = useState<string | null>(getToken());
+  const [sessionMsg, setSessionMsg] = useState<string | null>(null);
 
   useEffect(() => {
     document.title = "Front desk · Skylight Suites";
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => setSession(s));
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session);
-      setLoading(false);
-    });
-    return () => sub.subscription.unsubscribe();
   }, []);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[#f4f6fa]">
-        <div className="text-[#16233f]">Loading…</div>
-      </div>
-    );
-  }
+  const onLogin = useCallback((t: string) => {
+    setSessionMsg(null);
+    setToken(t);
+  }, []);
 
-  return session ? <Dashboard /> : <LoginScreen />;
+  const onLogout = useCallback((msg?: string) => {
+    clearSession();
+    setToken(null);
+    if (msg) setSessionMsg(msg);
+  }, []);
+
+  if (!token) return <LoginScreen onLogin={onLogin} notice={sessionMsg} />;
+  return <Dashboard onLogout={onLogout} onSessionExpired={() => onLogout("Session expired. Please log in again.")} />;
 };
 
 export default FrontDesk;
