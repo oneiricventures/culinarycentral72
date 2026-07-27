@@ -104,7 +104,7 @@ const Dashboard: React.FC<Props> = ({ onLogout, onSessionExpired }) => {
     return (
       <div className="min-h-screen bg-[#f4f6fa]">
         {header}
-        <main className="max-w-3xl mx-auto px-4 py-6">
+        <main className="max-w-3xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
           <CheckInForm
             onCancel={goHome}
             onSaved={() => setView("saved")}
@@ -119,16 +119,16 @@ const Dashboard: React.FC<Props> = ({ onLogout, onSessionExpired }) => {
     return (
       <div className="min-h-screen bg-[#f4f6fa]">
         {header}
-        <main className="max-w-3xl mx-auto px-4 py-10">
-          <div className="bg-white rounded-lg border border-slate-200 p-8 text-center shadow-sm">
+        <main className="max-w-3xl mx-auto px-3 sm:px-4 py-8 sm:py-10">
+          <div className="bg-white rounded-lg border border-slate-200 p-6 sm:p-8 text-center shadow-sm">
             <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center text-2xl">✓</div>
             <h2 className="text-xl font-semibold text-[#16233f] mt-4">Check-in saved</h2>
             <p className="text-slate-500 mt-1">The guest record has been recorded.</p>
             <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-              <Button className="bg-[#16233f] hover:bg-[#0f1a30] text-white" onClick={() => setView("new")}>
+              <Button className="w-full sm:w-auto bg-[#16233f] hover:bg-[#0f1a30] text-white" onClick={() => setView("new")}>
                 Add another
               </Button>
-              <Button variant="outline" onClick={goHome}>
+              <Button variant="outline" className="w-full sm:w-auto" onClick={goHome}>
                 Return home
               </Button>
             </div>
@@ -141,13 +141,13 @@ const Dashboard: React.FC<Props> = ({ onLogout, onSessionExpired }) => {
   return (
     <div className="min-h-screen bg-[#f4f6fa]">
       {header}
-      <main className="max-w-5xl mx-auto px-4 py-6 space-y-6">
-        <section className="bg-white rounded-lg border border-slate-200 shadow-sm p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <main className="max-w-5xl mx-auto px-3 sm:px-4 py-4 sm:py-6 space-y-4 sm:space-y-6">
+        <section className="bg-white rounded-lg border border-slate-200 shadow-sm p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 className="text-lg font-semibold text-[#16233f]">Begin a check-in</h2>
             <p className="text-sm text-slate-500">Record a new guest arrival.</p>
           </div>
-          <Button className="bg-[#16233f] hover:bg-[#0f1a30] text-white" onClick={() => setView("new")}>
+          <Button className="w-full sm:w-auto bg-[#16233f] hover:bg-[#0f1a30] text-white" onClick={() => setView("new")}>
             <Plus className="w-4 h-4 mr-2" /> New check-in
           </Button>
         </section>
