@@ -152,37 +152,37 @@ const Dashboard: React.FC<Props> = ({ onLogout, onSessionExpired }) => {
           </Button>
         </section>
 
-        <section className="bg-white rounded-lg border border-slate-200 shadow-sm p-6">
-          <div className="flex items-center justify-between mb-4">
+        <section className="bg-white rounded-lg border border-slate-200 shadow-sm p-4 sm:p-6">
+          <div className="flex items-center justify-between mb-4 gap-2">
             <h2 className="text-lg font-semibold text-[#16233f]">Last 10 check-ins</h2>
             <Button variant="outline" size="sm" onClick={loadRecent} disabled={loadingRecent}>
-              <RefreshCw className={`w-4 h-4 mr-2 ${loadingRecent ? "animate-spin" : ""}`} />
-              Refresh
+              <RefreshCw className={`w-4 h-4 sm:mr-2 ${loadingRecent ? "animate-spin" : ""}`} />
+              <span className="hidden sm:inline">Refresh</span>
             </Button>
           </div>
           <CheckInsList items={recent} loading={loadingRecent} />
         </section>
 
-        <section className="bg-white rounded-lg border border-slate-200 shadow-sm p-6">
+        <section className="bg-white rounded-lg border border-slate-200 shadow-sm p-4 sm:p-6">
           <h2 className="text-lg font-semibold text-[#16233f] mb-4">Check-in briefs</h2>
-          <div className="flex gap-2 mb-4">
+          <div className="flex flex-wrap gap-2 mb-4">
             <button
               type="button"
-              className={`px-3 py-1.5 rounded-md text-sm border ${briefMode === "single" ? "bg-[#16233f] text-white border-[#16233f]" : "bg-white text-[#16233f] border-slate-300"}`}
+              className={`px-3 py-2 min-h-[40px] rounded-md text-sm border ${briefMode === "single" ? "bg-[#16233f] text-white border-[#16233f]" : "bg-white text-[#16233f] border-slate-300"}`}
               onClick={() => setBriefMode("single")}
             >
               Single date
             </button>
             <button
               type="button"
-              className={`px-3 py-1.5 rounded-md text-sm border ${briefMode === "range" ? "bg-[#16233f] text-white border-[#16233f]" : "bg-white text-[#16233f] border-slate-300"}`}
+              className={`px-3 py-2 min-h-[40px] rounded-md text-sm border ${briefMode === "range" ? "bg-[#16233f] text-white border-[#16233f]" : "bg-white text-[#16233f] border-slate-300"}`}
               onClick={() => setBriefMode("range")}
             >
               Date range
             </button>
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-3 items-end">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 items-end">
             {briefMode === "single" ? (
               <div className="space-y-1.5">
                 <Label>Date</Label>
@@ -200,7 +200,7 @@ const Dashboard: React.FC<Props> = ({ onLogout, onSessionExpired }) => {
                 </div>
               </>
             )}
-            <Button className="bg-[#c9a24b] hover:bg-[#b3893a] text-white" onClick={runBrief} disabled={briefLoading}>
+            <Button className="w-full sm:w-auto bg-[#c9a24b] hover:bg-[#b3893a] text-white" onClick={runBrief} disabled={briefLoading}>
               {briefLoading ? "Loading…" : "View"}
             </Button>
           </div>
