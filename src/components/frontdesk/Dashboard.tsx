@@ -81,16 +81,18 @@ const Dashboard: React.FC<Props> = ({ onLogout, onSessionExpired }) => {
   const header = useMemo(
     () => (
       <header className="bg-[#16233f] text-white">
-        <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="text-white [&_.text-\\[\\#16233f\\]]:text-white">
+        <div className="max-w-5xl mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between gap-2">
+          <div className="min-w-0 text-white [&_.text-\\[\\#16233f\\]]:text-white">
             <Brand onClick={goHome} />
           </div>
           <Button
             variant="outline"
-            className="border-white/30 text-white bg-transparent hover:bg-white/10 hover:text-white"
+            size="sm"
+            className="shrink-0 border-white/30 text-white bg-transparent hover:bg-white/10 hover:text-white"
             onClick={onLogout}
           >
-            <LogOut className="w-4 h-4 mr-2" /> Log out
+            <LogOut className="w-4 h-4 sm:mr-2" />
+            <span className="hidden sm:inline">Log out</span>
           </Button>
         </div>
       </header>
